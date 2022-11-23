@@ -31,7 +31,18 @@ public class UserInterface {
     }
 
     public void addMember(){
-        System.out.println("not working yet");
+        System.out.println("""
+                Membership:
+                1. Exerciser
+                2. Competition Swimmer""");
+        String name = sc.nextLine();
+        int day = readInteger();
+        int month = readInteger();
+        int year = readInteger();
+        int phoneNumber = readInteger();
+        String address = sc.nextLine();
+        controller.addExerciser(name, day, month, year, phoneNumber, address);
+        controller.addCompetitionSwimmer(name, day, month, year, phoneNumber, address);
     }
     public void viewMember() {
         System.out.println("not working yet");
