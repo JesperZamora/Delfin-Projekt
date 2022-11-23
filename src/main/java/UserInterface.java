@@ -40,6 +40,7 @@ public class UserInterface {
     public int readInteger(){
         while(!sc.hasNextInt()){
             System.out.println("This is not a number. Try again..");
+            sc.next();
         }
         return sc.nextInt();
     }
