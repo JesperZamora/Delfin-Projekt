@@ -12,4 +12,7 @@ public class Database {
         members.add(new Competition(name, day, month, year, phoneNumber, adress));
     }
 
+    public ArrayList<Member> getMembers(){
+        return members;
+    }
 }

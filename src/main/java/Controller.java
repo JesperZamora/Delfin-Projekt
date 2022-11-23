@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Controller {
     private Database database;
     public Controller(){
@@ -10,5 +12,9 @@ public class Controller {
 
     public void addCompetitionSwimmer(String name, int day, int month, int year, int phoneNumber, String adress){
         database.addCompetitionSwimmer(name, day, month, year, phoneNumber, adress);
+    }
+
+    public ArrayList<Member> getMembers(){
+        return database.getMembers();
     }
 }
