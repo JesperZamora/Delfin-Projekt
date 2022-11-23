@@ -38,6 +38,17 @@ public abstract class Member {
         }
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public int getAge(){
+        return age;
+    }
+
+    public int getPhoneNumber(){
+        return phoneNumber;
+    }
 }
 
 

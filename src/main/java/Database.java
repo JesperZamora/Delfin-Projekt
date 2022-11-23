@@ -12,4 +12,32 @@ public class Database {
         members.add(new Competition(name, day, month, year, phoneNumber, adress));
     }
 
+    public Member searchMemberName(String searchName){
+        for (Member m : members){
+            if (m.getName().contains(searchName)){
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Member searchMemberAge(String searchAge){
+        for (Member m : members){
+            String actualAge = Integer.toString(m.getAge());
+            if (actualAge.contains(searchAge)){
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Member searchMemberPhoneNumber(String searchPhoneNumber){
+        for (Member m : members){
+            String actualPhoneNumber = Integer.toString(m.getPhoneNumber());
+            if (actualPhoneNumber.contains(searchPhoneNumber)){
+                return m;
+            }
+        }
+        return null;
+    }
 }
