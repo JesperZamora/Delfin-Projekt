@@ -49,6 +49,51 @@ public abstract class Member {
     public int getPhoneNumber(){
         return phoneNumber;
     }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setDay(int day)
+    {
+        this.day = day;
+    }
+
+    public void setMonth(int month)
+    {
+        this.month = month;
+    }
+
+    public void setYear(int year)
+    {
+        this.year = year;
+    }
+
+    public void setPhoneNumber(int phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public void setActiveMembership(boolean activeMembership)
+    {
+        this.activeMembership = activeMembership;
+    }
+
+    public void setMembershipType(String membershipType)
+    {
+        this.membershipType = membershipType;
+    }
+
+    public void setAge(int age)
+    {
+        this.age = age;
+    }
 }
 
 
