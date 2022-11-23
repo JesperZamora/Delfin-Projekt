@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner sc;
     private Controller controller;
+
     public UserInterface(){
         sc = new Scanner(System.in);
         controller = new Controller();
@@ -22,7 +23,7 @@ public class UserInterface {
             startMenu();
             int userChoice = readInteger();
             switch(userChoice) {
-                case 1 -> addExerciser();
+                case 1 -> addNewMemberInfo();
                 case 2 -> viewMember();
                 case 9 -> isRunning = false;
                 default -> System.out.println("Not valid menu choice");
@@ -30,42 +31,53 @@ public class UserInterface {
         }
     }
 
-
-    public void addMemberMenu(){
-        System.out.println("""
-                Membership:
-                1. Exerciser
-                2. Competition Swimmer""");
-    }
-    public void addExerciser(){
+    public void addNewMemberInfo(){
         System.out.println("Add new member information");
         System.out.print("Name: ");
-        sc.next();
-        String name = sc.nextLine();
+        String name = readString();
 
         System.out.println("Birthdate ");
         System.out.print("day: ");
         int day = readInteger();
+
         System.out.print("month: ");
         int month = readInteger();
+
         System.out.print("year: ");
         int year = readInteger();
 
         System.out.print("Phone number: ");
         int phoneNumber = readInteger();
-        System.out.print("Address: ");
-        String address = sc.nextLine();
-        System.out.println("Press * to add member");
 
-        if(!sc.hasNext()){
+        System.out.print("Address: ");
+        String address = readString();
+
+        addNewMember(name, day, month, year, phoneNumber, address);
+    }
+
+    public void addNewMember(String name, int day, int month, int year, int phoneNumber, String address){
+        System.out.println("""
+                Type 1. to add new member as 'exerciser'.
+                Type 2. to add new member as 'competition swimmer'.
+                Type 0. to discontinue and go to main menu.""");
+
+        int userChoice = readInteger();
+
+        if(userChoice == 1){
             controller.addExerciser(name, day, month, year, phoneNumber, address);
             System.out.println("Exerciser member added.");
-        } else {
+
+        } else if (userChoice == 2){
+            //TODO: Fill out with discipline attributes add (future sprint)
             //System.out.println("Add discipline information:");
             controller.addCompetitionSwimmer(name, day, month, year, phoneNumber, address);
             System.out.println("Competition member added.");
+
+        } else if(userChoice == 0){
+            System.out.println("Member not added");
         }
     }
+
 
     public void viewMember() {
         controller.getMembers().forEach(System.out :: println);
@@ -77,5 +89,10 @@ public class UserInterface {
             sc.next();
         }
         return sc.nextInt();
+    }
+
+    public String readString(){
+        sc.next();
+        return sc.nextLine().toLowerCase();
     }
 }
