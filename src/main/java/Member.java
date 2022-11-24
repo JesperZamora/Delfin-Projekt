@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Member {
     private String name;
@@ -11,6 +12,8 @@ public abstract class Member {
     private boolean activeMembership;
     private String membershipType;
     private int age;
+    private LocalDate birthDate;
+    private String birthDateFormat;
 
 
     public Member(String name, int day, int month, int year, int phoneNumber, String address) {
@@ -21,12 +24,17 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         membershipAgeType();
+        formatBirthDate();
     }
 
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
-        LocalDate birthDate = LocalDate.of(year, month, day);
+        birthDate = LocalDate.of(year, month, day);
         age = Period.between(birthDate, today).getYears();
+    }
+    public void formatBirthDate(){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        birthDateFormat = birthDate.format(format);
     }
 
     public void membershipAgeType() {
@@ -36,6 +44,11 @@ public abstract class Member {
         } else {
             this.membershipType = "senior";
         }
+    }
+
+    public String toString() {
+        return String.format("%-18s %-7d %-13s %-12d %-27s %s",
+                name, age, birthDateFormat, phoneNumber, address, membershipType);
     }
 
 }
