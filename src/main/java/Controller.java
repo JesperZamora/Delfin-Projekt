@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Controller {
     private Database database;
     public Controller(){
         database = new Database();
+        ArrayList<Competition> competitions = new ArrayList<>();
     }
 
     public void addExerciser(String name, int day, int month, int year, int phoneNumber, String address){
@@ -33,4 +37,5 @@ public class Controller {
     public void editMember(String name, int day, int month, int year, int phoneNumber, String address, int memberChoice){
         database.editMember(name, day, month, year, phoneNumber, address, memberChoice);
     }
+
 }

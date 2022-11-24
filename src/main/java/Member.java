@@ -1,3 +1,5 @@
+import com.beust.jcommander.IStringConverter;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -12,8 +14,11 @@ public abstract class Member {
     private boolean activeMembership;
     private String membershipType;
     private int age;
-    private LocalDate birthDate;
     private String birthDateFormat;
+    private String active;
+    private String passive;
+    private String inactive;
+
 
 
     public Member(String name, int day, int month, int year, int phoneNumber, String address) {
@@ -27,15 +32,8 @@ public abstract class Member {
         formatBirthDate();
     }
 
-    public void ageCalculator() {
-        LocalDate today = LocalDate.now();
-        birthDate = LocalDate.of(year, month, day);
-        age = Period.between(birthDate, today).getYears();
-    }
-    public void formatBirthDate(){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        birthDateFormat = birthDate.format(format);
-    }
+    public abstract void ageCalculator();
+    public abstract void formatBirthDate();
 
     public void membershipAgeType() {
         ageCalculator();
@@ -61,6 +59,22 @@ public abstract class Member {
 
     public int getPhoneNumber(){
         return phoneNumber;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setName(String name)
@@ -107,6 +121,29 @@ public abstract class Member {
     {
         this.age = age;
     }
+
+    public String getActive() {
+        return active;
+    }
+    public String getPassive() {
+        return passive;
+    }
+
+    public void setMembershipType(){
+        this.membershipType = membershipType;
+    }
+
+    public String activitiesForm(){
+        if (name == active){
+            return membershipType;
+        } else if (name == passive) {
+            return membershipType;
+        } else if (name == inactive) {
+            return membershipType;
+        } return "";
+    }
+
+
 }
 
 
