@@ -10,6 +10,7 @@ public class UserInterface {
     public UserInterface() {
         sc = new Scanner(System.in);
         controller = new Controller();
+        //controller.loadFile();
     }
 
     public void startMenu() {
@@ -33,7 +34,10 @@ public class UserInterface {
                 case 1 -> presidentMenu();
                 case 2 -> cashierMenu();
                 case 3 -> coachMenu();
-                case 9 -> isRunning = false;
+                case 9 -> {
+                    //controller.saveToFile();
+                    isRunning = false;
+                }
                 default -> System.out.println("Not valid menu choice");
             }
         }
@@ -136,7 +140,7 @@ public class UserInterface {
         System.out.println("Write the name of the member you wish to edit: ");
         String searchName = readString();
         ArrayList<Member> searchedMember = controller.searchMemberName(searchName);
-        //System.out.println(searchedMember.toString());
+
         int no = 1;
         for (Member member : searchedMember) {
             System.out.println("[" + no + "] " + member);

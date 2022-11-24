@@ -1,25 +1,23 @@
-
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public abstract class Member {
     private String name;
+    private int age;
+    private String birthDateFormat;
+    private int phoneNumber;
+    private String address;
+    private String membershipByAge;
+    private boolean memberStatus;
+    private String membershipType;
+    private LocalDate birthDate;
     private int day;
     private int month;
     private int year;
-    private int phoneNumber;
-    private String address;
-    private boolean activeMembership;
-    private String membershipType;
-    private int age;
-    private String birthDateFormat;
-    private String active;
-    private String passive;
-    private String inactive;
-    private LocalDate birthDate;
+    //private String active;
+    //private String passive;
+    //private String inactive;
 
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address) {
@@ -27,13 +25,13 @@ public abstract class Member {
         setBirthDate(birthDate);
         this.phoneNumber = phoneNumber;
         this.address = address;
-        membershipAgeType();
+        membershipByAge();
         formatBirthDate();
     }
 
-    public Member() {
+/*    public Member() {
 
-    }
+    }*/
 
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
@@ -45,18 +43,18 @@ public abstract class Member {
         birthDateFormat = birthDate.format(format);
     }
 
-    public void membershipAgeType() {
+    public void membershipByAge() {
         ageCalculator();
         if (age < 18) {
-            this.membershipType = "junior";
+            this.membershipByAge = "junior";
         } else {
-            this.membershipType = "senior";
+            this.membershipByAge = "senior";
         }
     }
 
     public String toString() {
         return String.format("%-18s %-7d %-13s %-12d %-27s %s",
-                name, age, birthDateFormat, phoneNumber, address, membershipType);
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge);
     }
 
     public String getName() {
@@ -71,7 +69,6 @@ public abstract class Member {
         return phoneNumber;
     }
 
-
     public String getAddress() {
         return address;
     }
@@ -84,9 +81,7 @@ public abstract class Member {
         this.birthDate = birthDate;
         formatBirthDate();
         ageCalculator();
-
     }
-
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
@@ -96,11 +91,15 @@ public abstract class Member {
         this.address = address;
     }
 
-    public void setActiveMembership(boolean activeMembership) {
-        this.activeMembership = activeMembership;
+    public void setMemberStatus(boolean memberStatus) {
+        this.memberStatus = memberStatus;
     }
 
-    public void setMembershipType(String membershipType) {
+/*    public void setMembershipAgeType(String membershipAgeType) {
+        this.membershipAgeType = membershipAgeType;
+    }*/
+
+/*    public void setMembershipType(String membershipType) {
         this.membershipType = membershipType;
     }
 
@@ -110,32 +109,20 @@ public abstract class Member {
 
     public void setBirthDateFormat(String birthDateFormat){
         this.birthDateFormat = birthDateFormat;
-    }
+    }*/
 
-    public String getActive() {
+/*    public String getActive() {
         return active;
     }
 
 
     public String getPassive() {
         return passive;
-    }
+    }*/
 
     public void setMembershipType() {
         this.membershipType = membershipType;
     }
-
-    public String activitiesForm() {
-        if (name == active) {
-            return membershipType;
-        } else if (name == passive) {
-            return membershipType;
-        } else if (name == inactive) {
-            return membershipType;
-        }
-        return "";
-    }
-
 
     public int getMonth() {
         return month;
