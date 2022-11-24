@@ -12,7 +12,6 @@ public abstract class Member {
     private boolean activeMembership;
     private String membershipType;
     private int age;
-    private LocalDate birthDate;
     private String birthDateFormat;
 
 
@@ -27,15 +26,8 @@ public abstract class Member {
         formatBirthDate();
     }
 
-    public void ageCalculator() {
-        LocalDate today = LocalDate.now();
-        birthDate = LocalDate.of(year, month, day);
-        age = Period.between(birthDate, today).getYears();
-    }
-    public void formatBirthDate(){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        birthDateFormat = birthDate.format(format);
-    }
+    public abstract void ageCalculator();
+    public abstract void formatBirthDate();
 
     public void membershipAgeType() {
         ageCalculator();
