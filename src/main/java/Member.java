@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 
 public abstract class Member {
     private String name;
@@ -24,25 +23,20 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         membershipAgeType();
-        formatBirthDate();
     }
 
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
-        birthDate = LocalDate.of(year, month, day);
+        LocalDate birthDate = LocalDate.of(year, month, day);
         age = Period.between(birthDate, today).getYears();
-    }
-    public void formatBirthDate(){
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        birthDateFormat = birthDate.format(format);
     }
 
     public void membershipAgeType() {
         ageCalculator();
         if (age < 18) {
-            this.membershipType = "junior";
+            this.membershipType = "Junior";
         } else {
-            this.membershipType = "senior";
+            this.membershipType = "Senior";
         }
     }
 
@@ -51,6 +45,49 @@ public abstract class Member {
                 name, age, birthDateFormat, phoneNumber, address, membershipType);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public boolean isActiveMembership() {
+        return activeMembership;
+    }
+
+    public String getMembershipType() {
+        return membershipType;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getBirthDateFormat() {
+        return birthDateFormat;
+    }
 }
 
 
