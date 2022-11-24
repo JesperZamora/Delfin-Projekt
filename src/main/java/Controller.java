@@ -11,4 +11,20 @@ public class Controller {
     public void addCompetitionSwimmer(String name, int day, int month, int year, int phoneNumber, String adress){
         database.addCompetitionSwimmer(name, day, month, year, phoneNumber, adress);
     }
+
+    public void searchMemberName(String name){
+        database.searchMemberName(name);
+    }
+
+    public void searchMemberAge(String age){
+        database.searchMemberAge(age);
+    }
+
+    public void searchMemberPhoneNumber(String phoneNumber){
+        database.searchMemberPhoneNumber(phoneNumber);
+    }
+
+    public void editMember(String name, int day, int month, int year, int phoneNumber, String adress, int memberChoice){
+        database.editMember(name, day, month, year, phoneNumber, adress, memberChoice);
+    }
 }

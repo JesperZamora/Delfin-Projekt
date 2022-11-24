@@ -12,9 +12,9 @@ public class Database {
         members.add(new Competition(name, day, month, year, phoneNumber, adress));
     }
 
-    public void editMember(String name, int day, int month, int year, int phoneNumber, String adress){
+    public void editMember(String name, int day, int month, int year, int phoneNumber, String adress, int memberChoice){
         if (!editMembers.isEmpty()){
-            Member editMember = editMembers.get(0);
+            Member editMember = editMembers.get(memberChoice - 1);
 
             String newName = name;
             if (!newName.isEmpty()){
@@ -51,6 +51,7 @@ public class Database {
     public Member searchMemberName(String searchName){
         for (Member m : members){
             if (m.getName().contains(searchName)){
+                editMembers.add(m);
                 return m;
             }
         }
@@ -61,6 +62,7 @@ public class Database {
         for (Member m : members){
             String actualAge = Integer.toString(m.getAge());
             if (actualAge.contains(searchAge)){
+                editMembers.add(m);
                 return m;
             }
         }
@@ -71,6 +73,7 @@ public class Database {
         for (Member m : members){
             String actualPhoneNumber = Integer.toString(m.getPhoneNumber());
             if (actualPhoneNumber.contains(searchPhoneNumber)){
+                editMembers.add(m);
                 return m;
             }
         }
