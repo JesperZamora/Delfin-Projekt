@@ -131,6 +131,10 @@ public abstract class Member {
         this.age = age;
     }
 
+    public void setBirthDateFormat(String birthDateFormat){
+        this.birthDateFormat = birthDateFormat;
+    }
+
     public String getActive() {
         return active;
     }

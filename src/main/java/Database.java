@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Database {
@@ -45,6 +48,14 @@ public class Database {
             if (!newAddress.isEmpty()){
                 editMember.setAddress(newAddress);
             }
+
+            LocalDate today = LocalDate.now();
+            LocalDate birthDate = LocalDate.of(Integer.parseInt(newYear), Integer.parseInt(newMonth), Integer.parseInt(newDay));
+            editMember.setAge(Period.between(birthDate, today).getYears());
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String birthDateFormat = birthDate.format(format);
+            editMember.setBirthDateFormat(birthDateFormat);
         }
     }
 
