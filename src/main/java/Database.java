@@ -8,11 +8,11 @@ public class Database {
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, int day, int month, int year, int phoneNumber, String adress){
-        members.add(new Competition(name, day, month, year, phoneNumber, adress));
+    public void addCompetitionSwimmer(String name, int day, int month, int year, int phoneNumber, String address){
+        members.add(new Competition(name, day, month, year, phoneNumber, address));
     }
 
-    public void editMember(String name, int day, int month, int year, int phoneNumber, String adress, int memberChoice){
+    public void editMember(String name, int day, int month, int year, int phoneNumber, String address, int memberChoice){
         if (!editMembers.isEmpty()){
             Member editMember = editMembers.get(memberChoice - 1);
 
@@ -41,18 +41,18 @@ public class Database {
                 editMember.setPhoneNumber(Integer.parseInt(newPhoneNumber));
             }
 
-            String newAdress = adress;
-            if (!newAdress.isEmpty()){
-                editMember.setAddress(newAdress);
+            String newAddress = address;
+            if (!newAddress.isEmpty()){
+                editMember.setAddress(newAddress);
             }
         }
     }
 
-    public Member searchMemberName(String searchName){
+    public ArrayList<Member> searchMemberName(String searchName){
         for (Member m : members){
             if (m.getName().contains(searchName)){
                 editMembers.add(m);
-                return m;
+                return editMembers;
             }
         }
         return null;
