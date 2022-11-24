@@ -79,5 +79,9 @@ class FileHandler {
         }
         return null;
     }
+
+    public File getFile(){
+        return file;
+    }
 }
 
