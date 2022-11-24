@@ -18,19 +18,9 @@ public class Competition extends Member {
         ageCalculator();
     }
 
-    @Override
-    public void ageCalculator() {
-        LocalDate today = LocalDate.now();
-        birthDate = LocalDate.of(year, month, day);
-        age = Period.between(birthDate, today).getYears();
-    }
 
-    @Override
-    public void formatBirthDate() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        birthDateFormat = birthDate.format(format);
 
     }
 
 
-}
+

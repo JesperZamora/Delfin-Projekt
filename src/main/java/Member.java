@@ -1,4 +1,4 @@
-import com.beust.jcommander.IStringConverter;
+
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -18,6 +18,8 @@ public abstract class Member {
     private String active;
     private String passive;
     private String inactive;
+    LocalDate birthDate;
+
 
 
 
@@ -32,8 +34,15 @@ public abstract class Member {
         formatBirthDate();
     }
 
-    public abstract void ageCalculator();
-    public abstract void formatBirthDate();
+    public void ageCalculator() {
+        LocalDate today = LocalDate.now();
+        birthDate = LocalDate.of(year, month, day);
+        age = Period.between(birthDate, today).getYears();
+    }
+    public void formatBirthDate() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        birthDateFormat = birthDate.format(format);
+    }
 
     public void membershipAgeType() {
         ageCalculator();
