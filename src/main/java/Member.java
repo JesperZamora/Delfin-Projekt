@@ -18,27 +18,27 @@ public abstract class Member {
     private String active;
     private String passive;
     private String inactive;
-    LocalDate birthDate;
+    private LocalDate birthDate;
 
 
-
-
-    public Member(String name, int day, int month, int year, int phoneNumber, String address) {
+    public Member(String name, LocalDate birthDate, int phoneNumber, String address) {
         this.name = name;
-        this.day = day;
-        this.month = month;
-        this.year = year;
+        setBirthDate(birthDate);
         this.phoneNumber = phoneNumber;
         this.address = address;
         membershipAgeType();
         formatBirthDate();
     }
 
+    public Member() {
+
+    }
+
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
-        birthDate = LocalDate.of(year, month, day);
         age = Period.between(birthDate, today).getYears();
     }
+
     public void formatBirthDate() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         birthDateFormat = birthDate.format(format);
@@ -58,101 +58,86 @@ public abstract class Member {
                 name, age, birthDateFormat, phoneNumber, address, membershipType);
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getAge(){
-        return age;
+    public int getAge() {
+        return this.age;
     }
 
-    public int getPhoneNumber(){
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public int getDay() {
-        return day;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public int getYear() {
-        return year;
-    }
 
     public String getAddress() {
         return address;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setDay(int day)
-    {
-        this.day = day;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+        formatBirthDate();
+        ageCalculator();
+
     }
 
-    public void setMonth(int month)
-    {
-        this.month = month;
-    }
 
-    public void setYear(int year)
-    {
-        this.year = year;
-    }
-
-    public void setPhoneNumber(int phoneNumber)
-    {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setAddress(String address)
-    {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setActiveMembership(boolean activeMembership)
-    {
+    public void setActiveMembership(boolean activeMembership) {
         this.activeMembership = activeMembership;
     }
 
-    public void setMembershipType(String membershipType)
-    {
+    public void setMembershipType(String membershipType) {
         this.membershipType = membershipType;
     }
 
-    public void setAge(int age)
-    {
+    public void setAge(int age) {
         this.age = age;
     }
 
     public String getActive() {
         return active;
     }
+
+
     public String getPassive() {
         return passive;
     }
 
-    public void setMembershipType(){
+    public void setMembershipType() {
         this.membershipType = membershipType;
     }
 
-    public String activitiesForm(){
-        if (name == active){
+    public String activitiesForm() {
+        if (name == active) {
             return membershipType;
         } else if (name == passive) {
             return membershipType;
         } else if (name == inactive) {
             return membershipType;
-        } return "";
+        }
+        return "";
     }
 
 
+    public int getMonth() {
+        return month;
+    }
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 }
 
 

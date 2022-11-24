@@ -5,17 +5,18 @@ import java.util.ArrayList;
 
 public class Controller {
     private Database database;
+    Competition competition;
     public Controller(){
         database = new Database();
-        ArrayList<Competition> competitions = new ArrayList<>();
     }
 
-    public void addExerciser(String name, int day, int month, int year, int phoneNumber, String address){
-        database.addExerciser(name, day, month, year, phoneNumber, address);
+
+    public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address){
+        database.addExerciser(name, birthDate, phoneNumber, address);
     }
 
-    public void addCompetitionSwimmer(String name, int day, int month, int year, int phoneNumber, String adress){
-        database.addCompetitionSwimmer(name, day, month, year, phoneNumber, adress);
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String adress){
+        database.addCompetitionSwimmer(name, birthDate, phoneNumber, adress);
     }
 
     public ArrayList<Member> getMembers(){
@@ -34,8 +35,11 @@ public class Controller {
         database.searchMemberPhoneNumber(phoneNumber);
     }
 
-    public void editMember(String name, int day, int month, int year, int phoneNumber, String address, int memberChoice){
-        database.editMember(name, day, month, year, phoneNumber, address, memberChoice);
+    public void editMember(String name, LocalDate birthDate, int phoneNumber, String address, int memberChoice){
+        database.editMember(name, birthDate, phoneNumber, address, memberChoice);
+    }
+    public void ageCalculator() {
+        competition.ageCalculator();
     }
 
 }

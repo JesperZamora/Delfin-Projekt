@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.PrintStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class FileHandler {
     private File file = new File("Delfin.csv");
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public void saveToFile(ArrayList<Member> delfinList) {
         try {
@@ -12,8 +15,7 @@ class FileHandler {
             for (Member m : delfinList) {
                 ps.println( m.getName() + ", " + m.getAge() + ", "
                         + m.getPhoneNumber() + ", " + m.getAddress()
-                        + ", " + m.getDay() + ", " + m.getMonth() + ", "
-                        + m.getYear());
+                        + ", " + m.getBirthDate());
                 ps.println("\n");
             }
             ps.close();
@@ -31,16 +33,15 @@ class FileHandler {
     public ArrayList<Member> loadFileC() {
         ArrayList<Member> delfinList = new ArrayList();
         try {
+
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String[] attributes = sc.nextLine().split(",");
                 Competition c = new Competition(
                         attributes[0],
-                        Integer.parseInt(attributes[1]),
+                        LocalDate.parse(attributes[1], format),
                         Integer.parseInt(attributes[2]),
-                        Integer.parseInt(attributes[3]),
-                        Integer.parseInt(attributes[4]),
-                        attributes[5]);
+                        attributes[3]);
                 delfinList.add(c);
             }
             sc.close();
@@ -62,11 +63,9 @@ class FileHandler {
                 String[] attributes = sc.nextLine().split(",");
                 Exerciser e = new Exerciser(
                         attributes[0],
-                        Integer.parseInt(attributes[1]),
+                        LocalDate.parse(attributes[1], format),
                         Integer.parseInt(attributes[2]),
-                        Integer.parseInt(attributes[3]),
-                        Integer.parseInt(attributes[4]),
-                        attributes[5]);
+                        attributes[3]);
                 delfinList.add(e);
             }
             sc.close();
