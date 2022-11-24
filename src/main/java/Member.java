@@ -61,6 +61,22 @@ public abstract class Member {
         return phoneNumber;
     }
 
+    public int getDay() {
+        return day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public void setName(String name)
     {
         this.name = name;
