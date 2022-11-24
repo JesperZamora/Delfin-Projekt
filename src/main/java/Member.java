@@ -1,3 +1,5 @@
+import com.beust.jcommander.IStringConverter;
+
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -13,6 +15,10 @@ public abstract class Member {
     private int age;
     private LocalDate birthDate;
     private String birthDateFormat;
+    private String active;
+    private String passive;
+    private String inactive;
+
 
 
     public Member(String name, int day, int month, int year, int phoneNumber, String address) {
@@ -88,6 +94,29 @@ public abstract class Member {
     public String getBirthDateFormat() {
         return birthDateFormat;
     }
+
+    public String getActive() {
+        return active;
+    }
+    public String getPassive() {
+        return passive;
+    }
+
+    public void setMembershipType(){
+        this.membershipType = membershipType;
+    }
+
+    public String activitiesForm(){
+        if (name == active){
+            return membershipType;
+        } else if (name == passive) {
+            return membershipType;
+        } else if (name == inactive) {
+            return membershipType;
+        } return "";
+    }
+
+
 }
 
 
