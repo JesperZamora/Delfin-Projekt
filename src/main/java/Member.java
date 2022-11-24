@@ -2,6 +2,7 @@ import com.beust.jcommander.IStringConverter;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Member {
     private String name;
@@ -13,7 +14,6 @@ public abstract class Member {
     private boolean activeMembership;
     private String membershipType;
     private int age;
-    private LocalDate birthDate;
     private String birthDateFormat;
     private String active;
     private String passive;
@@ -29,20 +29,18 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         membershipAgeType();
+        formatBirthDate();
     }
 
-    public void ageCalculator() {
-        LocalDate today = LocalDate.now();
-        LocalDate birthDate = LocalDate.of(year, month, day);
-        age = Period.between(birthDate, today).getYears();
-    }
+    public abstract void ageCalculator();
+    public abstract void formatBirthDate();
 
     public void membershipAgeType() {
         ageCalculator();
         if (age < 18) {
-            this.membershipType = "Junior";
+            this.membershipType = "junior";
         } else {
-            this.membershipType = "Senior";
+            this.membershipType = "senior";
         }
     }
 
@@ -51,48 +49,61 @@ public abstract class Member {
                 name, age, birthDateFormat, phoneNumber, address, membershipType);
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getDay() {
-        return day;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public boolean isActiveMembership() {
-        return activeMembership;
-    }
-
-    public String getMembershipType() {
-        return membershipType;
-    }
-
-    public int getAge() {
+    public int getAge(){
         return age;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public int getPhoneNumber(){
+        return phoneNumber;
     }
 
-    public String getBirthDateFormat() {
-        return birthDateFormat;
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setDay(int day)
+    {
+        this.day = day;
+    }
+
+    public void setMonth(int month)
+    {
+        this.month = month;
+    }
+
+    public void setYear(int year)
+    {
+        this.year = year;
+    }
+
+    public void setPhoneNumber(int phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public void setActiveMembership(boolean activeMembership)
+    {
+        this.activeMembership = activeMembership;
+    }
+
+    public void setMembershipType(String membershipType)
+    {
+        this.membershipType = membershipType;
+    }
+
+    public void setAge(int age)
+    {
+        this.age = age;
     }
 
     public String getActive() {
