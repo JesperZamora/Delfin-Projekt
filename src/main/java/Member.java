@@ -3,6 +3,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public abstract class Member {
     private String name;
@@ -105,6 +106,10 @@ public abstract class Member {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void setBirthDateFormat(String birthDateFormat){
+        this.birthDateFormat = birthDateFormat;
     }
 
     public String getActive() {
