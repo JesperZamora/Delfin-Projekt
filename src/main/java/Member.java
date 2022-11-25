@@ -34,7 +34,6 @@ public abstract class Member {
     }
 
     public void membershipByAge() {
-        ageCalculator();
         if (age < 18) {
             this.membershipByAge = "junior";
         } else {
@@ -44,7 +43,7 @@ public abstract class Member {
 
     public String toString() {
         return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %b",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType,memberStatus);
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
     }
 
     public String getName() {
@@ -82,6 +81,7 @@ public abstract class Member {
         this.birthDate = birthDate;
         formatBirthDate();
         ageCalculator();
+        membershipByAge();
     }
 
     public void setPhoneNumber(int phoneNumber) {

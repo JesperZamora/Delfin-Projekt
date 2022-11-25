@@ -17,7 +17,7 @@ public class UserInterface {
         System.out.println("""
                 \nWelcome to the interface of the dolphin swimming club!
                 
-                Make your choice:                                
+                Make your choice:
                 1. Member management (President menu)
                 2. Cash management (Cashier menu)
                 3. Teams and statistics (Coach menu)
@@ -95,11 +95,8 @@ public class UserInterface {
         String name = readString();
 
         System.out.print("Birth date (date-month-year): ");
-        //formatter
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        // string date
         String birthDate = readString();
-        //localdate parse
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate birthDateParsed = LocalDate.parse(birthDate, format);
 
         System.out.print("Phone no: ");
@@ -108,7 +105,7 @@ public class UserInterface {
         System.out.print("Address: ");
         String address = readString();
 
-        System.out.println("Membership Status");
+        System.out.print("Membership Status:");
         boolean memberStatus = Boolean.parseBoolean(readString());
 
         addNewMember(name, birthDateParsed, phoneNumber, address, memberStatus);
@@ -160,8 +157,6 @@ public class UserInterface {
 
         System.out.print("Birth date (date-month-year): ");
         String newBirthDate = readString();
-
-        //LocalDate birthDatePassed;
         if (!newBirthDate.isEmpty()) {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate birthDatePassed = LocalDate.parse(newBirthDate, format);

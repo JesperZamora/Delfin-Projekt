@@ -4,8 +4,6 @@ import java.util.ArrayList;
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
 
-
-
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus){
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
@@ -19,15 +17,15 @@ public class Database {
         this.members = loadedFile;
     }
 
-    public ArrayList<Member> searchMember(String searchName){
+    public ArrayList<Member> searchMember(String searchWord){
         ArrayList<Member> foundMembers = new ArrayList<>();
 
         for (Member member : members){
-            if (member.getName().contains(searchName)){
+            if (member.getName().contains(searchWord)){
                 foundMembers.add(member);
-            } else if(Integer.toString(member.getAge()).equals(searchName)){
+            } else if(Integer.toString(member.getAge()).equals(searchWord)){
                 foundMembers.add(member);
-            } else if(Integer.toString(member.getPhoneNumber()).equals(searchName)){
+            } else if(Integer.toString(member.getPhoneNumber()).equals(searchWord)){
                 foundMembers.add(member);
             }
         }
