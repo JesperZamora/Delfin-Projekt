@@ -1,13 +1,11 @@
 import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class FileHandler {
-    private File file = new File("Delfin.csv");
-    //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy"); - slet ubrugelig
+    private File file = new File("Dolphin.csv");
 
     public void saveFile(ArrayList<Member> memberList) {
         try {

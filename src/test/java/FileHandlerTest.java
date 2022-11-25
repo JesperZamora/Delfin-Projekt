@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileHandlerTest {
     FileHandler fileHandler = new FileHandler();
-    File file = new File("Delfin.csv");
+    File file = new File("Dolphin.csv");
 
     @BeforeEach
     void setUp(){
