@@ -12,13 +12,6 @@ public abstract class Member {
     private String membershipType;
     private boolean memberStatus;
     private LocalDate birthDate;
-    private int day;
-    private int month;
-    private int year;
-    //private String active;
-    //private String passive;
-    //private String inactive;
-
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
         this.name = name;
@@ -29,15 +22,6 @@ public abstract class Member {
         membershipByAge();
         formatBirthDate();
     }
-
-    public void setMembershipType(String membershipType){
-        this.membershipType = membershipType;
-    }
-
-/*    public Member() {
-
-    }*/
-
 
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
@@ -68,7 +52,10 @@ public abstract class Member {
     }
 
     public int getAge() {
-        return this.age;
+        return age;
+    }
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
     public int getPhoneNumber() {
@@ -101,48 +88,12 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
     }
 
+    public void setMembershipType(String membershipType){
+        this.membershipType = membershipType;
+    }
+
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public void setMemberStatus(boolean memberStatus) {
-        this.memberStatus = memberStatus;
-    }
-
-/*    public void setMembershipAgeType(String membershipAgeType) {
-        this.membershipAgeType = membershipAgeType;
-    }*/
-
-/*    public void setMembershipType(String membershipType) {
-        this.membershipType = membershipType;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setBirthDateFormat(String birthDateFormat){
-        this.birthDateFormat = birthDateFormat;
-    }*/
-
-/*    public String getActive() {
-        return active;
-    }
-
-
-    public String getPassive() {
-        return passive;
-    }*/
-
-/*    public void setMembershipType() {
-        this.membershipType = membershipType;
-    }*/
-
-    public int getMonth() {
-        return month;
-    }
-    public LocalDate getBirthDate() {
-        return birthDate;
     }
 }
 
