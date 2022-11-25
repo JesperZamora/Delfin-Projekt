@@ -181,8 +181,6 @@ public class UserInterface {
             foundMembers.setAddress(newAddress);
         }
 
-        //controller.editMember(newName, birthDatePassed, Integer.parseInt(newPhoneNumber), newAddress, memberChoice);
-        //controller.ageCalculator();
     }
 
     public void viewMember() {
