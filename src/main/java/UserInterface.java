@@ -10,7 +10,7 @@ public class UserInterface {
     public UserInterface() {
         sc = new Scanner(System.in);
         controller = new Controller();
-        //controller.loadFile();
+        controller.loadFile();
     }
 
     public void startMenu() {
@@ -35,7 +35,7 @@ public class UserInterface {
                 case 2 -> cashierMenu();
                 case 3 -> coachMenu();
                 case 9 -> {
-                    //controller.saveToFile();
+                    controller.saveFile();
                     isRunning = false;
                 }
                 default -> System.out.println("Not valid menu choice");
@@ -109,10 +109,13 @@ public class UserInterface {
         System.out.print("Address: ");
         String address = readString();
 
-        addNewMember(name, birthDateParsed, phoneNumber, address);
+        System.out.println("Membership Status");
+        boolean memberStatus = Boolean.parseBoolean(readString());
+
+        addNewMember(name, birthDateParsed, phoneNumber, address, memberStatus);
     }
 
-    public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address) {
+    public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
         System.out.println("""
                 \nType 1. to add new member as 'exerciser'.
                 Type 2. to add new member as 'competition swimmer'.
@@ -121,13 +124,13 @@ public class UserInterface {
         int userChoice = readInteger();
 
         if (userChoice == 1) {
-            controller.addExerciser(name, birthDate, phoneNumber, address);
+            controller.addExerciser(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nExerciser member added.");
 
         } else if (userChoice == 2) {
             //TODO: Fill out with discipline attributes add (future sprint)
             //System.out.println("Add discipline information:");
-            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address);
+            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nCompetition member added.");
 
         } else if (userChoice == 0) {
@@ -170,7 +173,6 @@ public class UserInterface {
             foundMembers.setBirthDate(birthDatePassed);
         }
 
-
         System.out.println("Edit phone number: ");
         String newPhoneNumber = readString();
         newPhoneNumber = Integer.toString(Integer.parseInt(newPhoneNumber));
@@ -184,7 +186,7 @@ public class UserInterface {
             foundMembers.setAddress(newAddress);
         }
 
-        controller.editMember(newName, birthDatePassed, Integer.parseInt(newPhoneNumber), newAddress, memberChoice);
+        //controller.editMember(newName, birthDatePassed, Integer.parseInt(newPhoneNumber), newAddress, memberChoice);
         controller.ageCalculator();
     }
 

@@ -6,21 +6,25 @@ public class Database {
     private ArrayList<Member> editMembers = new ArrayList<>();
 
 
-    public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address){
-        members.add(new Exerciser(name, birthDate, phoneNumber, address));
+    public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus){
+        members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address){
-        members.add(new Competition(name, birthDate, phoneNumber, address));
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus){
+        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus));
     }
 
-    public void editMember(String name, LocalDate birthDate, int phoneNumber, String address, int memberChoice){
+    public void loadFile(ArrayList<Member> loadedFile){
+        this.members = loadedFile;
+    }
+
+/*    public void editMember(String name, LocalDate birthDate, int phoneNumber, String address, int memberChoice){
         if (!editMembers.isEmpty()){
             Member editMember = editMembers.get(memberChoice - 1);
 
         }
-    }
+    }*/
 
     public ArrayList<Member> searchMemberName(String searchName){
         for (Member m : members){

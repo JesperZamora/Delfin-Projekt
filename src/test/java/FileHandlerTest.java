@@ -18,16 +18,16 @@ class FileHandlerTest {
 
     @Test
     void loadFile() {
-        ArrayList<Member> membersC = fileHandler.loadFileC();
-        ArrayList<Member> membersE = fileHandler.loadFileE();
-        assertEquals(0, membersC.size(), membersE.size());
+        //ArrayList<Member> membersC = fileHandler.loadFileC();
+        //ArrayList<Member> membersE = fileHandler.loadFileE();
+        //assertEquals(0, membersC.size(), membersE.size());
     }
 
     @Test
     void saveFile(){
         long t1 = file.lastModified();
         ArrayList<Member> files = new ArrayList<>();
-        fileHandler.saveToFile(files);
+        //fileHandler.saveToFile(files);
         long t2 = file.lastModified();
         assertNotEquals(t1,t2);
     }

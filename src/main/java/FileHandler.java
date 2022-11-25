@@ -7,76 +7,59 @@ import java.util.Scanner;
 
 class FileHandler {
     private File file = new File("Delfin.csv");
-    private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy"); - slet ubrugelig
 
-    public void saveToFile(ArrayList<Member> delfinList) {
+    public void saveFile(ArrayList<Member> memberList) {
         try {
-            PrintStream ps = new PrintStream(file);
-            for (Member m : delfinList) {
-                ps.println( m.getName() + ", " + m.getAge() + ", "
-                        + m.getPhoneNumber() + ", " + m.getAddress()
-                        + ", " + m.getBirthDate());
-                ps.println("\n");
+            PrintStream output = new PrintStream(file);
+            for (Member member : memberList) {
+                output.println(
+                                member.getName() + "," +
+                                member.getBirthDate() + "," +
+                                member.getPhoneNumber() + "," +
+                                member.getAddress() + "," +
+                                member.getMembershipType() + "," +
+                                member.isMemberStatus());
             }
-            ps.close();
-            if (delfinList.isEmpty()) {
-                System.out.println("Person are not saved to file.");
-            }
-            if (!delfinList.isEmpty()) {
-                System.out.println(delfinList.size() + " person has been saved to file.");
-            }
+            output.close();
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
-    public ArrayList<Member> loadFileC() {
-        ArrayList<Member> delfinList = new ArrayList();
-        try {
+    public ArrayList<Member> loadFile() {
+        ArrayList<Member> loadedMember = new ArrayList<>();
 
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String[] attributes = sc.nextLine().split(",");
-                Competition c = new Competition(
-                        attributes[0],
-                        LocalDate.parse(attributes[1], format),
-                        Integer.parseInt(attributes[2]),
-                        attributes[3]);
-                delfinList.add(c);
-            }
-            sc.close();
-            if (delfinList.isEmpty()) {
-                System.out.println("Person are not found in the file.");
-            }
-            return delfinList;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    public ArrayList<Member> loadFileE() {
-        ArrayList<Member> delfinList = new ArrayList();
         try {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String[] attributes = sc.nextLine().split(",");
-                Exerciser e = new Exerciser(
-                        attributes[0],
-                        LocalDate.parse(attributes[1], format),
-                        Integer.parseInt(attributes[2]),
-                        attributes[3]);
-                delfinList.add(e);
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                String[] attributes = reader.nextLine().split(",");
+                if(attributes[4].equals("exerciser")){
+                    Exerciser exerciser = new Exerciser(
+                            attributes[0],
+                            LocalDate.parse(attributes[1]),
+                            Integer.parseInt(attributes[2]),
+                            attributes[3],
+                            Boolean.parseBoolean(attributes[5]));
+                    loadedMember.add(exerciser);
+
+                } else{
+                    Competition competition = new Competition(
+                            attributes[0],
+                            LocalDate.parse(attributes[1]),
+                            Integer.parseInt(attributes[2]),
+                            attributes[3],
+                            Boolean.parseBoolean(attributes[5]));
+                    loadedMember.add(competition);
+                }
             }
-            sc.close();
-            if (delfinList.isEmpty()) {
-                System.out.println("Person are not found in the file.");
-            }
-            return delfinList;
+            reader.close();
+
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
-        return null;
+        return loadedMember;
     }
 
     public File getFile(){

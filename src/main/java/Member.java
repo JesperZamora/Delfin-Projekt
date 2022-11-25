@@ -9,8 +9,8 @@ public abstract class Member {
     private int phoneNumber;
     private String address;
     private String membershipByAge;
-    private boolean memberStatus;
     private String membershipType;
+    private boolean memberStatus;
     private LocalDate birthDate;
     private int day;
     private int month;
@@ -20,18 +20,24 @@ public abstract class Member {
     //private String inactive;
 
 
-    public Member(String name, LocalDate birthDate, int phoneNumber, String address) {
+    public Member(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
         this.name = name;
         setBirthDate(birthDate);
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.memberStatus = memberStatus;
         membershipByAge();
         formatBirthDate();
+    }
+
+    public void setMembershipType(String membershipType){
+        this.membershipType = membershipType;
     }
 
 /*    public Member() {
 
     }*/
+
 
     public void ageCalculator() {
         LocalDate today = LocalDate.now();
@@ -53,8 +59,8 @@ public abstract class Member {
     }
 
     public String toString() {
-        return String.format("%-18s %-7d %-13s %-12d %-27s %s",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge);
+        return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %b",
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType,memberStatus);
     }
 
     public String getName() {
@@ -71,6 +77,14 @@ public abstract class Member {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getMembershipType(){
+        return membershipType;
+    }
+
+    public boolean isMemberStatus() {
+        return memberStatus;
     }
 
     public void setName(String name) {
@@ -120,9 +134,9 @@ public abstract class Member {
         return passive;
     }*/
 
-    public void setMembershipType() {
+/*    public void setMembershipType() {
         this.membershipType = membershipType;
-    }
+    }*/
 
     public int getMonth() {
         return month;
