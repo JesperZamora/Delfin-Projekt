@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<Member> editMembers = new ArrayList<>();
+
 
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus){
@@ -26,17 +26,22 @@ public class Database {
         }
     }*/
 
-    public ArrayList<Member> searchMemberName(String searchName){
-        for (Member m : members){
-            if (m.getName().contains(searchName)){
-                editMembers.add(m);
-                return editMembers;
+    public ArrayList<Member> searchMember(String searchName){
+        ArrayList<Member> foundMembers = new ArrayList<>();
+
+        for (Member member : members){
+            if (member.getName().contains(searchName)){
+                foundMembers.add(member);
+            } else if(Integer.toString(member.getAge()).equals(searchName)){
+                foundMembers.add(member);
+            } else if(Integer.toString(member.getPhoneNumber()).equals(searchName)){
+                foundMembers.add(member);
             }
         }
-        return null;
+        return foundMembers;
     }
 
-    public Member searchMemberAge(String searchAge){
+/*    public Member searchMemberAge(String searchAge){
         for (Member m : members){
             String actualAge = Integer.toString(m.getAge());
             if (actualAge.contains(searchAge)){
@@ -56,7 +61,7 @@ public class Database {
             }
         }
         return null;
-    }
+    }*/
     public ArrayList<Member> getMembers(){
         return members;
     }

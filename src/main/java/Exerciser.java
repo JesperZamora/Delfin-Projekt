@@ -8,5 +8,4 @@ public class Exerciser extends Member {
         setMembershipType("exerciser");
     }
 
-
 }

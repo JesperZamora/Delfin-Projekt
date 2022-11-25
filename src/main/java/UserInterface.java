@@ -15,9 +15,9 @@ public class UserInterface {
 
     public void startMenu() {
         System.out.println("""
-                Welcome to the interface of the dolphin swimming club!
-                Make your choice:
-                                
+                \nWelcome to the interface of the dolphin swimming club!
+                
+                Make your choice:                                
                 1. Member management (President menu)
                 2. Cash management (Cashier menu)
                 3. Teams and statistics (Coach menu)
@@ -94,8 +94,7 @@ public class UserInterface {
         System.out.print("Name: ");
         String name = readString();
 
-        System.out.println("Birthdate ");
-        System.out.print("Type your birthdate in this format: dd-mm-yyyy ");
+        System.out.print("Birth date (date-month-year): ");
         //formatter
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         // string date
@@ -140,9 +139,9 @@ public class UserInterface {
 
 
     public void editMember() {
-        System.out.println("Write the name of the member you wish to edit: ");
-        String searchName = readString();
-        ArrayList<Member> searchedMember = controller.searchMemberName(searchName);
+        System.out.print("Search by name, age or phone no. :");
+        String searchWord = readString();
+        ArrayList<Member> searchedMember = controller.searchMember(searchWord);
 
         int no = 1;
         for (Member member : searchedMember) {
@@ -151,43 +150,39 @@ public class UserInterface {
         }
 
         int choice = readInteger();
-
         Member foundMembers = searchedMember.get(choice - 1);
 
-        System.out.println("Write the number of the member you wish to edit (1st is number 1...) ");
-        int memberChoice = readInteger();
-        System.out.println("Now editing.");
-
-        System.out.println("Edit name: ");
+        System.out.print("Name: ");
         String newName = readString();
         if (!newName.isEmpty()) {
             foundMembers.setName(newName);
         }
 
-        System.out.println("Edit date of birth in this format: dd-mm-yyyy ");
+        System.out.print("Birth date (date-month-year): ");
         String newBirthDate = readString();
-        LocalDate birthDatePassed = null;
+
+        //LocalDate birthDatePassed;
         if (!newBirthDate.isEmpty()) {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            birthDatePassed = LocalDate.parse(newBirthDate, format);
+            LocalDate birthDatePassed = LocalDate.parse(newBirthDate, format);
             foundMembers.setBirthDate(birthDatePassed);
         }
 
-        System.out.println("Edit phone number: ");
+        System.out.print("Phone no: ");
         String newPhoneNumber = readString();
-        newPhoneNumber = Integer.toString(Integer.parseInt(newPhoneNumber));
         if (!newPhoneNumber.isEmpty()) {
+            newPhoneNumber = Integer.toString(Integer.parseInt(newPhoneNumber));
             foundMembers.setPhoneNumber(Integer.parseInt(newPhoneNumber));
         }
 
-        System.out.println("Edit address: ");
+        System.out.print("Address: ");
         String newAddress = readString();
         if (!newAddress.isEmpty()) {
             foundMembers.setAddress(newAddress);
         }
 
         //controller.editMember(newName, birthDatePassed, Integer.parseInt(newPhoneNumber), newAddress, memberChoice);
-        controller.ageCalculator();
+        //controller.ageCalculator();
     }
 
     public void viewMember() {
