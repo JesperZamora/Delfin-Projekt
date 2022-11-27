@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +53,7 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> addNewMemberInfo();
-            case 2 -> editMember();
+            case 2 -> searchMember();
             case 3 -> viewMember();
             default -> System.out.println("Wrong input");
         }
@@ -82,8 +83,7 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> System.out.println(" *** DIVISION OF COMPETITIVE SWIMMERS TO BE ADDED HERE ***");
-            case 2 ->
-                    System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
+            case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
             case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
             default -> System.out.println("Wrong input");
         }
@@ -95,9 +95,7 @@ public class UserInterface {
         String name = readString();
 
         System.out.print("Birth date (date-month-year): ");
-        String birthDate = readString();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate birthDateParsed = LocalDate.parse(birthDate, format);
+        LocalDate birthDate = addNewBirthDate();
 
         System.out.print("Phone no: ");
         int phoneNumber = readInteger();
@@ -108,7 +106,7 @@ public class UserInterface {
         System.out.print("Membership Status:");
         boolean memberStatus = Boolean.parseBoolean(readString());
 
-        addNewMember(name, birthDateParsed, phoneNumber, address, memberStatus);
+        addNewMember(name, birthDate, phoneNumber, address, memberStatus);
     }
 
     public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
@@ -134,48 +132,90 @@ public class UserInterface {
         }
     }
 
-
-    public void editMember() {
-        System.out.print("Search by name, age or phone no. :");
+    public void searchMember(){
+        System.out.print("Search member by name, age or phone number: ");
         String searchWord = readString();
         ArrayList<Member> searchedMember = controller.searchMember(searchWord);
-
-        int no = 1;
-        for (Member member : searchedMember) {
-            System.out.println("[" + no + "] " + member);
-            no++;
+        if(searchedMember.isEmpty()) {
+            System.out.println("No member found..");
+            System.out.println("Search again? Try again press 1 or enter to 2");
+            int choice = readInteger();
+            if(choice == 1) {
+                searchMember();
+            }
+        } else {
+            int no = 1;
+            for (Member member : searchedMember) {
+                System.out.println("[" + no + "] " + member);
+                no++;
+            }
+            editMember(searchedMember);
         }
+    }
 
+
+    public void editMember(ArrayList<Member> searchedMember) {
+        System.out.println("\nChoose members number to edit or press 0 to exit");
         int choice = readInteger();
-        Member foundMembers = searchedMember.get(choice - 1);
+        if(choice != 0) {
+            Member foundMembers = searchedMember.get(choice - 1);
+            System.out.print("Name: ");
+            String newName = readString();
+            if (!newName.isEmpty()) {
+                foundMembers.setName(newName);
+            }
 
-        System.out.print("Name: ");
-        String newName = readString();
-        if (!newName.isEmpty()) {
-            foundMembers.setName(newName);
+            System.out.print("Birth date (date-month-year): ");
+            LocalDate newBirthDate = editBirthDate(readString());
+            if(newBirthDate != null) {
+                foundMembers.setBirthDate(newBirthDate);
+            }
+
+            //TODO: not robust code needs methode for exceptions
+            System.out.print("Phone no: ");
+            String newPhoneNumber = readString();
+            if (!newPhoneNumber.isEmpty()) {
+                foundMembers.setPhoneNumber(Integer.parseInt(newPhoneNumber));
+            }
+
+            System.out.print("Address: ");
+            String newAddress = readString();
+            if (!newAddress.isEmpty()) {
+                foundMembers.setAddress(newAddress);
+            }
         }
+    }
 
-        System.out.print("Birth date (date-month-year): ");
-        String newBirthDate = readString();
-        if (!newBirthDate.isEmpty()) {
+    public LocalDate addNewBirthDate(){
+        LocalDate birthDateParsed = null;
+        while(birthDateParsed == null){
+            String birthDate = readString();
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate birthDatePassed = LocalDate.parse(newBirthDate, format);
-            foundMembers.setBirthDate(birthDatePassed);
+            try {
+                birthDateParsed = LocalDate.parse(birthDate, format);
+            } catch(DateTimeParseException parseException) {
+                System.out.println("Invalid format. Try again..");
+            }
         }
-
-        System.out.print("Phone no: ");
-        String newPhoneNumber = readString();
-        if (!newPhoneNumber.isEmpty()) {
-            newPhoneNumber = Integer.toString(Integer.parseInt(newPhoneNumber));
-            foundMembers.setPhoneNumber(Integer.parseInt(newPhoneNumber));
+        return birthDateParsed;
+    }
+    public LocalDate editBirthDate(String check){
+        LocalDate birthDateParsed = null;
+        String birthDate = check;
+        while(!birthDate.isEmpty()){
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            try {
+                birthDateParsed = LocalDate.parse(birthDate, format);
+            } catch(DateTimeParseException parseException) {
+                System.out.println("Invalid format. Try again..");
+            }
+            if(birthDateParsed != null){
+                break;
+            } else {
+                birthDate = readString();
+            }
         }
-
-        System.out.print("Address: ");
-        String newAddress = readString();
-        if (!newAddress.isEmpty()) {
-            foundMembers.setAddress(newAddress);
-        }
-
+        return birthDateParsed;
     }
 
     public void viewMember() {
@@ -196,8 +236,6 @@ public class UserInterface {
     public String readString() {
         return sc.nextLine().toLowerCase();
     }
-
-
 }
 
 
