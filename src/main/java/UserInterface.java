@@ -103,13 +103,27 @@ public class UserInterface {
         System.out.print("Address: ");
         String address = readString();
 
-        System.out.print("Membership Status:");
-        boolean memberStatus = Boolean.parseBoolean(readString());
+        System.out.println("""
+                Set membership status
+                1. active
+                2. passive
+                3. inactive""");
+        System.out.print("Membership Status: ");
+        int memberStatusChoice = readInteger();
+        String memberStatus = "";
+        while(memberStatus.isBlank()){
+            switch (memberStatusChoice){
+                case 1 -> memberStatus = "active";
+                case 2 -> memberStatus = "passive";
+                case 3 -> memberStatus = "inactive";
+                default -> System.out.println("Invalid input.. Choose again!");
+            }
+        }
 
         addNewMember(name, birthDate, phoneNumber, address, memberStatus);
     }
 
-    public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
+    public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         System.out.println("""
                 \nType 1. to add new member as 'exerciser'.
                 Type 2. to add new member as 'competition swimmer'.
@@ -146,7 +160,7 @@ public class UserInterface {
         } else {
             int no = 1;
             for (Member member : searchedMember) {
-                System.out.println("[" + no + "] " + member);
+                System.out.println("Member #[" + no + "] \n" + member);
                 no++;
             }
             editMember(searchedMember);
@@ -183,6 +197,25 @@ public class UserInterface {
             if (!newAddress.isEmpty()) {
                 foundMembers.setAddress(newAddress);
             }
+
+            System.out.println("""
+                Edit membership status
+                1. active
+                2. passive
+                3. inactive""");
+            System.out.print("Set member status: ");
+            String newMemberStatusChoice = readString();
+            if(!newMemberStatusChoice.isEmpty()) {
+                String newMemberStatus = "";
+                switch (Integer.parseInt(newMemberStatusChoice)){
+                    case 1 -> newMemberStatus = "active";
+                    case 2 -> newMemberStatus= "passive";
+                    case 3 -> newMemberStatus = "inactive";
+                    default -> System.out.println("Invalid input.. Choose again!");
+                }
+                foundMembers.setMemberStatus(newMemberStatus);
+            }
+
         }
     }
 
@@ -219,7 +252,6 @@ public class UserInterface {
     }
 
     public void viewMember() {
-        System.out.println("Name:              Age:    Birthdate:    Phone no.    Address:                    Membership:");
         controller.getMembers().forEach(System.out::println);
     }
 

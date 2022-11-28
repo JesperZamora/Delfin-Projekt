@@ -10,10 +10,10 @@ public abstract class Member {
     private String address;
     private String membershipByAge;
     private String membershipType;
-    private boolean memberStatus;
+    private String memberStatus;
     private LocalDate birthDate;
 
-    public Member(String name, LocalDate birthDate, int phoneNumber, String address, boolean memberStatus) {
+    public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
         setBirthDate(birthDate);
         this.phoneNumber = phoneNumber;
@@ -41,8 +41,21 @@ public abstract class Member {
         }
     }
 
+/*    public String toString() {
+        return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %s",
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
+    }*/
+
     public String toString() {
-        return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %b",
+        return String.format("""
+                        Name:            %s
+                        Age:             %d
+                        Birthdate:       %s
+                        Phone no:        %d
+                        Address:         %s
+                        Membership:      %s
+                        Member type:     %s
+                        Member status:   %s \n""",
                 name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
     }
 
@@ -69,7 +82,7 @@ public abstract class Member {
         return membershipType;
     }
 
-    public boolean isMemberStatus() {
+    public String MemberStatus() {
         return memberStatus;
     }
 
@@ -94,6 +107,10 @@ public abstract class Member {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setMemberStatus(String memberStatus) {
+        this.memberStatus = memberStatus;
     }
 }
 

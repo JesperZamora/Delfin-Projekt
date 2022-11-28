@@ -17,7 +17,7 @@ class FileHandler {
                                 member.getPhoneNumber() + "," +
                                 member.getAddress() + "," +
                                 member.getMembershipType() + "," +
-                                member.isMemberStatus());
+                                member.MemberStatus());
             }
             output.close();
 
@@ -39,7 +39,7 @@ class FileHandler {
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            Boolean.parseBoolean(attributes[5]));
+                            attributes[5]);
                     loadedMember.add(exerciser);
 
                 } else{
@@ -48,7 +48,7 @@ class FileHandler {
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            Boolean.parseBoolean(attributes[5]));
+                            attributes[5]);
                     loadedMember.add(competition);
                 }
             }

@@ -10,12 +10,12 @@ public class Controller {
     }
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address,
-                             boolean memberStatus){
+                             String memberStatus){
         database.addExerciser(name, birthDate, phoneNumber, address, memberStatus);
     }
 
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address,
-                                      boolean memberStatus){
+                                      String memberStatus){
         database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
     }
 
