@@ -152,7 +152,7 @@ public class UserInterface {
         ArrayList<Member> searchedMember = controller.searchMember(searchWord);
         if(searchedMember.isEmpty()) {
             System.out.println("No member found..");
-            System.out.println("Search again? Try again press 1 or enter to 2");
+            System.out.println("Search again? Try again press 1 or exit press 2");
             int choice = readInteger();
             if(choice == 1) {
                 searchMember();
@@ -266,7 +266,7 @@ public class UserInterface {
     }
 
     public String readString() {
-        return sc.nextLine().toLowerCase();
+        return sc.nextLine();
     }
 }
 
