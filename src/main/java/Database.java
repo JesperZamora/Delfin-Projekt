@@ -33,10 +33,6 @@ public class Database {
         return foundMembers;
     }
 
-    public void sortByAge() {
-        Collections.sort(members, new AgeComparator());
-    }
-
     public ArrayList<Member> getMembers() {
         return members;
 

@@ -37,9 +37,6 @@ public class Controller {
     public void loadFile(){
         database.loadFile(fileHandler.loadFile());
     }
-public void sortByAge() {
-        database.sortByAge();
-}
 public void sortCompGroupByAge() {
         team.sortCompMembersAge();
 }
