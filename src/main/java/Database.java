@@ -2,7 +2,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
-    private Competition competition;
     private ArrayList<Member> members = new ArrayList<>();
 
 
@@ -11,8 +10,8 @@ public class Database {
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus, String swimmerType){
-        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus, swimmerType));
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus, Discipline[] disciplines){
+        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus, disciplines));
     }
 
     public void loadFile(ArrayList<Member> loadedFile){

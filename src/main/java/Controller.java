@@ -15,8 +15,8 @@ public class Controller {
     }
 
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address,
-                                      String memberStatus, String swimmerType){
-        database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, swimmerType);
+                                      String memberStatus, Discipline[] disciplines){
+        database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, disciplines);
     }
 
     public ArrayList<Member> getMembers(){
