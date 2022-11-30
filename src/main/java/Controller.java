@@ -39,14 +39,14 @@ public class Controller {
     }
 
     public void sortCompGroupByAge() {
-        team.sortCompMembersAge();
+        database.sortCompMembersAge();
     }
 
     public ArrayList<Member> getCompMembersOver18() {
-        return team.getGetCompMembersOver18();
+        return database.getGetCompMembersOver18();
     }
 
     public ArrayList<Member> getCompMembersUnder18() {
-        return team.getCompMembersUnder18();
+        return database.getCompMembersUnder18();
     }
 }
