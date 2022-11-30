@@ -48,7 +48,8 @@ class FileHandler {
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5]);
+                            attributes[5],
+                            attributes[6]);
                     loadedMember.add(competition);
                 }
             }

@@ -2,15 +2,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Database {
+    private Competition competition;
     private ArrayList<Member> members = new ArrayList<>();
+
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
-        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus));
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus, String swimmerType){
+        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus, swimmerType));
     }
 
     public void loadFile(ArrayList<Member> loadedFile){

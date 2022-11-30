@@ -15,8 +15,8 @@ public class Controller {
     }
 
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address,
-                                      String memberStatus){
-        database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
+                                      String memberStatus, String swimmerType){
+        database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, swimmerType);
     }
 
     public ArrayList<Member> getMembers(){
@@ -34,5 +34,6 @@ public class Controller {
     public void loadFile(){
         database.loadFile(fileHandler.loadFile());
     }
+
 
 }

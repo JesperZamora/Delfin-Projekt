@@ -121,6 +121,7 @@ public class UserInterface {
         }
 
         addNewMember(name, birthDate, phoneNumber, address, memberStatus);
+
     }
 
     public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
@@ -138,7 +139,16 @@ public class UserInterface {
         } else if (userChoice == 2) {
             //TODO: Fill out with discipline attributes add (future sprint)
             //System.out.println("Add discipline information:");
-            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
+
+            System.out.print("""
+                    What discipline do you want to add the member to?
+                    butterflySwimmer 
+                    crawlSwimmers 
+                    backcrawlSwimmers 
+                    breaststrokeSwimmers""");
+            String swimmerType = readString();
+
+            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, swimmerType);
             System.out.println("\nCompetition member added.");
 
         } else if (userChoice == 0) {

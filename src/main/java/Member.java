@@ -13,6 +13,7 @@ public abstract class Member {
     private String memberStatus;
     private LocalDate birthDate;
 
+
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
         setBirthDate(birthDate);
