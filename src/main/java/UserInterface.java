@@ -146,9 +146,9 @@ public class UserInterface {
                     crawlSwimmers 
                     backcrawlSwimmers 
                     breaststrokeSwimmers""");
-            String swimmerType = readString();
+            String discipline = readString();
 
-            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, swimmerType);
+            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, discipline);
             System.out.println("\nCompetition member added.");
 
         } else if (userChoice == 0) {
