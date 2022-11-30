@@ -4,9 +4,6 @@ import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
-    private Member member;
-    private ArrayList<Member> compMembersUnder18 = new ArrayList<>();
-    private ArrayList<Member> getCompMembersOver18 = new ArrayList<>();
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
@@ -36,7 +33,7 @@ public class Database {
         return foundMembers;
     }
 
-    public void sortbyAge() {
+    public void sortByAge() {
         Collections.sort(members, new AgeComparator());
     }
 

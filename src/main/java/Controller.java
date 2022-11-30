@@ -38,13 +38,13 @@ public class Controller {
         database.loadFile(fileHandler.loadFile());
     }
 public void sortByAge() {
-        database.sortbyAge();
+        database.sortByAge();
 }
 public void sortCompGroupByAge() {
         team.sortCompMembersAge();
 }
 public ArrayList<Member> getCompMembersOver18() {
-        return team.compMembersOver18;
+        return team.getGetCompMembersOver18();
 }
 public ArrayList<Member> getCompMembersUnder18() {
         return team.getCompMembersUnder18();
