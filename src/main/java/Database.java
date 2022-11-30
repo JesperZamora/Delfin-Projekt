@@ -1,40 +1,50 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
+    private Member member;
+    private ArrayList<Member> compMembersUnder18 = new ArrayList<>();
+    private ArrayList<Member> getCompMembersOver18 = new ArrayList<>();
 
-    public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
+    public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus));
     }
 
-    public void loadFile(ArrayList<Member> loadedFile){
+    public void loadFile(ArrayList<Member> loadedFile) {
         this.members = loadedFile;
     }
 
-    public ArrayList<Member> searchMember(String searchWord){
+    public ArrayList<Member> searchMember(String searchWord) {
         ArrayList<Member> foundMembers = new ArrayList<>();
 
-        for (Member member : members){
-            if (member.getName().toLowerCase().contains(searchWord)){
+        for (Member member : members) {
+            if (member.getName().toLowerCase().contains(searchWord)) {
                 foundMembers.add(member);
-            } else if(Integer.toString(member.getAge()). contains(searchWord)){
+            } else if (Integer.toString(member.getAge()).contains(searchWord)) {
                 foundMembers.add(member);
-            } else if(Integer.toString(member.getPhoneNumber()).contains(searchWord)){
+            } else if (Integer.toString(member.getPhoneNumber()).contains(searchWord)) {
                 foundMembers.add(member);
             }
         }
         return foundMembers;
     }
 
-    public ArrayList<Member> getMembers(){
-        return members;
+    public void sortbyAge() {
+        Collections.sort(members, new AgeComparator());
     }
 
+    public ArrayList<Member> getMembers() {
+        return members;
 
+    }
 }
+
+
+

@@ -49,12 +49,14 @@ public class UserInterface {
                 1. Add member
                 2. Edit member
                 3. Show members
+                4. Sort members by age
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> addNewMemberInfo();
             case 2 -> searchMember();
             case 3 -> viewMember();
+            case 4 -> sortByAge();
             default -> System.out.println("Wrong input");
         }
     }
@@ -82,7 +84,8 @@ public class UserInterface {
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> System.out.println(" *** DIVISION OF COMPETITIVE SWIMMERS TO BE ADDED HERE ***");
+            case 1 -> viewCompMembersOver18();
+
             case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
             case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
             default -> System.out.println("Wrong input");
@@ -250,9 +253,17 @@ public class UserInterface {
         }
         return birthDateParsed;
     }
+    public void sortByAge() {
+        controller.sortByAge();
+        viewMember();
+    }
 
     public void viewMember() {
         controller.getMembers().forEach(System.out::println);
+    }
+    public void viewCompMembersOver18() {
+        controller.sortCompGroupByAge();
+        System.out.println(controller.getCompMembersUnder18() + "Group 2 over 18:" + controller.getCompMembersOver18());
     }
 
     public int readInteger() {

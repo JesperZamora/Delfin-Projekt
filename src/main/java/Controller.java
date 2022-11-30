@@ -4,9 +4,12 @@ import java.util.ArrayList;
 public class Controller {
     private Database database;
     private FileHandler fileHandler;
+    private Team team;
+
     public Controller(){
         database = new Database();
         fileHandler = new FileHandler();
+
     }
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address,
@@ -34,5 +37,16 @@ public class Controller {
     public void loadFile(){
         database.loadFile(fileHandler.loadFile());
     }
-
+public void sortByAge() {
+        database.sortbyAge();
+}
+public void sortCompGroupByAge() {
+        team.sortCompMembersAge();
+}
+public ArrayList<Member> getCompMembersOver18() {
+        return team.compMembersOver18;
+}
+public ArrayList<Member> getCompMembersUnder18() {
+        return team.getCompMembersUnder18();
+}
 }
