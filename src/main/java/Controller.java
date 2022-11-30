@@ -9,7 +9,6 @@ public class Controller {
     public Controller() {
         database = new Database();
         fileHandler = new FileHandler();
-
     }
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address,

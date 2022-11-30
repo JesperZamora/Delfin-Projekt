@@ -14,7 +14,4 @@ public class Discipline  {
         this.brystsvømning = brystsvømning;
     }
 
-
-
-
 }

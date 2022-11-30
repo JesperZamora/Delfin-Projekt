@@ -1,12 +1,12 @@
 import java.time.LocalDate;
 
 public class Competition {
-    int placeInCompetetion;
-    String competetionName;
+    int placement;
+    String competitionName;
     int time;
-    public Competition(String competetionName, int placeInCompetetion, int time) {
-        this.competetionName = competetionName;
-        this.placeInCompetetion = placeInCompetetion;
+    public Competition(String competitionName, int placement, int time) {
+        this.competitionName = competitionName;
+        this.placement = placement;
         this.time = time;
     }
 }
