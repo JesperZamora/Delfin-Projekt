@@ -33,7 +33,7 @@ class FileHandler {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] attributes = reader.nextLine().split(",");
-                if(attributes[4].equals("exerciser")){
+                if(attributes[4].equals("Exerciser")){
                     Exerciser exerciser = new Exerciser(
                             attributes[0],
                             LocalDate.parse(attributes[1]),

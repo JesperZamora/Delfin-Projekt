@@ -35,9 +35,9 @@ public abstract class Member {
 
     public void membershipByAge() {
         if (age < 18) {
-            this.membershipByAge = "junior";
+            this.membershipByAge = "Junior";
         } else {
-            this.membershipByAge = "senior";
+            this.membershipByAge = "Senior";
         }
     }
 

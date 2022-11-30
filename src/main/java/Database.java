@@ -23,7 +23,7 @@ public class Database {
         for (Member member : members){
             if (member.getName().toLowerCase().contains(searchWord)){
                 foundMembers.add(member);
-            } else if(Integer.toString(member.getAge()).equals(searchWord)){
+            } else if(Integer.toString(member.getAge()). contains(searchWord)){
                 foundMembers.add(member);
             } else if(Integer.toString(member.getPhoneNumber()).contains(searchWord)){
                 foundMembers.add(member);
