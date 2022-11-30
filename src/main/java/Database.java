@@ -13,7 +13,7 @@ public class Database {
 
     //TODO: not finished yet. Needs discipline information (future sprint)
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
-        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus));
+        members.add(new CompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     public void loadFile(ArrayList<Member> loadedFile) {

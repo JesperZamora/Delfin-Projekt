@@ -43,7 +43,7 @@ class FileHandler {
                     loadedMember.add(exerciser);
 
                 } else{
-                    Competition competition = new Competition(
+                    CompetitionSwimmer competition = new CompetitionSwimmer(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
