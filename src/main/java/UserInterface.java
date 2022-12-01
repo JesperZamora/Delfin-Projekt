@@ -12,8 +12,6 @@ public class UserInterface {
         sc = new Scanner(System.in);
         controller = new Controller();
         controller.loadFile();
-        ArrayList<Member> teamJunior = new ArrayList<>();
-        ArrayList<Member> teamSenior = new ArrayList<>();
     }
 
     public void startMenu() {
