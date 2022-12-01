@@ -3,17 +3,20 @@ import java.util.ArrayList;
 
 public class Discipline {
 
-    private String disciplineName;
+    // enum DisciplineEnum
+    // slettes: private String disciplineName;
+
+    private DisciplineEnum disciplineEnumName;
     private int time;
     private LocalDate date;
-    public Discipline(String disciplineName, int time, LocalDate date){
-        this.disciplineName = disciplineName;
+    public Discipline(DisciplineEnum disciplineEnumName, int time, LocalDate date){
+        this.disciplineEnumName = disciplineEnumName;
         this.date = date;
         this.time = time;
     }
 
-    public String getDisciplineName() {
-        return disciplineName;
+    public DisciplineEnum getDisciplineEnumName() {
+        return disciplineEnumName;
     }
 
     public int getTime() {
@@ -23,4 +26,5 @@ public class Discipline {
     public LocalDate getDate() {
         return date;
     }
+
 }

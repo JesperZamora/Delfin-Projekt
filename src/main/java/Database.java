@@ -3,15 +3,15 @@ import java.util.ArrayList;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
-
+    private Competition competition;
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     //TODO: not finished yet. Needs discipline information (future sprint)
-    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus, String discipline){
-        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus, discipline));
+    public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus){
+        members.add(new Competition(name, birthDate, phoneNumber, address, memberStatus));
     }
 
     public void loadFile(ArrayList<Member> loadedFile){
@@ -37,5 +37,12 @@ public class Database {
         return members;
     }
 
+    public void addDiscipline(Discipline des){
+        competition.addDisciplines(des);
+    }
+
+    public Discipline[] getDiscipline(){
+        return competition.getDisciplines();
+    }
 
 }

@@ -12,7 +12,7 @@ class FileHandler {
             PrintStream output = new PrintStream(file);
             for (Member member : memberList) {
                 output.println(
-                                member.getName() + "," +
+                        member.getName() + "," +
                                 member.getBirthDate() + "," +
                                 member.getPhoneNumber() + "," +
                                 member.getAddress() + "," +
@@ -33,7 +33,7 @@ class FileHandler {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] attributes = reader.nextLine().split(",");
-                if(attributes[4].equals("exerciser")){
+                if (attributes[4].equals("exerciser")) {
                     Exerciser exerciser = new Exerciser(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
@@ -42,14 +42,13 @@ class FileHandler {
                             attributes[5]);
                     loadedMember.add(exerciser);
 
-                } else{
+              } else{
                     Competition competition = new Competition(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5],
-                            attributes[6]);
+                            attributes[5]);
                     loadedMember.add(competition);
                 }
             }
@@ -65,4 +64,3 @@ class FileHandler {
         return file;
     }
 }
-

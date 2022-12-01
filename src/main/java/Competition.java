@@ -1,27 +1,49 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Competition extends Member {
 
     private DisciplineEnum disciplineEnum;
-    private Discipline[] disciplines = new Discipline[4];
-    private String discipline;
+    Discipline[] disciplines;
 
-    public Competition(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus, String discipline) {
+    public Competition(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         super(name, birthDate, phoneNumber, address, memberStatus);
         setMembershipType("comp swimmer");
-        this.discipline = discipline;
+        this.disciplines = new Discipline[4];
     }
 
-    public void addDisciplines() {
-        if (disciplineEnum == DisciplineEnum.BACKCRAWL){
-            Discipline backcrawl = disciplines[0];
-        } else if (disciplineEnum == DisciplineEnum.BUTTERFLY){
-            Discipline butterfly = disciplines[1];
-        } else if (disciplineEnum == DisciplineEnum.BREASTSTROKE){
-            Discipline breaststroke = disciplines[2];
-        } else if (disciplineEnum == DisciplineEnum.CRAWL) {
-            Discipline crawl = disciplines[3];
+    public Discipline disciplineName(DisciplineEnum disciplineName) {
+        Discipline[] disciplines = new Discipline[4];
+        for (Discipline i : disciplines) {
+            if (i.getDisciplineEnumName().equals(disciplineName)) {
+                return i;
+            }
         }
+        return null;
+    }
+
+    public void addDisciplines(Discipline des) {
+            switch (DisciplineEnum.DISCIPLINENAME) {
+                case BUTTERFLY:
+                    disciplines[0] = des;
+                    break;
+                case CRAWL:
+                    disciplines[1] = des;
+                    break;
+                case BREASTSTROKE:
+                    disciplines[2] = des;
+                    break;
+                case BACKCRAWL:
+                    disciplines[3] = des;
+                    break;
+            }
+        }
+
+
+    public DisciplineEnum getDisciplineEnum() {
+        return disciplineEnum;
+    }
+
+    public Discipline[] getDisciplines() {
+        return disciplines;
     }
 }

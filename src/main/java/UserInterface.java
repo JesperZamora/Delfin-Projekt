@@ -11,7 +11,7 @@ public class UserInterface {
     public UserInterface() {
         sc = new Scanner(System.in);
         controller = new Controller();
-        controller.loadFile();
+        //controller.loadFile();
     }
 
     public void startMenu() {
@@ -140,15 +140,34 @@ public class UserInterface {
             //TODO: Fill out with discipline attributes add (future sprint)
             //System.out.println("Add discipline information:");
 
-            System.out.print("""
+            System.out.println("""
                     What discipline do you want to add the member to?
-                    butterflySwimmer 
-                    crawlSwimmers 
-                    backcrawlSwimmers 
-                    breaststrokeSwimmers""");
-            String discipline = readString();
-
-            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, discipline);
+                    Type 1. Butterflyswimmer 
+                    Type 2. Crawlswimmer 
+                    Type 3. Backcrawlswimmer 
+                    Type 4. Breaststrokeswimmer""");
+            int disciplineChoice = readInteger();
+            Discipline[] disciplines = new Discipline[4];
+            switch (disciplineChoice) {
+                case 1 -> {
+                    DisciplineEnum.BUTTERFLY.toString();
+                    controller.addDiscipline(disciplines[0]);
+                }
+                case 2 -> {
+                    DisciplineEnum.CRAWL.toString();
+                    controller.addDiscipline(disciplines[1]);
+                }
+                case 3 -> {
+                    DisciplineEnum.BREASTSTROKE.toString();
+                    controller.addDiscipline(disciplines[2]);
+                }
+                case 4 -> {
+                    DisciplineEnum.BACKCRAWL.toString();
+                    controller.addDiscipline(disciplines[3]);
+                }
+                default -> System.out.println("Invalid input.. Choose again!");
+        }
+            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nCompetition member added.");
 
         } else if (userChoice == 0) {
