@@ -1,7 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 
 public abstract class Member {
     private String name;
@@ -42,10 +41,6 @@ public abstract class Member {
         }
     }
 
-/*    public String toString() {
-        return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %s",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
-    }*/
 
     public String toString() {
         return String.format("""
@@ -113,6 +108,7 @@ public abstract class Member {
     public void setMemberStatus(String memberStatus) {
         this.memberStatus = memberStatus;
     }
+
 }
 
 

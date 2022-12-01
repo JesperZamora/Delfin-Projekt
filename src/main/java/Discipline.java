@@ -1,42 +1,56 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Discipline  {
-
+    //private boolean trainingOrComp;
     private String disciplineName;
-    private String trainOrCompResult;
     private LocalDate date;
     private double time;
+    //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    //private String dateOfResult = date.format(format);
     private Discipline[] disciplines = new Discipline[4];
 
-    public Discipline(String disciplineName, String trainOrCompResult, LocalDate date, double time) {
+    public Discipline(String disciplineName, double time,LocalDate date) {
         this.disciplineName = disciplineName;
-        this.trainOrCompResult = trainOrCompResult;
         this.date = date;
         this.time = time;
+
     }
 
-    public void addDisciplines(String disciplineName, String trainOrCompResult, LocalDate date, double time) {
+    public void addNewDiscipline() {
         for(int i = 0; i < disciplines.length; i++) {
             if(disciplines[i] == null) {
-                disciplines[i] = new Discipline(disciplineName, trainOrCompResult, date, time);;
+                disciplines[i] = new Discipline(disciplineName, time, date);
                 break;
             }
         }
     }
 
-    public void setDisciplineName(String disciplineName) {
-        this.disciplineName = disciplineName;
+    public Discipline[] getDisciplines(){
+        return disciplines;
     }
 
-    public void setTrainOrCompResult(String trainOrCompName) {
-        this.trainOrCompResult = trainOrCompName;
+
+    public String toString(){
+        return String.format("""
+                %s,%s,%s""",disciplineName, date, time);
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public String getDisciplineName() {
+        return disciplineName;
     }
 
-    public void setTime(double time) {
-        this.time = time;
+/*
+    public boolean getTrainOrComp() {
+        return trainingOrComp;
+    }
+*/
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public double getTime() {
+        return time;
     }
 }

@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class FileHandler {
@@ -11,13 +12,30 @@ class FileHandler {
         try {
             PrintStream output = new PrintStream(file);
             for (Member member : memberList) {
-                output.println(
-                                member.getName() + "," +
-                                member.getBirthDate() + "," +
-                                member.getPhoneNumber() + "," +
-                                member.getAddress() + "," +
-                                member.getMembershipType() + "," +
-                                member.MemberStatus());
+                if (member instanceof Exerciser) {
+                    output.println(
+                                    member.getName() + "," +
+                                    member.getBirthDate() + "," +
+                                    member.getPhoneNumber() + "," +
+                                    member.getAddress() + "," +
+                                    member.getMembershipType() + "," +
+                                    member.MemberStatus()
+                    );
+                } else if (member instanceof CompetitionSwimmer) {
+                    output.println(
+                                    member.getName() + "," +
+                                    member.getBirthDate() + "," +
+                                    member.getPhoneNumber() + "," +
+                                    member.getAddress() + "," +
+                                    member.getMembershipType() + "," +
+                                    member.MemberStatus() + "," +
+                                    ((CompetitionSwimmer) member).getDisciplineName() + "," +
+                                    ((CompetitionSwimmer) member).getTime() + "," +
+                                    ((CompetitionSwimmer) member).getDate()
+/*
+                                    Arrays.toString(((CompetitionSwimmer) member).getCompDisciplines())*/
+                    );
+                }
             }
             output.close();
 
@@ -33,23 +51,26 @@ class FileHandler {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
                 String[] attributes = reader.nextLine().split(",");
-                if(attributes[4].equals("Exerciser")){
+                if (attributes[4].equals("Exerciser")) {
                     Exerciser exerciser = new Exerciser(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5]);
+                            attributes[5]
+
+                    );
                     loadedMember.add(exerciser);
 
-                } else{
-                    CompetitionSwimmer competition = new CompetitionSwimmer(
+                } else {
+/*                    CompetitionSwimmer competition = new CompetitionSwimmer(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5]);
-                    loadedMember.add(competition);
+                            attributes[5],
+                            attributes[]);
+                    loadedMember.add(competition);*/
                 }
             }
             reader.close();
@@ -60,7 +81,7 @@ class FileHandler {
         return loadedMember;
     }
 
-    public File getFile(){
+    public File getFile() {
         return file;
     }
 }

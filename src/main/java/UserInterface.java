@@ -113,9 +113,9 @@ public class UserInterface {
         String memberStatus = "";
         while(memberStatus.isBlank()){
             switch (memberStatusChoice){
-                case 1 -> memberStatus = "active";
-                case 2 -> memberStatus = "passive";
-                case 3 -> memberStatus = "inactive";
+                case 1 -> memberStatus = "Active";
+                case 2 -> memberStatus = "Passive";
+                case 3 -> memberStatus = "nactive";
                 default -> System.out.println("Invalid input.. Choose again!");
             }
         }
@@ -136,14 +136,50 @@ public class UserInterface {
             System.out.println("\nExerciser member added.");
 
         } else if (userChoice == 2) {
-            //TODO: Fill out with discipline attributes add (future sprint)
-            //System.out.println("Add discipline information:");
+            addDiscipline();
+
             controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nCompetition member added.");
 
         } else if (userChoice == 0) {
             System.out.println("\nMember not added");
         }
+    }
+
+    public void addDiscipline(){
+        boolean isRunning = true;
+        do{
+            System.out.println("Choose a number to add a discipline");
+            System.out.println("""
+                    1. Breaststroke
+                    2. Butterfly
+                    3. Crawl
+                    4. Backstroke""");
+
+            String disciplineName = "";
+            switch (readInteger()){
+                case 1 -> disciplineName = "Breaststroke";
+                case 2 -> disciplineName = "Butterfly";
+                case 3 -> disciplineName = "Crawl";
+                case 4 -> disciplineName = "Backstroke";
+                default -> System.out.println("Invalid number");
+            }
+
+            System.out.print("Best time: ");
+            double bestTime = sc.nextDouble();
+
+            System.out.print("Date of best time: ");
+            LocalDate date = addNewBirthDate();
+
+            controller.addNewDiscipline(disciplineName, bestTime, date);
+
+            System.out.println("Add another discipline press 1 or exit press 0");
+            int userChoice = readInteger();
+            if(userChoice != 1){
+                isRunning = false;
+            }
+        }while(isRunning);
+
     }
 
     public void searchMember(){
@@ -257,6 +293,24 @@ public class UserInterface {
     public void viewCompMembersOver18() {
         controller.sortCompGroupByAge();
         System.out.println(controller.getCompMembersUnder18() + "Group 2 over 18:" + controller.getCompMembersOver18());
+    }
+
+    public void juniorCompetitionSwimmers(){
+        System.out.println("Junior Competition swimmers:");
+        for(Member members: controller.getMembers()){
+            if(members instanceof CompetitionSwimmer && members.getAge() <18){
+                System.out.println(members + "\n");
+            }
+        }
+    }
+
+    public void seniorCompetitionSwimmers(){
+        System.out.println("Senior Competition swimmers:");
+        for(Member members: controller.getMembers()){
+            if(members instanceof CompetitionSwimmer && members.getAge() >=18){
+                System.out.println(members + "\n");
+            }
+        }
     }
 
     public int readInteger() {
