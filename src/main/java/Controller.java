@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Controller {
     private Database database;
     private FileHandler fileHandler;
-    private Team team;
 
     public Controller() {
         database = new Database();
