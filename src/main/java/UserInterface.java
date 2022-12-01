@@ -82,7 +82,10 @@ public class UserInterface {
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> viewCompMembersOver18();
+            case 1 -> {
+                sortCompJuniorSwimmers();
+                sortCompSeniorSwimmer();
+            }
             case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
             case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
             default -> System.out.println("Wrong input");
@@ -254,9 +257,22 @@ public class UserInterface {
     public void viewMember() {
         controller.getMembers().forEach(System.out::println);
     }
-    public void viewCompMembersOver18() {
-        controller.sortCompGroupByAge();
-        System.out.println(controller.getCompMembersUnder18() + "Group 2 over 18:" + controller.getCompMembersOver18());
+
+    public void sortCompJuniorSwimmers() {
+        System.out.println("Junior competition swimmers");
+        for(Member member : controller.getMembers()) {
+            if(member instanceof CompetitionSwimmer && member.getAge() < 18) {
+                System.out.println(member + "\n");
+            }
+        }
+    }
+    public void sortCompSeniorSwimmer() {
+        System.out.println("Senior competition swimmer");
+        for(Member member : controller.getMembers()) {
+            if(member instanceof CompetitionSwimmer && member.getAge() >= 18) {
+                System.out.println(member + "\n");
+            }
+        }
     }
 
     public int readInteger() {

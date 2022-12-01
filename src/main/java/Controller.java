@@ -37,15 +37,4 @@ public class Controller {
         database.loadFile(fileHandler.loadFile());
     }
 
-    public void sortCompGroupByAge() {
-        database.sortCompMembersAge();
-    }
-
-    public ArrayList<Member> getCompMembersOver18() {
-        return database.getGetCompMembersOver18();
-    }
-
-    public ArrayList<Member> getCompMembersUnder18() {
-        return database.getCompMembersUnder18();
-    }
 }

@@ -4,8 +4,6 @@ import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
-    private ArrayList<Member> compMembersUnder18 = new ArrayList<>();
-    private ArrayList<Member> compMembersOver18 = new ArrayList<>();
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
@@ -39,26 +37,7 @@ public class Database {
         return members;
 
     }
-    public void sortCompMembersAge() {
-        for (Member member : members) {
-            if (member.getMembershipType().equals("comp swimmer") && member.getAge() < 18) {
-                compMembersUnder18.add(member);
 
-
-            } else if (member.getMembershipType().equals("comp swimmer") && member.getAge() >= 18) {
-                compMembersOver18.add(member);
-
-            }
-        }
-    }
-
-    public ArrayList<Member> getCompMembersUnder18() {
-        return compMembersUnder18;
-
-    }
-    public ArrayList<Member> getGetCompMembersOver18() {
-        return compMembersOver18;
-    }
 }
 
 
