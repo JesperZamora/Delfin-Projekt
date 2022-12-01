@@ -12,6 +12,8 @@ public class UserInterface {
         sc = new Scanner(System.in);
         controller = new Controller();
         controller.loadFile();
+        ArrayList<Member> teamJunior = new ArrayList<>();
+        ArrayList<Member> teamSenior = new ArrayList<>();
     }
 
     public void startMenu() {
@@ -85,6 +87,8 @@ public class UserInterface {
             case 1 -> {
                 sortCompJuniorSwimmers();
                 sortCompSeniorSwimmer();
+                System.out.println(controller.getTeamSenior());
+                System.out.println(controller.getTeamJunior());
             }
             case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
             case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
@@ -261,16 +265,18 @@ public class UserInterface {
     public void sortCompJuniorSwimmers() {
         System.out.println("Junior competition swimmers");
         for(Member member : controller.getMembers()) {
-            if(member instanceof CompetitionSwimmer && member.getAge() < 18) {
-                System.out.println(member + "\n");
+            if(controller.getListJunior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() < 18) {
+                controller.getListJunior().add(member);
+
             }
         }
     }
+
     public void sortCompSeniorSwimmer() {
         System.out.println("Senior competition swimmer");
         for(Member member : controller.getMembers()) {
-            if(member instanceof CompetitionSwimmer && member.getAge() >= 18) {
-                System.out.println(member + "\n");
+            if(controller.getListSenior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() >= 18) {
+                controller.getListSenior().add(member);
             }
         }
     }

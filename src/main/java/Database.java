@@ -4,6 +4,11 @@ import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
+    private Trainer trainer1 = new Trainer("Stefan");
+    private ArrayList<Member> listJunior = new ArrayList<>();
+    private ArrayList<Member> listSenior = new ArrayList<>();
+    private Team teamJunior = new Team("Team Junior", trainer1, listJunior);
+    private Team teamSenior = new Team("Team Senior", trainer1, listSenior);
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
@@ -37,7 +42,18 @@ public class Database {
         return members;
 
     }
-
+    public Team getTeamJunior() {
+        return teamJunior;
+    }
+public Team getTeamSenior() {
+        return teamSenior;
+}
+public ArrayList<Member> getListJunior() {
+        return listJunior;
+}
+public ArrayList<Member> getListSenior() {
+        return listSenior;
+}
 }
 
 

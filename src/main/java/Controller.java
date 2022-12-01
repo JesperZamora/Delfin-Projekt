@@ -36,5 +36,17 @@ public class Controller {
     public void loadFile() {
         database.loadFile(fileHandler.loadFile());
     }
+    public ArrayList<Member> getListJunior() {
+        return database.getListJunior();
+    }
+    public ArrayList<Member> getListSenior() {
+        return database.getListSenior();
+    }
+    public Team getTeamJunior() {
+        return database.getTeamJunior();
+    }
+    public Team getTeamSenior() {
+        return database.getTeamSenior();
+    }
 
 }
