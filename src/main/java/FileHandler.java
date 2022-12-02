@@ -28,12 +28,12 @@ class FileHandler {
                                     member.getPhoneNumber() + "," +
                                     member.getAddress() + "," +
                                     member.getMembershipType() + "," +
-                                    member.MemberStatus() + "," + Arrays.toString(((CompetitionSwimmer) member).getDisciplines())
-/*                                    ((CompetitionSwimmer) member).getDisciplineName() + "," +
-                                    ((CompetitionSwimmer) member).getTime() + "," +
-                                    ((CompetitionSwimmer) member).getDate()*/
-/*
-                                    Arrays.toString(((CompetitionSwimmer) member).getCompDisciplines())*/
+                                    member.MemberStatus()
+                                    //+ "," +  ((CompetitionSwimmer) member).getDisciplineName() + "," +
+                                    //((CompetitionSwimmer) member).getTime() + "," +
+                                    //((CompetitionSwimmer) member).getDate()
+
+                                   // + "," +  Arrays.toString(((CompetitionSwimmer) member).getDisciplines())
                     );
 
                 }

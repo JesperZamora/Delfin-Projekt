@@ -6,8 +6,6 @@ public class Database {
     private ArrayList<Member> compMembersUnder18 = new ArrayList<>();
     private ArrayList<Member> compMembersOver18 = new ArrayList<>();
 
-
-
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }

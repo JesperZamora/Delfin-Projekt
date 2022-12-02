@@ -42,7 +42,7 @@ public class CompetitionSwimmer extends Member {
 
     @Override
     public String toString() {
-        return super.toString() + "compDisciplines=" + Arrays.toString(disciplines) + "\n";
+        return super.toString() + "Disciplines: " + Arrays.toString(disciplines) + "\n";
 
     }
 }
