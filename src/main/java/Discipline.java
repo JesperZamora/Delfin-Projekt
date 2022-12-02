@@ -6,7 +6,7 @@ public class Discipline  {
     private LocalDate date;
     private double time;
     //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    //private String dateOfResult = date.format(format);
+    private String dateOfResult;
     private Discipline[] disciplines = new Discipline[4];
 
     public Discipline(String disciplineName, double time,LocalDate date) {
@@ -15,6 +15,7 @@ public class Discipline  {
         this.time = time;
 
     }
+
 
     public String toString(){
         return String.format("""

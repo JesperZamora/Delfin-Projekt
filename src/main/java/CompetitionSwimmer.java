@@ -18,6 +18,15 @@ public class CompetitionSwimmer extends Member {
         }
     }
 
+    public void addDiscipline(Discipline discipline) {
+        for(int i = 0; i < disciplines.length; i++) {
+            if(disciplines[i] == null) {
+                disciplines[i] = discipline;
+                break;
+            }
+        }
+    }
+
 
 
     public Discipline[] getDisciplines(){
@@ -38,6 +47,8 @@ public class CompetitionSwimmer extends Member {
     public void setDisciplines(Discipline[] disciplines) {
         this.disciplines = disciplines;
     }
+
+
 
 
     @Override

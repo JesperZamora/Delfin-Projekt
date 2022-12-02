@@ -1,12 +1,14 @@
 import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 class FileHandler {
     private File file = new File("Dolphin.csv");
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public void saveFile(ArrayList<Member> memberList) {
         try {
@@ -22,19 +24,23 @@ class FileHandler {
                                     member.MemberStatus()
                     );
                 } else if (member instanceof CompetitionSwimmer) {
-                    output.println(
-                                    member.getName() + "," +
-                                    member.getBirthDate() + "," +
-                                    member.getPhoneNumber() + "," +
-                                    member.getAddress() + "," +
-                                    member.getMembershipType() + "," +
-                                    member.MemberStatus()
-                                    //+ "," +  ((CompetitionSwimmer) member).getDisciplineName() + "," +
-                                    //((CompetitionSwimmer) member).getTime() + "," +
-                                    //((CompetitionSwimmer) member).getDate()
+                            if(!member.getName().isEmpty()){
+                                output.print(
+                                        member.getName() + "," +
+                                        member.getBirthDate() + "," +
+                                        member.getPhoneNumber() + "," +
+                                        member.getAddress() + "," +
+                                        member.getMembershipType() + "," +
+                                        member.MemberStatus());
 
-                                   // + "," +  Arrays.toString(((CompetitionSwimmer) member).getDisciplines())
-                    );
+                                if(((CompetitionSwimmer) member).getDisciplines() != null) {
+                                    Discipline[] disciplines = ((CompetitionSwimmer) member).getDisciplines();
+                                    for (Discipline discipline : disciplines) {
+                                        output.print(","+ discipline);
+                                    }
+                                    output.println();
+                                }
+                            }
 
                 }
             }
@@ -62,28 +68,37 @@ class FileHandler {
 
                     );
                     loadedMember.add(exerciser);
+                }
 
-                } else {
+                if (attributes[4].equals("Comp swimmer")){
                     CompetitionSwimmer competition = new CompetitionSwimmer(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
                             attributes[5]
+
                     );
-
-/*
-                    Discipline discipline = new Discipline(
-                            attributes[6],
-                            Double.parseDouble(attributes[7]),
-                            LocalDate.parse(attributes[8]));
-
-                    competition.addNewDiscipline(attributes[6],
-                            Double.parseDouble(attributes[7]),
-                            LocalDate.parse(attributes[8]));
-*/
-
                     loadedMember.add(competition);
+
+                    if(!attributes[6].equals("null")){
+                        int lastMember = loadedMember.size();
+                        CompetitionSwimmer competitionSwimmer = (CompetitionSwimmer) loadedMember.get(lastMember-1);
+                        Discipline discipline = new Discipline(
+                                attributes[6],
+                                Double.parseDouble(attributes[8]),
+                                LocalDate.parse(attributes[7]));
+                                competitionSwimmer.addDiscipline(discipline);
+
+                                if(!attributes[9].equals("null")) {
+                                    Discipline discipline1 = new Discipline(
+                                            attributes[9],
+                                            Double.parseDouble(attributes[11]),
+                                            LocalDate.parse(attributes[10]));
+                                    competitionSwimmer.addDiscipline(discipline1);
+                                }
+
+                    }
                 }
             }
             reader.close();
@@ -99,3 +114,30 @@ class FileHandler {
     }
 }
 
+
+/*                    output.println(
+                                    member.getName() + "," +
+                                    member.getBirthDate() + "," +
+                                    member.getPhoneNumber() + "," +
+                                    member.getAddress() + "," +
+                                    member.getMembershipType() + "," +
+                                    member.MemberStatus()
+                                    //+ "," +  ((CompetitionSwimmer) member).getDisciplineName() + "," +
+                                    //((CompetitionSwimmer) member).getTime() + "," +
+                                    //((CompetitionSwimmer) member).getDate()
+
+                                    //+ "," +  Arrays.toString(((CompetitionSwimmer) member).getDisciplines())
+                    );*/
+
+
+/*                    Discipline discipline = new Discipline(
+                            attributes[6],
+                            Double.parseDouble(attributes[7]),
+                            LocalDate.parse(attributes[8]));
+
+                    competition.addNewDiscipline(attributes[6],
+                            Double.parseDouble(attributes[7]),
+                            LocalDate.parse(attributes[8]));
+*/
+
+//loadedMember.add(competition);
