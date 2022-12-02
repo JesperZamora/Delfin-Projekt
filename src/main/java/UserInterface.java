@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -91,7 +92,7 @@ public class UserInterface {
                 System.out.println(controller.getTeamJunior());
             }
             case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
-            case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 3 -> sortTopFiveByTime();
             default -> System.out.println("Wrong input");
         }
     }
@@ -277,6 +278,15 @@ public class UserInterface {
         for(Member member : controller.getMembers()) {
             if(controller.getListSenior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() >= 18) {
                 controller.getListSenior().add(member);
+            }
+        }
+    }
+
+    public void sortTopFiveByTime(){
+        controller.sortByTopFive();
+        for (Member m : controller.getMembers()){
+            for (int i = 0; i<5; i++){
+                System.out.println(m);
             }
         }
     }
