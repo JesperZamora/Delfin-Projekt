@@ -96,6 +96,22 @@ class FileHandler {
                                             Double.parseDouble(attributes[11]),
                                             LocalDate.parse(attributes[10]));
                                     competitionSwimmer.addDiscipline(discipline1);
+
+                                    if(!attributes[12].equals("null")){
+                                        Discipline discipline2 = new Discipline(
+                                                attributes[12],
+                                                Double.parseDouble(attributes[14]),
+                                                LocalDate.parse(attributes[13]));
+                                        competitionSwimmer.addDiscipline(discipline2);
+
+                                        if(!attributes[15].equals("null")){
+                                            Discipline discipline3 = new Discipline(
+                                                    attributes[15],
+                                                    Double.parseDouble(attributes[17]),
+                                                    LocalDate.parse(attributes[16]));
+                                            competitionSwimmer.addDiscipline(discipline3);
+                                        }
+                                    }
                                 }
 
                     }
