@@ -139,41 +139,44 @@ public class UserInterface {
         } else if (userChoice == 2) {
             //TODO: Fill out with discipline attributes add (future sprint)
             //System.out.println("Add discipline information:");
-
-            System.out.println("""
-                    What discipline do you want to add the member to?
-                    Type 1. Butterflyswimmer 
-                    Type 2. Crawlswimmer 
-                    Type 3. Backcrawlswimmer 
-                    Type 4. Breaststrokeswimmer""");
+            System.out.println("\nChoose descipline:\nType 1. Butterfly \nType 2. Crawl \nType 3. Backcrawl \nType 4. Breaststroke");
             int disciplineChoice = readInteger();
-            Discipline[] disciplines = new Discipline[4];
-            switch (disciplineChoice) {
-                case 1 -> {
-                    DisciplineEnum.BUTTERFLY.toString();
-                    controller.addDiscipline(disciplines[0]);
+            Discipline[] dis = new Discipline[4];
+            while (disciplineChoice < 5) {
+                switch (disciplineChoice) {
+                    case 1 -> {
+                        dis[0] = Discipline.BUTTERFLY;
+                        System.out.println("Butterfly has been added.");
+                    }
+                    case 2 -> {
+                        dis[1] = Discipline.CRAWL;
+                        System.out.println("Crawl has been added.");
+                    }
+                    case 3 -> {
+                        dis[2] = Discipline.BACKCRAWL;
+                        System.out.println("Backcrawl has been added.");
+                    }
+                    case 4 -> {
+                        dis[3] = Discipline.BREASTSTROKE;
+                        System.out.println("Breaststroke has been added.");
+                    }
+                    default -> System.out.println("Invalid input.. Choose again!");
                 }
-                case 2 -> {
-                    DisciplineEnum.CRAWL.toString();
-                    controller.addDiscipline(disciplines[1]);
+                System.out.println("Do you want to add more disciplines?");
+                    disciplineChoice = readInteger();
                 }
-                case 3 -> {
-                    DisciplineEnum.BREASTSTROKE.toString();
-                    controller.addDiscipline(disciplines[2]);
-                }
-                case 4 -> {
-                    DisciplineEnum.BACKCRAWL.toString();
-                    controller.addDiscipline(disciplines[3]);
-                }
-                default -> System.out.println("Invalid input.. Choose again!");
-        }
-            controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
-            System.out.println("\nCompetition member added.");
 
-        } else if (userChoice == 0) {
-            System.out.println("\nMember not added");
+                controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus, dis);
+                System.out.println("\nCompetition member added.");
+
+            } else if (userChoice == 0) {
+                System.out.println("\nMember not added");
+            }
         }
-    }
+
+        public void addMoreDecipline () {
+
+        }
 
     public void searchMember(){
         System.out.print("Search member by name, age or phone number: ");

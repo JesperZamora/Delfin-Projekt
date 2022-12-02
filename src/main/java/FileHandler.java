@@ -2,7 +2,10 @@ import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+
+import static java.lang.String.valueOf;
 
 class FileHandler {
     private File file = new File("Dolphin.csv");
@@ -28,7 +31,6 @@ class FileHandler {
 
     public ArrayList<Member> loadFile() {
         ArrayList<Member> loadedMember = new ArrayList<>();
-
         try {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
@@ -48,7 +50,8 @@ class FileHandler {
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5]);
+                            attributes[4],
+                            new Discipline[]{Discipline.valueOf((attributes[5]))});
                     loadedMember.add(competition);
                 }
             }

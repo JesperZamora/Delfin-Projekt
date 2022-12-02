@@ -14,6 +14,7 @@ public abstract class Member {
     private LocalDate birthDate;
 
 
+
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
         setBirthDate(birthDate);
@@ -56,9 +57,11 @@ public abstract class Member {
                         Address:         %s
                         Membership:      %s
                         Member type:     %s
-                        Member status:   %s \n""",
+                        Member status:   %s 
+                        Member Discipline:\n""",
                 name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
     }
+
 
     public String getName() {
         return name;
