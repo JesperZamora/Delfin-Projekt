@@ -1,17 +1,36 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Discipline  {
+    private String disciplineName;
+    private LocalDate date;
+    private double time;
+    //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private String dateOfResult;
+    private Discipline[] disciplines = new Discipline[4];
 
-    private String butterfly;
-    private String crawl;
-    private String rygcrawl;
-    private String brystsvømning;
+    public Discipline(String disciplineName, double time,LocalDate date) {
+        this.disciplineName = disciplineName;
+        this.date = date;
+        this.time = time;
 
-    public Discipline(String butterfly, String crawl, String rygcrawl, String brystsvømning){
-        this.butterfly = butterfly;
-        this.crawl = crawl;
-        this.rygcrawl = rygcrawl;
-        this.brystsvømning = brystsvømning;
     }
 
+
+    public String toString(){
+        return String.format("""
+                %s,%s,%s""",disciplineName, date, time);
+    }
+
+    public String getDisciplineName() {
+        return disciplineName;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public double getTime() {
+        return time;
+    }
 }

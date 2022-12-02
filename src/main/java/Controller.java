@@ -1,11 +1,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Controller {
     private Database database;
     private FileHandler fileHandler;
-    private Team team;
 
     public Controller() {
         database = new Database();
@@ -22,6 +20,7 @@ public class Controller {
         database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
     }
 
+
     public ArrayList<Member> getMembers() {
         return database.getMembers();
     }
@@ -37,20 +36,17 @@ public class Controller {
     public void loadFile() {
         database.loadFile(fileHandler.loadFile());
     }
-    public ArrayList<Member> getListJunior() {
-        return database.getListJunior();
-    }
-    public ArrayList<Member> getListSenior() {
-        return database.getListSenior();
-    }
-    public Team getTeamJunior() {
-        return database.getTeamJunior();
-    }
-    public Team getTeamSenior() {
-        return database.getTeamSenior();
+
+
+    public void sortCompGroupByAge() {
+        database.sortCompMembersAge();
     }
 
-    public void sortByTopFive(){
-        Collections.sort(fileHandler.loadFile(), new TimeComparator());
+    public ArrayList<Member> getCompMembersOver18() {
+        return database.getGetCompMembersOver18();
+    }
+
+    public ArrayList<Member> getCompMembersUnder18() {
+        return database.getCompMembersUnder18();
     }
 }

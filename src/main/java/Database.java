@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
@@ -14,7 +13,6 @@ public class Database {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
-    //TODO: not finished yet. Needs discipline information (future sprint)
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new CompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus));
     }
@@ -27,7 +25,7 @@ public class Database {
         ArrayList<Member> foundMembers = new ArrayList<>();
 
         for (Member member : members) {
-            if (member.getName().toLowerCase().contains(searchWord)) {
+            if (member.getName().toLowerCase().contains(searchWord.toLowerCase())) {
                 foundMembers.add(member);
             } else if (Integer.toString(member.getAge()).contains(searchWord)) {
                 foundMembers.add(member);

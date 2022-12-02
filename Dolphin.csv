@@ -1,9 +1,10 @@
-Jesper Wolff,2000-04-18,27146786,Siciliensgade 8,comp swimmer,Active
-Coach Carter,2000-01-01,911911,Hollywood Blv.,comp swimmer,Inactive
-Santa Claus,1900-12-01,24242424,Ho-ho Street,comp swimmer,Active
-Santas wife,1940-04-04,23232323,Ho-ho Street,comp swimmer,Passive
-Santas helper,1950-05-05,22232422,Ho-ho Treehouse,comp swimmer,Passive
-Reindeer Rudolf,1960-06-06,45453535,Ho-ho Barn,comp swimmer,Inactive
-Jesper Wolff,1990-04-18,27146786,Siciliensgade 8 st,comp swimmer,active
-Osama,2009-05-25,213982139,vange,comp swimmer,active
-Olaf,2009-06-23,12381231,vange,comp swimmer,active
+Jesper wolff,1900-04-18,27146589,sicilaidad,Exerciser,active
+Jesper Wolff,2000-04-18,27146786,Siciliensgade 8,Comp swimmer,Active,Breaststroke,2022-11-11,32.3,null,null,null
+Coach Carter,2000-01-01,911911,Hollywood Blv.,Comp swimmer,Inactive,Crawl,2022-10-10,52.51,null,null,null
+Santa Claus,1900-12-01,24242424,Ho-ho Street,Comp swimmer,Active,Butterfly,2000-09-10,45.5,Backstroke,2005-09-09,67.6,Backstroke,1990-10-10,12.5,Crawl,1995-05-05,10.5
+Santas wife,1940-04-04,23232323,Ho-ho Street,Comp swimmer,Passive,null,null,null,null
+Santas helper,1950-05-05,22232422,Ho-ho Treehouse,Comp swimmer,Passive,null,null,null,null
+Reindeer Rudolf,1960-06-06,45453535,Ho-ho Barn,Comp swimmer,Inactive,null,null,null,null
+Jesper Wolff,1990-04-18,27146786,Siciliensgade 8 st,Comp swimmer,active,null,null,null,null
+Osama,2009-05-25,213982139,vange,Comp swimmer,active,null,null,null,null
+Olaf,2009-06-23,12381231,vange,Comp swimmer,active,null,null,null,null
