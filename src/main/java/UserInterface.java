@@ -261,7 +261,6 @@ public class UserInterface {
     }
 
     public void sortCompJuniorSwimmers() {
-        System.out.println("Junior competition swimmers");
         for(Member member : controller.getMembers()) {
             if(controller.getListJunior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() < 18) {
                 controller.getListJunior().add(member);
@@ -271,7 +270,6 @@ public class UserInterface {
     }
 
     public void sortCompSeniorSwimmer() {
-        System.out.println("Senior competition swimmer");
         for(Member member : controller.getMembers()) {
             if(controller.getListSenior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() >= 18) {
                 controller.getListSenior().add(member);
