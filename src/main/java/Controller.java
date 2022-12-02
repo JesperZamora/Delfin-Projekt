@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Controller {
     private Database database;
     private FileHandler fileHandler;
-    private Discipline discipline;
 
     public Controller() {
         database = new Database();
@@ -21,9 +20,6 @@ public class Controller {
         database.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
     }
 
-    public void addNewDiscipline(String disciplineName, double time,LocalDate date) {
-        database.addNewDiscipline(disciplineName, time, date);
-    }
 
     public ArrayList<Member> getMembers() {
         return database.getMembers();

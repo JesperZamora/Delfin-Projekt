@@ -9,7 +9,7 @@ public class CompetitionSwimmer extends Member {
         setMembershipType("Comp swimmer");
     }
 
-    public void addNewDiscipline(String disciplineName, double time, LocalDate date) {
+    public void addNewDiscipline(String disciplineName, double time,LocalDate date) {
         for(int i = 0; i < disciplines.length; i++) {
             if(disciplines[i] == null) {
                 disciplines[i] = new Discipline(disciplineName, time, date);
@@ -19,7 +19,8 @@ public class CompetitionSwimmer extends Member {
     }
 
 
-    public Discipline[] getCompDisciplines(){
+
+    public Discipline[] getDisciplines(){
         return disciplines;
     }
 
@@ -41,7 +42,7 @@ public class CompetitionSwimmer extends Member {
 
     @Override
     public String toString() {
-        return super.toString() + "compDisciplines=" + Arrays.toString(disciplines);
+        return super.toString() + "compDisciplines=" + Arrays.toString(disciplines) + "\n";
 
     }
 }

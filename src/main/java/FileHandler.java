@@ -28,13 +28,14 @@ class FileHandler {
                                     member.getPhoneNumber() + "," +
                                     member.getAddress() + "," +
                                     member.getMembershipType() + "," +
-                                    member.MemberStatus() + "," +
-                                    ((CompetitionSwimmer) member).getDisciplineName() + "," +
+                                    member.MemberStatus() + "," + Arrays.toString(((CompetitionSwimmer) member).getDisciplines())
+/*                                    ((CompetitionSwimmer) member).getDisciplineName() + "," +
                                     ((CompetitionSwimmer) member).getTime() + "," +
-                                    ((CompetitionSwimmer) member).getDate()
+                                    ((CompetitionSwimmer) member).getDate()*/
 /*
                                     Arrays.toString(((CompetitionSwimmer) member).getCompDisciplines())*/
                     );
+
                 }
             }
             output.close();
@@ -63,14 +64,26 @@ class FileHandler {
                     loadedMember.add(exerciser);
 
                 } else {
-/*                    CompetitionSwimmer competition = new CompetitionSwimmer(
+                    CompetitionSwimmer competition = new CompetitionSwimmer(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5],
-                            attributes[]);
-                    loadedMember.add(competition);*/
+                            attributes[5]
+                    );
+
+/*
+                    Discipline discipline = new Discipline(
+                            attributes[6],
+                            Double.parseDouble(attributes[7]),
+                            LocalDate.parse(attributes[8]));
+
+                    competition.addNewDiscipline(attributes[6],
+                            Double.parseDouble(attributes[7]),
+                            LocalDate.parse(attributes[8]));
+*/
+
+                    loadedMember.add(competition);
                 }
             }
             reader.close();

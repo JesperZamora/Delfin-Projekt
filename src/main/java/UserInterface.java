@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 public class UserInterface {
     private Scanner sc;
@@ -83,8 +84,8 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> viewCompMembersOver18();
-            case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
-            case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 2 -> addDiscipline();
+            case 3 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
             default -> System.out.println("Wrong input");
         }
     }
@@ -95,7 +96,7 @@ public class UserInterface {
         String name = readString();
 
         System.out.print("Birth date (date-month-year): ");
-        LocalDate birthDate = addNewBirthDate();
+        LocalDate birthDate = addDate();
 
         System.out.print("Phone no: ");
         int phoneNumber = readInteger();
@@ -105,9 +106,9 @@ public class UserInterface {
 
         System.out.println("""
                 Set membership status
-                1. active
-                2. passive
-                3. inactive""");
+                1. Active
+                2. Passive
+                3. Inactive""");
         System.out.print("Membership Status: ");
         int memberStatusChoice = readInteger();
         String memberStatus = "";
@@ -115,7 +116,7 @@ public class UserInterface {
             switch (memberStatusChoice){
                 case 1 -> memberStatus = "Active";
                 case 2 -> memberStatus = "Passive";
-                case 3 -> memberStatus = "nactive";
+                case 3 -> memberStatus = "Inactive";
                 default -> System.out.println("Invalid input.. Choose again!");
             }
         }
@@ -136,10 +137,9 @@ public class UserInterface {
             System.out.println("\nExerciser member added.");
 
         } else if (userChoice == 2) {
-            addDiscipline();
-
             controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nCompetition member added.");
+
 
         } else if (userChoice == 0) {
             System.out.println("\nMember not added");
@@ -147,6 +147,24 @@ public class UserInterface {
     }
 
     public void addDiscipline(){
+        System.out.println("Search for competition swimmer:");
+        String searchWord = readString();
+
+        ArrayList<CompetitionSwimmer> foundComSwimmer = new ArrayList<>();
+        int num = 1;
+        for(Member member : controller.searchMember(searchWord)) {
+            if(member instanceof CompetitionSwimmer) {
+                foundComSwimmer.add((CompetitionSwimmer) member);
+                System.out.println("Member #[" + num + "] \n" + member);
+                num++;
+            }
+        }
+
+
+        System.out.print("Choose:");
+        int choice = readInteger();
+        CompetitionSwimmer competitionSwimmer = foundComSwimmer.get(choice-1);
+
         boolean isRunning = true;
         do{
             System.out.println("Choose a number to add a discipline");
@@ -166,12 +184,12 @@ public class UserInterface {
             }
 
             System.out.print("Best time: ");
-            double bestTime = sc.nextDouble();
+            double bestTime = readDouble();
 
             System.out.print("Date of best time: ");
-            LocalDate date = addNewBirthDate();
+            LocalDate date = addDate();
 
-            controller.addNewDiscipline(disciplineName, bestTime, date);
+            competitionSwimmer.addNewDiscipline(disciplineName, bestTime, date);
 
             System.out.println("Add another discipline press 1 or exit press 0");
             int userChoice = readInteger();
@@ -179,7 +197,6 @@ public class UserInterface {
                 isRunning = false;
             }
         }while(isRunning);
-
     }
 
     public void searchMember(){
@@ -255,7 +272,7 @@ public class UserInterface {
         }
     }
 
-    public LocalDate addNewBirthDate(){
+    public LocalDate addDate(){
         LocalDate birthDateParsed = null;
         while(birthDateParsed == null){
             String birthDate = readString();
@@ -326,6 +343,17 @@ public class UserInterface {
     public String readString() {
         return sc.nextLine();
     }
+
+    public double readDouble() {
+        while (!sc.hasNextDouble()) {
+            System.out.println("This is not a number. Try again..");
+            sc.next();
+        }
+        double i = sc.nextDouble();
+        sc.nextLine();
+        return i;
+    }
+
 }
 
 

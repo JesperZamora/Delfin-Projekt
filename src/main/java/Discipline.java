@@ -2,7 +2,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Discipline  {
-    //private boolean trainingOrComp;
     private String disciplineName;
     private LocalDate date;
     private double time;
@@ -17,20 +16,6 @@ public class Discipline  {
 
     }
 
-    public void addNewDiscipline() {
-        for(int i = 0; i < disciplines.length; i++) {
-            if(disciplines[i] == null) {
-                disciplines[i] = new Discipline(disciplineName, time, date);
-                break;
-            }
-        }
-    }
-
-    public Discipline[] getDisciplines(){
-        return disciplines;
-    }
-
-
     public String toString(){
         return String.format("""
                 %s,%s,%s""",disciplineName, date, time);
@@ -39,12 +24,6 @@ public class Discipline  {
     public String getDisciplineName() {
         return disciplineName;
     }
-
-/*
-    public boolean getTrainOrComp() {
-        return trainingOrComp;
-    }
-*/
 
     public LocalDate getDate() {
         return date;
