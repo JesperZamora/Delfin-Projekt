@@ -311,6 +311,20 @@ public class UserInterface {
         System.out.println(controller.getCompMembersUnder18() + "Group 2 over 18:" + controller.getCompMembersOver18());
     }
 
+    public void showTopFive(){
+        ArrayList<CompetitionSwimmer> competitionSwimmers = new ArrayList<>();
+        controller.sortCompGroupByAge();
+        for (Member members : controller.getMembers()){
+            if (members instanceof CompetitionSwimmer){
+                competitionSwimmers.add((CompetitionSwimmer) members);
+            }
+        }
+
+        for (int i = 0; i<5; i++){
+
+        }
+    }
+
     public void juniorCompetitionSwimmers(){
         System.out.println("Junior Competition swimmers:");
         for(Member members: controller.getMembers()){
