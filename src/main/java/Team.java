@@ -16,8 +16,6 @@ public class Team {
         this.teamName = teamName;
         this.trainer = trainer;
         this.team = team;
-
-
     }
 
 }
