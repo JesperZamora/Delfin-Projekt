@@ -41,7 +41,7 @@ class FileHandler {
                             LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]),
                             attributes[3],
-                            attributes[5]);
+                            attributes[4]);
                     loadedMember.add(exerciser);
 
               } else{
@@ -51,7 +51,7 @@ class FileHandler {
                             Integer.parseInt(attributes[2]),
                             attributes[3],
                             attributes[4],
-                            new Discipline[]{Discipline.valueOf((attributes[5]))});
+                            new Discipline[]{Discipline.valueOf((attributes[5]).toUpperCase())});
                     loadedMember.add(competition);
                 }
             }

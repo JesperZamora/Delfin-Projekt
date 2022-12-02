@@ -11,7 +11,7 @@ public class UserInterface {
     public UserInterface() {
         sc = new Scanner(System.in);
         controller = new Controller();
-        //controller.loadFile();
+        controller.loadFile();
     }
 
     public void startMenu() {

@@ -5,5 +5,4 @@ public enum Discipline {
     BACKCRAWL,
     BREASTSTROKE
 
-
 }
