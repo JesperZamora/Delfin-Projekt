@@ -283,11 +283,15 @@ public class UserInterface {
     }
 
     public void sortTopFiveByTime(){
+        ArrayList<CompetitionSwimmer> competitionSwimmers = new ArrayList<>();
         controller.sortByTopFive();
         for (Member m : controller.getMembers()){
-            for (int i = 0; i<5; i++){
-                System.out.println(m);
+            if (m instanceof CompetitionSwimmer){
+                competitionSwimmers.add((CompetitionSwimmer) m);
             }
+        }
+        for (int i = 0; i < 5; i++) {
+            System.out.println(competitionSwimmers.);
         }
     }
 
