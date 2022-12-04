@@ -25,7 +25,7 @@ public class Database {
         ArrayList<Member> foundMembers = new ArrayList<>();
 
         for (Member member : members) {
-            if (member.getName().toLowerCase().contains(searchWord)) {
+            if (member.getName().toLowerCase().contains(searchWord.toLowerCase())) {
                 foundMembers.add(member);
             } else if (Integer.toString(member.getAge()).contains(searchWord)) {
                 foundMembers.add(member);
