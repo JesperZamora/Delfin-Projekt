@@ -77,8 +77,9 @@ public class UserInterface {
     public void coachMenu() {
         System.out.println("""
                 1. Show division of competitive swimmers
-                2. Register competitive swimmers to specific disciplines
-                3. Show top 5 swimmers in each discipline
+                2. Add discipline data to competitive swimmer
+                4  Edit discipline date of competitive swimmer
+                5. Show top 5 swimmers in each discipline
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
@@ -89,7 +90,8 @@ public class UserInterface {
                 System.out.println(controller.getTeamJunior());
             }
             case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
-            case 4 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 3 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 4 -> System.out.println("");
             default -> System.out.println("Wrong input");
         }
     }
