@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Database {
     private ArrayList<Member> members = new ArrayList<>();
@@ -14,7 +13,6 @@ public class Database {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));
     }
 
-    //TODO: not finished yet. Needs discipline information (future sprint)
     public void addCompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new CompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus));
     }
@@ -45,15 +43,18 @@ public class Database {
     public Team getTeamJunior() {
         return teamJunior;
     }
-public Team getTeamSenior() {
+
+    public Team getTeamSenior() {
         return teamSenior;
-}
-public ArrayList<Member> getListJunior() {
+    }
+
+    public ArrayList<Member> getListJunior() {
         return listJunior;
-}
-public ArrayList<Member> getListSenior() {
+    }
+
+    public ArrayList<Member> getListSenior() {
         return listSenior;
-}
+    }
 }
 
 
