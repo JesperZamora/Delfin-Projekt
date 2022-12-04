@@ -110,17 +110,17 @@ public class UserInterface {
 
         System.out.println("""
                 Set membership status
-                1. active
-                2. passive
-                3. inactive""");
+                1. Active
+                2. Passive
+                3. Inactive""");
         System.out.print("Membership Status: ");
         int memberStatusChoice = readInteger();
         String memberStatus = "";
         while(memberStatus.isBlank()){
             switch (memberStatusChoice){
-                case 1 -> memberStatus = "active";
-                case 2 -> memberStatus = "passive";
-                case 3 -> memberStatus = "inactive";
+                case 1 -> memberStatus = "Active";
+                case 2 -> memberStatus = "Passive";
+                case 3 -> memberStatus = "Inactive";
                 default -> System.out.println("Invalid input.. Choose again!");
             }
         }
@@ -130,9 +130,9 @@ public class UserInterface {
 
     public void addNewMember(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         System.out.println("""
-                \nType 1. to add new member as 'exerciser'.
-                Type 2. to add new member as 'competition swimmer'.
-                Type 0. to discontinue and go to main menu.""");
+                \n1. to add new member as 'exerciser'.
+                2. to add new member as 'competition swimmer'.
+                0. to discontinue and go to main menu.""");
 
         int userChoice = readInteger();
 
@@ -205,17 +205,17 @@ public class UserInterface {
 
             System.out.println("""
                 Edit membership status
-                1. active
-                2. passive
-                3. inactive""");
+                1. Active
+                2. Passive
+                3. Inactive""");
             System.out.print("Set member status: ");
             String newMemberStatusChoice = readString();
             if(!newMemberStatusChoice.isEmpty()) {
                 String newMemberStatus = "";
                 switch (Integer.parseInt(newMemberStatusChoice)){
-                    case 1 -> newMemberStatus = "active";
-                    case 2 -> newMemberStatus= "passive";
-                    case 3 -> newMemberStatus = "inactive";
+                    case 1 -> newMemberStatus = "Active";
+                    case 2 -> newMemberStatus= "Passive";
+                    case 3 -> newMemberStatus = "Inactive";
                     default -> System.out.println("Invalid input.. Choose again!");
                 }
                 foundMembers.setMemberStatus(newMemberStatus);
