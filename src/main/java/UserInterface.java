@@ -499,13 +499,15 @@ public void sortTeamSenior() {
 
     }
     public void sortMembersByNotPaid() {
-        for(Member member : controller.getMembers()) {
+        for (Member member : controller.getMembers()) {
 
-            if(member.getHasPaid().equalsIgnoreCase("false") && !controller.getMembersNotPaid().contains(member))
+            if (member.getHasPaid().equalsIgnoreCase("false") && !controller.getMembersNotPaid().contains(member))
                 controller.getMembersNotPaid().add(member);
-
-
         }
+        if (controller.getMembersNotPaid().isEmpty()) {
+            System.out.println("No members that has not paid");
+        }
+
     }
 
     public int readInteger() {
