@@ -5,17 +5,17 @@ public class Team {
     ArrayList<Member> team;
     String teamName;
 
-    @Override
-    public String toString() {
-        return "teamName = " + teamName + " " +
-                "trainer =" + trainer +
-                " " + team;
-    }
-
     public Team(String teamName, Trainer trainer, ArrayList<Member> team){
         this.teamName = teamName;
         this.trainer = trainer;
         this.team = team;
+    }
+
+    @Override
+    public String toString() {
+        return "Team-name: " + teamName + " " +
+                "trainer: " + trainer +
+                " \n ";
     }
 
 }
