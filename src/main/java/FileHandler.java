@@ -1,8 +1,11 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.Scanner;
 
 import static java.lang.String.valueOf;
@@ -31,6 +34,7 @@ class FileHandler {
 
     public ArrayList<Member> loadFile() {
         ArrayList<Member> loadedMember = new ArrayList<>();
+        Discipline[] dis = new Discipline[4];
         try {
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
@@ -43,8 +47,7 @@ class FileHandler {
                             attributes[3],
                             attributes[4]);
                     loadedMember.add(exerciser);
-
-              } else{
+              } else {
                     Competition competition = new Competition(
                             attributes[0],
                             LocalDate.parse(attributes[1]),
