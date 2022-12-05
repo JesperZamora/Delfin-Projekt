@@ -4,8 +4,7 @@ public class Trainer {
     @Override
     public String toString() {
         return
-                 name + '\'' +
-                '}';
+                 name;
     }
 
     public Trainer(String name) {

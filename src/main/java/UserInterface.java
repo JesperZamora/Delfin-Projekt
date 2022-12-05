@@ -87,8 +87,7 @@ public class UserInterface {
             case 1 -> {
                 sortCompJuniorSwimmers();
                 sortCompSeniorSwimmer();
-                System.out.println(controller.getTeamSenior());
-                System.out.println(controller.getTeamJunior());
+
             }
             case 2 -> addDiscipline();
             case 3 -> editDiscipline();
@@ -415,21 +414,37 @@ public class UserInterface {
     public void viewMember() {
         controller.getMembers().forEach(System.out::println);
     }
+public void sortTeamJunior() {
+        for (Member member : controller.getListJunior()) {
+            System.out.println(member);
 
+        }
+}
+public void sortTeamSenior() {
+        for (Member member : controller.getListSenior()) {
+            System.out.println(member);
+        }
+}
     public void sortCompJuniorSwimmers() {
+        System.out.println(controller.getTeamJunior());
         for(Member member : controller.getMembers()) {
             if(controller.getListJunior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() < 18) {
                 controller.getListJunior().add(member);
+                sortTeamJunior();
 
             }
+
         }
     }
 
     public void sortCompSeniorSwimmer() {
+        System.out.println(controller.getTeamSenior());
         for(Member member : controller.getMembers()) {
             if(controller.getListSenior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() >= 18) {
                 controller.getListSenior().add(member);
+                sortTeamSenior();
             }
+
         }
     }
 
