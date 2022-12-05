@@ -50,6 +50,6 @@ public class Discipline  {
         return  "Location: " + location + '\n' +
                 "Date: " + date + '\n' +
                 "Discipline: " + disciplineName + '\n' +
-                "Time:" + time;
+                "Time: " + time + '\n';
     }
 }

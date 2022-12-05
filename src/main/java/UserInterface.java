@@ -78,7 +78,8 @@ public class UserInterface {
         System.out.println("""
                 1. Show division of competitive swimmers
                 2. Add discipline data to competitive swimmer
-                4  Edit discipline date of competitive swimmer
+                3  Edit discipline date of competitive swimmer
+                4. Show all swimmers
                 5. Show top 5 swimmers in each discipline
                 """);
         int userChoice = readInteger();
@@ -89,9 +90,10 @@ public class UserInterface {
                 System.out.println(controller.getTeamSenior());
                 System.out.println(controller.getTeamJunior());
             }
-            case 2 -> System.out.println(" *** COMPETITIVE SWIMMERS REGISTERED TO SPECIFIC DISCIPLINES TO BE ADDED HERE ***");
-            case 3 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
-            case 4 -> System.out.println("");
+            case 2 -> addDiscipline();
+            case 3 -> editDiscipline();
+            case 4 -> showAllSwimmers();
+            case 5 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
             default -> System.out.println("Wrong input");
         }
     }
@@ -102,7 +104,7 @@ public class UserInterface {
         String name = readString();
 
         System.out.print("Birth date (date-month-year): ");
-        LocalDate birthDate = addNewBirthDate();
+        LocalDate birthDate = addDate();
 
         System.out.print("Phone no: ");
         int phoneNumber = readInteger();
@@ -143,8 +145,6 @@ public class UserInterface {
             System.out.println("\nExerciser member added.");
 
         } else if (userChoice == 2) {
-            //TODO: Fill out with discipline attributes add (future sprint)
-            //System.out.println("Add discipline information:");
             controller.addCompetitionSwimmer(name, birthDate, phoneNumber, address, memberStatus);
             System.out.println("\nCompetition member added.");
 
@@ -187,7 +187,7 @@ public class UserInterface {
             }
 
             System.out.print("Birth date (date-month-year): ");
-            LocalDate newBirthDate = editBirthDate(readString());
+            LocalDate newBirthDate = editDate(readString());
             if(newBirthDate != null) {
                 foundMembers.setBirthDate(newBirthDate);
             }
@@ -226,7 +226,161 @@ public class UserInterface {
         }
     }
 
-    public LocalDate addNewBirthDate(){
+
+    private void showAllSwimmers(){
+        ArrayList<Member> swimmerList = controller.getMembers();
+        System.out.println("Swimmer list:");
+        if(swimmerList.isEmpty()){
+            System.out.println("List is empty..");
+
+        } else{
+            for(Member member : swimmerList){
+                System.out.println("--------------------------------");
+                if(member instanceof CompetitionSwimmer) {
+                    System.out.println(member);
+                    for(Discipline discipline : ((CompetitionSwimmer) member).getDisciplines()){
+                        if(discipline != null){
+                            System.out.println(discipline);
+                        }
+                    }
+                    System.out.println();
+
+                } else {
+                    System.out.println(member + "\n");
+                }
+            }
+        }
+    }
+    private void addDiscipline(){
+        ArrayList<CompetitionSwimmer> competitionSwimmers = new ArrayList<>();
+        for(Member member : controller.getMembers()) {
+            if(member instanceof CompetitionSwimmer) {
+                competitionSwimmers.add(((CompetitionSwimmer)member));
+            }
+        }
+
+        for(CompetitionSwimmer swimmer : competitionSwimmers){
+            System.out.println("#" + (competitionSwimmers.indexOf(swimmer)+1) + "\n" + swimmer + "\n");
+        }
+
+        System.out.print("Competitor by number: ");
+        int userChoice = readInteger();
+        CompetitionSwimmer swimmerChosen = competitionSwimmers.get(userChoice-1);
+
+        System.out.print("Location name: ");
+        String location = readString();
+
+        System.out.print("Date: ");
+        LocalDate date = addDate();
+
+        System.out.println("""
+                Set discipline
+                1. Breaststroke
+                2. Backstroke
+                3. Butterfly
+                4. Crawl""");
+
+        System.out.println("Discipline: ");
+        int choice = readInteger();
+
+        String discipline= "";
+        while(discipline.isBlank()){
+            switch (choice){
+                case 1 -> discipline = "Breaststroke";
+                case 2 -> discipline = "Backstroke";
+                case 3 -> discipline = "Butterfly";
+                case 4 -> discipline = "Crawl";
+                default -> System.out.println("Invalid input.. Choose again!");
+            }
+        }
+
+        System.out.println("Swimmer time: ");
+        double time = readDouble();
+
+        swimmerChosen.addAbility(new Discipline(location,date,discipline,time));
+    }
+
+    private void editDiscipline(){
+        ArrayList<CompetitionSwimmer> editSwimmers = new ArrayList<>();
+        for(Member member : controller.getMembers()) {
+            if(member instanceof CompetitionSwimmer) {
+                editSwimmers.add(((CompetitionSwimmer)member));
+            }
+        }
+
+        for(CompetitionSwimmer swimmer : editSwimmers){
+            System.out.println("#" + (editSwimmers.indexOf(swimmer)+1) + "\n" + swimmer + "\n");
+        }
+
+        System.out.print("Competitor by number: ");
+        int userChoice = readInteger();
+        CompetitionSwimmer swimmerChosen = editSwimmers.get(userChoice-1);
+
+        int num = 1;
+        for(Discipline discipline : swimmerChosen.getDisciplines()){
+            if(discipline != null){
+                System.out.println("#"+ num + "\n" + discipline +"\n");
+            } else {
+                System.out.println("#"+ num + "\n" + "Empty discipline space" + "\n");
+            }
+            num++;
+        }
+
+        System.out.print("Choose discipline to edit: ");
+        int j = readInteger();
+        try{
+            Discipline discipline = swimmerChosen.getDisciplines()[j-1];
+            if(discipline!= null){
+                System.out.println(discipline + "\n");
+
+                System.out.print("Location name: ");
+                String editLocation = readString();
+                discipline.setLocation(editLocation);
+
+                System.out.print("Date: ");
+                LocalDate editDate = editDate(readString());
+                discipline.setDate(editDate);
+
+                System.out.println("""
+                edit discipline
+                1. Breaststroke
+                2. Backstroke
+                3. Butterfly
+                4. Crawl""");
+
+                System.out.print("Edit discipline: ");
+                int choice = readInteger();
+
+                String editDiscipline= "";
+                while(editDiscipline.isBlank()){
+                    switch (choice){
+                        case 1 -> editDiscipline = "Breaststroke";
+                        case 2 -> editDiscipline = "Backstroke";
+                        case 3 -> editDiscipline = "Butterfly";
+                        case 4 -> editDiscipline = "Crawl";
+                        default -> System.out.println("Invalid input.. Choose again!");
+                    }
+                }
+                discipline.setDisciplineName(editDiscipline);
+
+                System.out.print("Swimmers time: ");
+                double editTime = readDouble();
+                discipline.setTime(editTime);
+
+            } else {
+                System.out.println("You need to add an discipline information first..\n");
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("No discipline found.. A competitor can have up till four disciplines registered");
+            System.out.println("Try again press 0 | Exit press 1");
+            int choice = readInteger();
+            if (choice == 0){
+                editDiscipline();
+            }
+        }
+    }
+
+    public LocalDate addDate(){
         LocalDate birthDateParsed = null;
         while(birthDateParsed == null){
             String birthDate = readString();
@@ -239,7 +393,7 @@ public class UserInterface {
         }
         return birthDateParsed;
     }
-    public LocalDate editBirthDate(String check){
+    public LocalDate editDate(String check){
         LocalDate birthDateParsed = null;
         String birthDate = check;
         while(!birthDate.isEmpty()){
@@ -285,6 +439,16 @@ public class UserInterface {
             sc.next();
         }
         int i = sc.nextInt();
+        sc.nextLine();
+        return i;
+    }
+
+    public double readDouble() {
+        while (!sc.hasNextDouble()) {
+            System.out.println("This is not a number. Try again..");
+            sc.next();
+        }
+        double i = sc.nextDouble();
         sc.nextLine();
         return i;
     }
