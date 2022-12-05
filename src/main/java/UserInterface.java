@@ -63,13 +63,16 @@ public class UserInterface {
         System.out.println("""
                 1. Show subscriptions
                 2. Sum of subscriptions
-                3. Show arrears
+                3. Show list of members that has not paid
+                4.  Edit status of payment for members
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
             case 2 -> System.out.println(" *** SUMMEN AF KONTINGENT (TO BE ADDED HERE) ***");
-            case 3 -> System.out.println(" *** RESTANCE (TO BE ADDED HERE) ***");
+            case 3 -> { sortMembersByNotPaid();
+                lookMembersNotPaid();}
+            case 4 -> searchMemberPayment();
             default -> System.out.println("Wrong input");
         }
     }
@@ -172,6 +175,47 @@ public class UserInterface {
             editMember(searchedMember);
         }
     }
+    public void searchMemberPayment(){
+        System.out.print("Search member by name, age or phone number: ");
+        String searchWord = readString();
+        ArrayList<Member> searchedMember = controller.searchMember(searchWord);
+        if(searchedMember.isEmpty()) {
+            System.out.println("No member found..");
+            System.out.println("Search again? Try again press 1 or exit press 2");
+            int choice = readInteger();
+            if(choice == 1) {
+                searchMember();
+            }
+        } else {
+            int no = 1;
+            for (Member member : searchedMember) {
+                System.out.println("Member #[" + no + "] \n" + member);
+                no++;
+            }
+            editMemberPayment(searchedMember);
+        }
+    }
+    public void editMemberPayment(ArrayList<Member> searchedMember) {
+        int choice = readInteger();
+        if (choice != 0) {
+            Member foundMembers = searchedMember.get(choice - 1);
+
+            System.out.println("""
+                        Edit membership payment status
+                        1. Has paid
+                        2. Has not paid""");
+            String hasMemberPaid = readString();
+            switch (Integer.parseInt(hasMemberPaid)){
+                case 1 -> {hasMemberPaid = "True";
+                    System.out.println("Payement successfully set to PAID");}
+                case 2 -> { hasMemberPaid= "False";
+                    System.out.println("Payment successfully set to NOT PAID");}
+                default -> System.out.println("Invalid input.. Choose again!");
+            }
+            foundMembers.setHasPaid(hasMemberPaid);
+            }
+        }
+
 
 
     public void editMember(ArrayList<Member> searchedMember) {
@@ -203,6 +247,7 @@ public class UserInterface {
             if (!newAddress.isEmpty()) {
                 foundMembers.setAddress(newAddress);
             }
+
 
             System.out.println("""
                 Edit membership status
@@ -444,6 +489,21 @@ public void sortTeamSenior() {
                 controller.getListSenior().add(member);
                 sortTeamSenior();
             }
+
+        }
+    }
+    public void lookMembersNotPaid() {
+        for(Member member : controller.getMembersNotPaid()) {
+            System.out.println(member);
+        }
+
+    }
+    public void sortMembersByNotPaid() {
+        for(Member member : controller.getMembers()) {
+
+            if(member.getHasPaid().equalsIgnoreCase("false") && !controller.getMembersNotPaid().contains(member))
+                controller.getMembersNotPaid().add(member);
+
 
         }
     }

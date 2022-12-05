@@ -47,5 +47,7 @@ public class Controller {
     public Team getTeamSenior() {
         return database.getTeamSenior();
     }
-
+public ArrayList<Member> getMembersNotPaid() {
+        return database.getMembersNotPaid();
+}
 }

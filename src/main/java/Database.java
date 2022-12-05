@@ -6,6 +6,7 @@ public class Database {
     private Trainer trainer1 = new Trainer("Stefan");
     private ArrayList<Member> listJunior = new ArrayList<>();
     private ArrayList<Member> listSenior = new ArrayList<>();
+    private ArrayList<Member> membersNotPaid = new ArrayList<>();
     private Team teamJunior = new Team("Team Junior", trainer1, listJunior);
     private Team teamSenior = new Team("Team Senior", trainer1, listSenior);
 
@@ -54,6 +55,9 @@ public class Database {
 
     public ArrayList<Member> getListSenior() {
         return listSenior;
+    }
+    public ArrayList<Member> getMembersNotPaid() {
+        return membersNotPaid;
     }
 }
 

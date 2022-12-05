@@ -62,9 +62,10 @@ public abstract class Member {
                         Member type:     %s
                         Member status:   %s 
                         Subscription:    %d
+                        Payment:         %s
                         
                         \n""",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, subscriptionPrice);
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, subscriptionPrice, hasPaid);
     }
 
     public String getName() {
@@ -140,6 +141,12 @@ public abstract class Member {
     }
     public void setSubscriptionPrice(int subscriptionPrice1) {
         subscriptionPrice = subscriptionPrice1;
+    }
+    public void setHasPaid(String hasMemberPaid) {
+        hasPaid = hasMemberPaid;
+    }
+    public String getHasPaid() {
+        return hasPaid;
     }
 }
 
