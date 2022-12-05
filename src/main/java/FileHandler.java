@@ -13,7 +13,8 @@ class FileHandler {
             for(Member member : memberList){
                 if(member instanceof CompetitionSwimmer) {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
-                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus());
+                            member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus() + ","
+                            + member.getSubscriptionPrice() + "," + member.getHasPaid());
 
                     for (Discipline discipline : ((CompetitionSwimmer) member).getDisciplines()) {
                         if (discipline != null) {
@@ -22,9 +23,11 @@ class FileHandler {
                         }
                     }
 
-                } else {
+                } else { if(member instanceof Exerciser) {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
-                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus());
+                            member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus()
+                            + "," + member.getMembershipType() + "," + member.getSubscriptionPrice() + "," + member.getHasPaid());
+                }
                 }
             }
             output.close();
