@@ -12,6 +12,8 @@ public abstract class Member {
     private String membershipType;
     private String memberStatus;
     private LocalDate birthDate;
+    private int subscriptionPrice;
+    private String hasPaid = "true";
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
@@ -19,8 +21,11 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.memberStatus = memberStatus;
+        this.hasPaid = hasPaid;
+        this.subscriptionPrice = subscriptionPrice;
         membershipByAge();
         formatBirthDate();
+        subscriptionPrice();
     }
 
     public void ageCalculator() {
@@ -55,12 +60,33 @@ public abstract class Member {
                         Address:         %s
                         Membership:      %s
                         Member type:     %s
-                        Member status:   %s \n""",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
+                        Member status:   %s 
+                        Subscription:    %d
+                        
+                        \n""",
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, subscriptionPrice);
     }
 
     public String getName() {
         return name;
+    }
+    public void subscriptionPrice() {
+        if(memberStatus.equalsIgnoreCase("passive")) {
+            setSubscriptionPrice(500);
+        }
+        else if(memberStatus.equalsIgnoreCase("inactive")) {
+            setSubscriptionPrice(0);
+        }
+        else if (age > 18 && age < 60) {
+            setSubscriptionPrice(1600);
+        }
+        else if (age < 18) {
+            setSubscriptionPrice(1000);
+        }
+        else if(age > 60) {
+            setSubscriptionPrice(1200);
+        }
+
     }
 
     public int getAge() {
@@ -111,6 +137,9 @@ public abstract class Member {
 
     public void setMemberStatus(String memberStatus) {
         this.memberStatus = memberStatus;
+    }
+    public void setSubscriptionPrice(int subscriptionPrice1) {
+        subscriptionPrice = subscriptionPrice1;
     }
 }
 

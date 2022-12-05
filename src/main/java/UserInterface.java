@@ -119,15 +119,15 @@ public class UserInterface {
         System.out.print("Membership Status: ");
         int memberStatusChoice = readInteger();
         String memberStatus = "";
-        while(memberStatus.isBlank()){
-            switch (memberStatusChoice){
+        while (memberStatus.isBlank()) {
+            switch (memberStatusChoice) {
                 case 1 -> memberStatus = "Active";
                 case 2 -> memberStatus = "Passive";
                 case 3 -> memberStatus = "Inactive";
                 default -> System.out.println("Invalid input.. Choose again!");
+
             }
         }
-
         addNewMember(name, birthDate, phoneNumber, address, memberStatus);
     }
 
