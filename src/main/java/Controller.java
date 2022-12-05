@@ -50,4 +50,7 @@ public class Controller {
 public ArrayList<Member> getMembersNotPaid() {
         return database.getMembersNotPaid();
 }
+public ArrayList<Integer> getMembersHasPaid() {
+        return database.getMembersHasPaid();
+}
 }

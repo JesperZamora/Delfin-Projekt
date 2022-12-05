@@ -148,6 +148,9 @@ public abstract class Member {
     public String getHasPaid() {
         return hasPaid;
     }
+    public int getSubscriptionPrice() {
+        return subscriptionPrice;
+    }
 }
 
 

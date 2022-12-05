@@ -68,8 +68,8 @@ public class UserInterface {
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
-            case 2 -> System.out.println(" *** SUMMEN AF KONTINGENT (TO BE ADDED HERE) ***");
+            case 1 -> viewMember(); // Spørg om dette ??
+            case 2 -> System.out.println("Sum of subscriptions: " + sumOfSubscriptions());
             case 3 -> { sortMembersByNotPaid();
                 lookMembersNotPaid();}
             case 4 -> searchMemberPayment();
@@ -508,6 +508,23 @@ public void sortTeamSenior() {
             System.out.println("No members that has not paid");
         }
 
+    }
+    // Programmet vil blive ved med at summe op, hvis det kører. Lave en setter for at sætte total til 0 inden metoden
+    // bliver kaldt?
+    public int sumOfSubscriptions() {
+        int total = 0;
+        sortMembersHasPaid();
+        for (Integer sum : controller.getMembersHasPaid()) {
+           total += sum;
+        }
+        return total;
+    }
+    public void sortMembersHasPaid() {
+        for (Member member : controller.getMembers()) {
+            if(member.getHasPaid().equalsIgnoreCase("true") && !controller.getMembersHasPaid().contains(member)) {
+                controller.getMembersHasPaid().add(member.getSubscriptionPrice());
+            }
+        }
     }
 
     public int readInteger() {
