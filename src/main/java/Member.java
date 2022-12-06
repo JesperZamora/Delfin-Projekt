@@ -12,6 +12,7 @@ public abstract class Member {
     private String membershipType;
     private String memberStatus;
     private LocalDate birthDate;
+    private Discipline discipline;
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
@@ -111,6 +112,10 @@ public abstract class Member {
 
     public void setMemberStatus(String memberStatus) {
         this.memberStatus = memberStatus;
+    }
+
+    public double getTime(){
+        return discipline.getTime();
     }
 }
 

@@ -19,6 +19,4 @@ public class CompetitionSwimmer extends Member {
     public Discipline[] getDisciplines() {
         return disciplines;
     }
-
-
 }

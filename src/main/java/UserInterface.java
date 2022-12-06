@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner sc;
     private Controller controller;
+    private Discipline discipline;
 
     public UserInterface() {
         sc = new Scanner(System.in);
@@ -92,7 +93,7 @@ public class UserInterface {
             case 2 -> addDiscipline();
             case 3 -> editDiscipline();
             case 4 -> showAllSwimmers();
-            case 5 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 5 -> showTopFive();
             default -> System.out.println("Wrong input");
         }
     }
@@ -445,6 +446,97 @@ public void sortTeamSenior() {
                 sortTeamSenior();
             }
 
+        }
+    }
+
+    public void showTopFive(){
+        System.out.println("You can find a top 5 in each discipline here. Choose discipline: ");
+        System.out.println("""
+                1. Butterfly
+                2. Crawl
+                3. Backcrawl
+                4. Breast-swimming
+                """);
+
+        int chosenDiscipline = readInteger();
+
+        switch (chosenDiscipline){
+            case 1 -> {
+                controller.sortListWithComparator();
+                showTopFiveButterfly();
+            }
+            case 2 -> {
+                controller.sortListWithComparator();
+                showTopFiveCrawl();
+            }
+            case 3 -> {
+                controller.sortListWithComparator();
+                showTopFiveBackCrawl();
+            }
+            case 4 -> {
+                controller.sortListWithComparator();
+                showTopFiveBreastStroke();
+            }
+        }
+    }
+
+    public void showTopFiveButterfly() {
+        String disciplineName = discipline.getDisciplineName();
+        for (Member members : controller.getCompetitionSwimmers()) {
+            if (disciplineName.equalsIgnoreCase("butterfly")) {
+                System.out.println("Showing top 5 for butterfly swimmers:");
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i + ":");
+                    System.out.println(members);
+                    System.out.println(discipline.getTime());
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public void showTopFiveCrawl() {
+        String disciplineName = discipline.getDisciplineName();
+        for (Member members : controller.getCompetitionSwimmers()) {
+            if (disciplineName.equalsIgnoreCase("crawl")) {
+                System.out.println("Showing top 5 for crawl swimmers:");
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i + ":");
+                    System.out.println(members);
+                    System.out.println(discipline.getTime());
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public void showTopFiveBackCrawl() {
+        String disciplineName = discipline.getDisciplineName();
+        for (Member members : controller.getCompetitionSwimmers()) {
+            if (disciplineName.equalsIgnoreCase("backcrawl")) {
+                System.out.println("Showing top 5 for back-crawl swimmers:");
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i + ":");
+                    System.out.println(members);
+                    System.out.println(discipline.getTime());
+                    System.out.println();
+                }
+            }
+        }
+    }
+
+    public void showTopFiveBreastStroke() {
+        String disciplineName = discipline.getDisciplineName();
+        for (Member members : controller.getCompetitionSwimmers()) {
+            if (disciplineName.equalsIgnoreCase("breaststroke")) {
+                System.out.println("Showing top 5 for breaststroke swimmers:");
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(i + ":");
+                    System.out.println(members);
+                    System.out.println(discipline.getTime());
+                    System.out.println();
+                }
+            }
         }
     }
 

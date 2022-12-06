@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Controller {
     private Database database;
@@ -48,4 +49,10 @@ public class Controller {
         return database.getTeamSenior();
     }
 
+    public ArrayList<Member> getCompetitionSwimmers(){
+        return database.getCompetitionSwimmers();
+    }
+    public void sortListWithComparator(){
+        Collections.sort(database.getCompetitionSwimmers(), new TimeComparator());
+    }
 }
