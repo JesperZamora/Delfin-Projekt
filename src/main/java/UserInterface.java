@@ -515,6 +515,7 @@ public void sortTeamSenior() {
 
     // Programmet vil blive ved med at summe op, hvis det kører. Lave en setter for at sætte total til 0 inden metoden
     // bliver kaldt?
+    // Jesper synes det var smart med indviduelle ArrayLister til hver condition, kan ikke huske hvorfor??
     public void sortMembersHasPaid() {
         for (Member member : controller.getMembers()) {
             if(member.getHasPaid().equalsIgnoreCase("true") && !controller.getMembersHasPaid().contains(member)) {
