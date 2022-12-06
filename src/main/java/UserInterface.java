@@ -69,7 +69,7 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> viewMember(); // Spørg om dette ??
-            case 2 -> System.out.println("Sum of subscriptions: "+ sumOfSubscriptions());
+            case 2 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
             case 3 -> { //sortMembersByNotPaid();
 
                 lookMembersNotPaid();}

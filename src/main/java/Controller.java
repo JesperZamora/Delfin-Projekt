@@ -53,4 +53,7 @@ public ArrayList<Member> getMembersNotPaid() {
 public ArrayList<Integer> getMembersHasPaid() {
         return database.getMembersHasPaid();
 }
+public int getSumOfSubscriptions(ArrayList<Member> members) {
+        return database.getSumOfSubscriptions(members);
+}
 }
