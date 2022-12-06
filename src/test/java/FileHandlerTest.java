@@ -1,3 +1,5 @@
+import datasource.FileHandler;
+import domain.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,8 +20,8 @@ class FileHandlerTest {
 
     @Test
     void loadFile() {
-        //ArrayList<Member> membersC = fileHandler.loadFileC();
-        //ArrayList<Member> membersE = fileHandler.loadFileE();
+        //ArrayList<domain.Member> membersC = fileHandler.loadFileC();
+        //ArrayList<domain.Member> membersE = fileHandler.loadFileE();
         //assertEquals(0, membersC.size(), membersE.size());
     }
 

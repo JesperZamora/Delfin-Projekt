@@ -1,8 +1,11 @@
+package ui;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import domain.*;
 
 public class UserInterface {
     private Scanner sc;
@@ -237,7 +240,7 @@ public class UserInterface {
                 System.out.println("--------------------------------");
                 if(member instanceof CompetitionSwimmer) {
                     System.out.println(member);
-                    for(Discipline discipline : ((CompetitionSwimmer) member).getDisciplines()){
+                    for(SwimTime discipline : ((CompetitionSwimmer) member).getDisciplines()){
                         if(discipline != null){
                             System.out.println(discipline);
                         }
@@ -296,7 +299,7 @@ public class UserInterface {
         System.out.println("Swimmer time: ");
         double time = readDouble();
 
-        swimmerChosen.addAbility(new Discipline(location,date,discipline,time));
+        swimmerChosen.addAbility(new SwimTime(location,date,discipline,time));
     }
 
     private void editDiscipline(){
@@ -316,7 +319,7 @@ public class UserInterface {
         CompetitionSwimmer swimmerChosen = editSwimmers.get(userChoice-1);
 
         int num = 1;
-        for(Discipline discipline : swimmerChosen.getDisciplines()){
+        for(SwimTime discipline : swimmerChosen.getDisciplines()){
             if(discipline != null){
                 System.out.println("#"+ num + "\n" + discipline +"\n");
             } else {
@@ -328,7 +331,7 @@ public class UserInterface {
         System.out.print("Choose discipline to edit: ");
         int j = readInteger();
         try{
-            Discipline discipline = swimmerChosen.getDisciplines()[j-1];
+            SwimTime discipline = swimmerChosen.getDisciplines()[j-1];
             if(discipline!= null){
                 System.out.println(discipline + "\n");
 
@@ -445,6 +448,23 @@ public void sortTeamSenior() {
                 sortTeamSenior();
             }
 
+        }
+    }
+
+    public void showCompJuniorSwimmers(){
+        sortCompJuniorSwimmers();
+        Team juniorSwimmers = controller.getTeamJunior();
+        System.out.println("Swimmer list:");
+        if(controller.getListJunior().isEmpty()){
+            System.out.println("List is empty..");
+
+        } else{
+            System.out.println();
+            for(Member teamMembers : juniorSwimmers.getTeam()){
+                System.out.println("--------------------------------");
+                System.out.println(teamMembers);
+                System.out.println();
+            }
         }
     }
 

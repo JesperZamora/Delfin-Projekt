@@ -1,10 +1,16 @@
+package datasource;
+
 import java.io.File;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import domain.Member;
+import domain.SwimTime;
+import domain.CompetitionSwimmer;
+import domain.Exerciser;
 
-class FileHandler {
+public class FileHandler {
     private File file = new File("Dolphin.csv");
 
     public void saveFile(ArrayList<Member> memberList) {
@@ -15,7 +21,7 @@ class FileHandler {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
                                     member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus());
 
-                    for (Discipline discipline : ((CompetitionSwimmer) member).getDisciplines()) {
+                    for (SwimTime discipline : ((CompetitionSwimmer) member).getDisciplines()) {
                         if (discipline != null) {
                             output.println(discipline.getLocation() + "," + discipline.getDate() + "," +
                                     discipline.getDisciplineName() + "," + discipline.getTime());
@@ -43,7 +49,7 @@ class FileHandler {
                 String[] attributes = reader.nextLine().split(",");
 
                 if(attributes.length <5) {
-                    Discipline discipline = new Discipline(attributes[0], LocalDate.parse(attributes[1]),
+                    SwimTime discipline = new SwimTime(attributes[0], LocalDate.parse(attributes[1]),
                             attributes[2], Double.parseDouble(attributes[3]));
 
                     int lastMember = loadedMember.size();
@@ -74,22 +80,3 @@ class FileHandler {
         return file;
     }
 }
-
-/*                if(attributes[4].equals("Exerciser")){
-                    Exerciser exerciser = new Exerciser(
-                            attributes[0],
-                            LocalDate.parse(attributes[1]),
-                            Integer.parseInt(attributes[2]),
-                            attributes[3],
-                            attributes[5]);
-                    loadedMember.add(exerciser);
-
-                } else{
-                    CompetitionSwimmer competition = new CompetitionSwimmer(
-                            attributes[0],
-                            LocalDate.parse(attributes[1]),
-                            Integer.parseInt(attributes[2]),
-                            attributes[3],
-                            attributes[5]);
-                    loadedMember.add(competition);
-                }*/

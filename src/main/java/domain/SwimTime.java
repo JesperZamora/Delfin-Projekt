@@ -1,12 +1,13 @@
+package domain;
 import java.time.LocalDate;
 
-public class Discipline  {
+public class SwimTime {
     private String location;
     private LocalDate date;
     private String disciplineName;
     private double time;
 
-    public Discipline(String location, LocalDate date, String disciplineName, double time) {
+    public SwimTime(String location, LocalDate date, String disciplineName, double time) {
         this.location = location;
         this.date = date;
         this.disciplineName = disciplineName;

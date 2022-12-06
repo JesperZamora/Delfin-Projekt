@@ -1,13 +1,15 @@
+package domain;
+
 import java.time.LocalDate;
 
 public class CompetitionSwimmer extends Member {
-    private Discipline[] disciplines = new Discipline[4];
+    private SwimTime[] disciplines = new SwimTime[4];
     public CompetitionSwimmer(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         super(name, birthDate, phoneNumber, address, memberStatus);
         setMembershipType("Comp swimmer");
     }
 
-    public void addAbility(Discipline newDiscipline){
+    public void addAbility(SwimTime newDiscipline){
         for(int i = 0; i < disciplines.length; i++){
             if(disciplines[i] == null){
                 disciplines[i] = newDiscipline;
@@ -16,7 +18,7 @@ public class CompetitionSwimmer extends Member {
         }
     }
 
-    public Discipline[] getDisciplines() {
+    public SwimTime[] getDisciplines() {
         return disciplines;
     }
 

@@ -1,12 +1,12 @@
-Jesper Wolff,2000-04-18,27146786,Siciliensgade,Exerciser,Active
-Coach Carter,2000-01-01,911911,Hollywood Blv.,Comp swimmer,Inactive
+Jesper Wolff,2000-04-18,27146786,Siciliensgade,domain.Exerciser,Active
+domain.Coach Carter,2000-01-01,911911,Hollywood Blv.,Comp swimmer,Inactive
 Santa Claus,1900-12-01,24242424,Ho-ho Street,Comp swimmer,Active
 Club result,2020-08-09,Backstroke,50.4
 Club result,2009-12-05,Crawl,40.8
-Santas wife,1940-04-04,23232323,Ho-ho Street,Exerciser,Passive
+Santas wife,1940-04-04,23232323,Ho-ho Street,domain.Exerciser,Passive
 Santas helper,1950-05-05,22232422,Ho-ho Treehouse,Comp swimmer,Passive
 Reindeer Rudolf,1960-06-06,45453535,Ho-ho Barn,Comp swimmer,Inactive
-Jesper Wolff,1990-04-18,27146786,Siciliensgade 8 st tv,Exerciser,active
-Osama,2009-05-25,213982139,Vange,Exerciser,Active
+Jesper Wolff,1990-04-18,27146786,Siciliensgade 8 st tv,domain.Exerciser,active
+Osama,2009-05-25,213982139,Vange,domain.Exerciser,Active
 Olaf,2009-06-23,12381231,Vange,Comp swimmer,Active
 Club result,2022-11-11,Breaststroke,32.2

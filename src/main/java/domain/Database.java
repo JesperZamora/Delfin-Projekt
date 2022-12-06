@@ -1,3 +1,5 @@
+package domain;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -6,8 +8,8 @@ public class Database {
     private Trainer trainer1 = new Trainer("Stefan");
     private ArrayList<Member> listJunior = new ArrayList<>();
     private ArrayList<Member> listSenior = new ArrayList<>();
-    private Team teamJunior = new Team("Team Junior", trainer1, listJunior);
-    private Team teamSenior = new Team("Team Senior", trainer1, listSenior);
+    private Team teamJunior = new Team("domain.Team Junior", trainer1, listJunior);
+    private Team teamSenior = new Team("domain.Team Senior", trainer1, listSenior);
 
     public void addExerciser(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         members.add(new Exerciser(name, birthDate, phoneNumber, address, memberStatus));

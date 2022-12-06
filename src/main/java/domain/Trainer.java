@@ -1,3 +1,5 @@
+package domain;
+
 public class Trainer {
     String name;
 
