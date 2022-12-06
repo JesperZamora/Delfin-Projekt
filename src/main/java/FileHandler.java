@@ -23,11 +23,11 @@ class FileHandler {
                         }
                     }
 
-                } else { if(member instanceof Exerciser) {
+                } else { //if(member instanceof Exerciser) {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
                             member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus()
-                            + "," + member.getMembershipType() + "," + member.getSubscriptionPrice() + "," + member.getHasPaid());
-                }
+                            +  "," + member.getSubscriptionPrice() + "," + member.getHasPaid());
+
                 }
             }
             output.close();
@@ -56,13 +56,17 @@ class FileHandler {
                 }else if(attributes[4].equals("Comp swimmer")){
                     CompetitionSwimmer swimmer = new CompetitionSwimmer(attributes[0], LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]), attributes[3], attributes[5]);
-
+                    swimmer.setSubscriptionPrice(Integer.parseInt(attributes[6]));
+                    swimmer.setHasPaid(attributes[7]);
                     loadedMember.add(swimmer);
 
                 } else {
                     Exerciser exerciser = new Exerciser(attributes[0], LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]), attributes[3], attributes[5]);
+
                     loadedMember.add(exerciser);
+                    exerciser.setSubscriptionPrice(Integer.parseInt(attributes[6]));
+                    exerciser.setHasPaid(attributes[7]);
                 }
             }
             reader.close();

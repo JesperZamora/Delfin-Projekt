@@ -21,8 +21,8 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.memberStatus = memberStatus;
-        this.hasPaid = hasPaid;
-        this.subscriptionPrice = subscriptionPrice;
+        this.hasPaid = hasPaid; // fjern
+        this.subscriptionPrice = subscriptionPrice; //fjern
         membershipByAge();
         formatBirthDate();
         subscriptionPrice();
@@ -71,6 +71,7 @@ public abstract class Member {
     public String getName() {
         return name;
     }
+
     public void subscriptionPrice() {
         if(memberStatus.equalsIgnoreCase("passive")) {
             setSubscriptionPrice(500);
@@ -139,8 +140,8 @@ public abstract class Member {
     public void setMemberStatus(String memberStatus) {
         this.memberStatus = memberStatus;
     }
-    public void setSubscriptionPrice(int subscriptionPrice1) {
-        subscriptionPrice = subscriptionPrice1;
+    public void setSubscriptionPrice(int subscriptionPrice) {
+        this.subscriptionPrice = subscriptionPrice;
     }
     public void setHasPaid(String hasMemberPaid) {
         hasPaid = hasMemberPaid;

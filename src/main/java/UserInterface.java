@@ -69,8 +69,9 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> viewMember(); // Spørg om dette ??
-            case 2 -> System.out.println("Sum of subscriptions: " + sumOfSubscriptions());
-            case 3 -> { sortMembersByNotPaid();
+            case 2 -> System.out.println("Sum of subscriptions: "+ sumOfSubscriptions());
+            case 3 -> { //sortMembersByNotPaid();
+
                 lookMembersNotPaid();}
             case 4 -> searchMemberPayment();
             default -> System.out.println("Wrong input");
@@ -437,6 +438,7 @@ public class UserInterface {
         }
         return birthDateParsed;
     }
+
     public LocalDate editDate(String check){
         LocalDate birthDateParsed = null;
         String birthDate = check;
@@ -493,32 +495,25 @@ public void sortTeamSenior() {
         }
     }
     public void lookMembersNotPaid() {
-        for(Member member : controller.getMembersNotPaid()) {
+        for (Member member : controller.getMembers()) {
+            if(member.getHasPaid().equalsIgnoreCase("false"))
             System.out.println(member);
         }
-
     }
-    public void sortMembersByNotPaid() {
+
+    public int sumOfSubscriptions(){
+        int sum = 0;
         for (Member member : controller.getMembers()) {
-
-            if (member.getHasPaid().equalsIgnoreCase("false") && !controller.getMembersNotPaid().contains(member))
-                controller.getMembersNotPaid().add(member);
+            sum += member.getSubscriptionPrice();
         }
-        if (controller.getMembersNotPaid().isEmpty()) {
-            System.out.println("No members that has not paid");
-        }
-
+        return sum;
     }
+
+
+
+
     // Programmet vil blive ved med at summe op, hvis det kører. Lave en setter for at sætte total til 0 inden metoden
     // bliver kaldt?
-    public int sumOfSubscriptions() {
-        int total = 0;
-        sortMembersHasPaid();
-        for (Integer sum : controller.getMembersHasPaid()) {
-           total += sum;
-        }
-        return total;
-    }
     public void sortMembersHasPaid() {
         for (Member member : controller.getMembers()) {
             if(member.getHasPaid().equalsIgnoreCase("true") && !controller.getMembersHasPaid().contains(member)) {
@@ -549,6 +544,10 @@ public void sortTeamSenior() {
 
     public String readString() {
         return sc.nextLine();
+    }
+
+    public Controller getController() {
+        return controller;
     }
 }
 
