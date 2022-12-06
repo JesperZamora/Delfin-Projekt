@@ -38,7 +38,7 @@ public class Database {
         return foundMembers;
     }
 
-    private int sumOfSubscriptions(ArrayList<Member> member){
+    public int sumOfSubscriptions(ArrayList<Member> member){
         int sum = 0;
         for (Member m : member) {
 

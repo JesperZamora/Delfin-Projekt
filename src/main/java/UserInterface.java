@@ -501,13 +501,14 @@ public void sortTeamSenior() {
         }
     }
 
-    public int sumOfSubscriptions(){
+    /* public int sumOfSubscriptions(){
         int sum = 0;
         for (Member member : controller.getMembers()) {
             sum += member.getSubscriptionPrice();
         }
         return sum;
-    }
+    } */
+    // Lavet i database
 
 
 
