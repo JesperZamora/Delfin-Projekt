@@ -23,7 +23,7 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.memberStatus = memberStatus;
-        this. subscriptionPrice = subscriptionPrice();
+        this.subscriptionPrice = subscriptionPrice();
         membershipByAge();
         formatBirthDate();
     }
@@ -48,12 +48,12 @@ public abstract class Member {
 
     public String toString(int i) {
         String showFormat = "";
-        if(i == 1) {
-            showFormat =String.format("%-28s %-5d %-13s %-12d %-27s %-8s %-15s %s",
+        if (i == 1) {
+            showFormat = String.format("%-28s %-5d %-13s %-12d %-27s %-8s %-15s %s",
                     name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
-        } else if(i == 2) {
-            showFormat = String.format("%-24s %-14s %-10s %-10d %-10d %s",
-                    name, membershipByAge, memberStatus,subscriptionPrice, phoneNumber, address);
+        } else if (i == 2) {
+            showFormat = String.format("%-24s %-14s %-10s %-10d %-10b %-10d %s",
+                    name, membershipByAge, memberStatus, subscriptionPrice, isPaid, phoneNumber, address);
         }
         return showFormat;
     }
@@ -76,24 +76,16 @@ public abstract class Member {
 
 
     public int subscriptionPrice() {
-        if(!isPaid && memberStatus.equalsIgnoreCase("passive")) {
+        if (memberStatus.equalsIgnoreCase("passive")) {
             subscriptionPrice = 500;
-
-        } else if(memberStatus.equalsIgnoreCase("inactive")) {
+        } else if (memberStatus.equalsIgnoreCase("inactive")) {
             subscriptionPrice = 0;
-
-        } else if (!isPaid && age > 18 && age < 60) {
+        } else if (age > 18 && age < 60) {
             subscriptionPrice = 1600;
-
-        } else if (!isPaid && age < 18) {
+        } else if (age < 18) {
             subscriptionPrice = 1000;
-
-        } else if(!isPaid && age > 60) {
+        } else if (age > 60) {
             subscriptionPrice = 1200;
-
-        } else if(isPaid){
-            subscriptionPrice = 0;
-
         }
         return subscriptionPrice;
     }
@@ -102,7 +94,7 @@ public abstract class Member {
         return isPaid;
     }
 
-    public void setIsPaid(boolean isPaid){
+    public void setIsPaid(boolean isPaid) {
         this.isPaid = isPaid;
         subscriptionPrice();
     }
@@ -114,6 +106,7 @@ public abstract class Member {
     public int getAge() {
         return age;
     }
+
     public LocalDate getBirthDate() {
         return birthDate;
     }
@@ -126,7 +119,7 @@ public abstract class Member {
         return address;
     }
 
-    public String getMembershipType(){
+    public String getMembershipType() {
         return membershipType;
     }
 
@@ -149,7 +142,7 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setMembershipType(String membershipType){
+    public void setMembershipType(String membershipType) {
         this.membershipType = membershipType;
     }
 

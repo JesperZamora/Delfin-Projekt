@@ -107,7 +107,7 @@ public class UserInterface {
 
     public void membersWithOutstanding(){
         System.out.println("Members with outstanding balance:");
-        System.out.println("Name:                    Membership:    Status:    Unpaid:    Phone#:    Address:    ");
+        System.out.println("Name:                    Membership:    Status:    Status:    Phone#:    Address:    ");
         for(Member member : controller.getMembers()){
             if(!member.isPaid() && !member.MemberStatus().equalsIgnoreCase("inactive")){
                 System.out.println(member.toString(2));
