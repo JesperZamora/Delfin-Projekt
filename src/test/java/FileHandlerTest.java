@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import ui.UserInterface;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +23,8 @@ class FileHandlerTest {
         file = fileHandler.getFile();
         db = new Database();
         ui = new UserInterface();
+        ui.getController().getMembers().clear();
+        ui.getController().addExerciser("Jesper", LocalDate.of(1999, 05, 20), 20, "vange", "active");
     }
 
     @Test
@@ -39,14 +42,7 @@ class FileHandlerTest {
         long t2 = file.lastModified();
         assertNotEquals(t1,t2);
     }
-    @Test
-    void sumOfSubscriptions() {
-        // Act
-        int actual = db.sumOfSubscriptions(ui.getController().getMembers());
-        int expected = 1600;
-        // Assert
-        assertEquals(expected, actual);
-    }
+
 
 
 }
