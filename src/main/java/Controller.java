@@ -56,4 +56,7 @@ public ArrayList<Integer> getMembersHasPaid() {
 public int getSumOfSubscriptions(ArrayList<Member> members) {
         return database.getSumOfSubscriptions(members);
 }
+public double getTime() {
+        return database.getTime();
+}
 }

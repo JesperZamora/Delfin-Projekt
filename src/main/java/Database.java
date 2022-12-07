@@ -41,7 +41,7 @@ public class Database {
     public int sumOfSubscriptions(ArrayList<Member> member){
         int sum = 0;
         for (Member m : member) {
-
+            if (m.getHasPaid() == "true")
              sum += m.getSubscriptionPrice();
         }
         return sum;
@@ -75,6 +75,7 @@ public class Database {
     public int getSumOfSubscriptions(ArrayList<Member> members) {
         return sumOfSubscriptions(members);
     }
+
 }
 
 

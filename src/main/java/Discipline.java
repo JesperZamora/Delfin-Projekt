@@ -1,16 +1,18 @@
 import java.time.LocalDate;
 
 public class Discipline  {
+    Controller controller;
+
     private String location;
     private LocalDate date;
     private String disciplineName;
-    private double time;
+    private double time = controller.getTime();
 
     public Discipline(String location, LocalDate date, String disciplineName, double time) {
         this.location = location;
         this.date = date;
         this.disciplineName = disciplineName;
-        this.time = time;
+        this.time = controller.getTime();
     }
 
     public String getLocation() {
