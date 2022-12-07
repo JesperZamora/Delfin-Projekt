@@ -1,7 +1,9 @@
 import datasource.FileHandler;
+import domain.Database;
 import domain.Member;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.UserInterface;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileHandlerTest {
+    UserInterface ui;
+    Database db;
     FileHandler fileHandler = new FileHandler();
     File file = new File("Dolphin.csv");
 
@@ -16,6 +20,8 @@ class FileHandlerTest {
     void setUp(){
         fileHandler = new FileHandler();
         file = fileHandler.getFile();
+        db = new Database();
+        ui = new UserInterface();
     }
 
     @Test
@@ -33,5 +39,15 @@ class FileHandlerTest {
         long t2 = file.lastModified();
         assertNotEquals(t1,t2);
     }
+    @Test
+    void sumOfSubscriptions() {
+        // Act
+        int actual = db.sumOfSubscriptions(ui.getController().getMembers());
+        int expected = 1600;
+        // Assert
+        assertEquals(expected, actual);
+    }
+
 
 }
+

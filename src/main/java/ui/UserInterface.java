@@ -64,15 +64,17 @@ public class UserInterface {
 
     public void cashierMenu() {
         System.out.println("""
-                1. Edit payment of members
-                2. Sum of subscriptions
-                3. Show unpaid members
+                1. Show members
+                2. Edit payment of members
+                3. Sum of subscriptions
+                4. Show unpaid members
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
-            case 2 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
-            case 3 -> membersWithOutstanding();
+            case 1 -> viewMembersWithPrice();
+            case 2 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
+            case 3 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
+            case 4 -> membersWithOutstanding();
             default -> System.out.println("Wrong input");
         }
     }
@@ -92,8 +94,10 @@ public class UserInterface {
                 2. Not paid""");
                 int paymentChoice = readInteger();
                 switch (paymentChoice){
-                    case 1 -> member.setIsPaid(true);
-                    case 2 -> member.setIsPaid(false);
+                    case 1 -> {member.setIsPaid(true);
+                        System.out.println("Payment successfully set to PAID");}
+                    case 2 -> {member.setIsPaid(false);
+                        System.out.println("Payment succesfully set to NOT PAID");}
                     default -> System.out.println("Not valid choice..");
                 }
 
@@ -107,7 +111,6 @@ public class UserInterface {
 
     public void membersWithOutstanding(){
         System.out.println("Members with outstanding balance:");
-        System.out.println("Name:                    Membership:    Status: Subscription: Paid:      Phone#:    Address:    ");
         for(Member member : controller.getMembers()){
             if(!member.isPaid() && !member.MemberStatus().equalsIgnoreCase("inactive")){
                 System.out.println(member.toString(2));
@@ -460,6 +463,11 @@ public class UserInterface {
             System.out.println(member.toString(1));
         }
     }
+    public void viewMembersWithPrice() {
+        for(Member member : controller.getMembers()) {
+            System.out.println(member.toString(2));
+        }
+    }
 public void sortTeamJunior() {
         for (Member member : controller.getListJunior()) {
             System.out.println(member);
@@ -530,6 +538,9 @@ public void sortTeamSenior() {
 
     public String readString() {
         return sc.nextLine();
+    }
+    public Controller getController() {
+        return controller;
     }
 }
 
