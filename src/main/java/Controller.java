@@ -52,7 +52,4 @@ public class Controller {
     public ArrayList<Member> getCompetitionSwimmers(){
         return database.getCompetitionSwimmers();
     }
-    public void sortListWithComparator(){
-        Collections.sort(database.getCompetitionSwimmers(), new TimeComparator());
-    }
 }

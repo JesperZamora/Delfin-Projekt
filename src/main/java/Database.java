@@ -45,7 +45,6 @@ public class Database {
         }
         return competitionSwimmers;
     }
-
     public ArrayList<Member> getMembers() {
         return members;
 

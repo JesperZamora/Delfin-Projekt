@@ -2,6 +2,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -461,37 +463,37 @@ public void sortTeamSenior() {
         int chosenDiscipline = readInteger();
 
         switch (chosenDiscipline){
-            case 1 -> {
-                controller.sortListWithComparator();
-                showTopFiveButterfly();
-            }
+            case 1 -> showTopFiveButterfly();
             case 2 -> {
-                controller.sortListWithComparator();
+                //controller.sortListWithComparator();
                 showTopFiveCrawl();
             }
             case 3 -> {
-                controller.sortListWithComparator();
+                //controller.sortListWithComparator();
                 showTopFiveBackCrawl();
             }
             case 4 -> {
-                controller.sortListWithComparator();
+                //controller.sortListWithComparator();
                 showTopFiveBreastStroke();
             }
         }
     }
 
     public void showTopFiveButterfly() {
-        String disciplineName = discipline.getDisciplineName();
-        for (Member members : controller.getCompetitionSwimmers()) {
-            if (disciplineName.equalsIgnoreCase("butterfly")) {
-                System.out.println("Showing top 5 for butterfly swimmers:");
-                for (int i = 0; i < 5; i++) {
-                    System.out.println(i + ":");
-                    System.out.println(members);
-                    System.out.println(discipline.getTime());
-                    System.out.println();
-                }
+        ArrayList<CompetitionSwimmer> butterflySwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isButterfly = ((CompetitionSwimmer) member).isButterfly();
+            if (isButterfly){
+                butterflySwimmers.add((CompetitionSwimmer) member);
             }
+        }
+        Collections.sort(butterflySwimmers, new TimeComparator());
+        if (butterflySwimmers.size() > 5){
+            System.out.println(butterflySwimmers.subList(0, 5));
+        }
+        for (int i = 0; i<butterflySwimmers.size(); i++){
+            System.out.println(butterflySwimmers.get(i));
         }
     }
 
