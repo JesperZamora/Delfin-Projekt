@@ -12,7 +12,6 @@ class MemberTest {
     Exerciser exerciser1;
     Exerciser exerciser2;
     Exerciser exerciser3;
-    Exerciser exerciser4;
 
 
 
@@ -79,29 +78,5 @@ class MemberTest {
         assertEquals(subscriptionPrice,expected);
     }
 
-
-
-    @Test
-    void setActiveMemberToPaid() {
-        //Arrange
-        exerciser4 = new Exerciser("Osama", LocalDate.of(2015, 1, 1), 27146786, "Siciliensgade","Active");
-        boolean paid = true;
-        boolean notPaid = false;
-
-        //Act 1
-        exerciser4.setIsPaid(paid);
-        int subscriptionPrice = exerciser4.subscriptionPrice();
-        int expected = 0;
-
-        //Act2
-        exerciser4.setIsPaid(notPaid);
-        int subscriptionPriceChangedBack = exerciser4.subscriptionPrice();
-        int newExpected = 1000;
-
-        //Assert
-        assertEquals(subscriptionPrice,expected);
-        assertEquals(subscriptionPriceChangedBack,newExpected);
-
-    }
 
 }
