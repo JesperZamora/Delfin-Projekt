@@ -56,7 +56,7 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> addNewMemberInfo();
-            case 2 -> searchMember();
+            case 2 -> editMember();
             case 3 -> viewMember();
             default -> System.out.println("Wrong input");
         }
@@ -66,15 +66,57 @@ public class UserInterface {
         System.out.println("""
                 1. Show subscriptions
                 2. Sum of subscriptions
-                3. Show arrears
+                3. Show unpaid members
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
+            case 1 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
             case 2 -> System.out.println(" *** SUMMEN AF KONTINGENT (TO BE ADDED HERE) ***");
-            case 3 -> System.out.println(" *** RESTANCE (TO BE ADDED HERE) ***");
+            case 3 -> membersWithOutstanding();
             default -> System.out.println("Wrong input");
         }
+    }
+
+
+    public void registerIfPaid(){
+        ArrayList<Member> foundMembers = searchMember();
+        System.out.println("\nChoose members number to edit or press 0 to exit");
+        int choice = readInteger();
+
+        if(choice != 0) {
+            try {
+                Member member = foundMembers.get(choice - 1);
+                System.out.println("""
+                Register member as paid or not paid
+                1. Paid
+                2. Not paid""");
+                int paymentChoice = readInteger();
+                switch (paymentChoice){
+                    case 1 -> member.setIsPaid(true);
+                    case 2 -> member.setIsPaid(false);
+                    default -> System.out.println("Not valid choice..");
+                }
+
+            }catch (IndexOutOfBoundsException e) {
+                System.out.println("No member by that number..");
+                registerIfPaid();
+            }
+        }
+    }
+
+
+    public void membersWithOutstanding(){
+        System.out.println("Members with outstanding balance:");
+        System.out.println("Name:                    Membership:    Status:    Unpaid:    Phone#:    Address:    ");
+        for(Member member : controller.getMembers()){
+            if(!member.isPaid() && !member.MemberStatus().equalsIgnoreCase("inactive")){
+                System.out.println(member.toString(2));
+            }
+        }
+    }
+
+    public void sumOfSubscriptions(){
+
     }
 
     public void coachMenu() {
@@ -155,7 +197,7 @@ public class UserInterface {
         }
     }
 
-    public void searchMember(){
+    public ArrayList<Member> searchMember(){
         System.out.print("Search member by name, age or phone number: ");
         String searchWord = readString();
         ArrayList<Member> searchedMember = controller.searchMember(searchWord);
@@ -169,42 +211,43 @@ public class UserInterface {
         } else {
             int no = 1;
             for (Member member : searchedMember) {
-                System.out.println("Member #[" + no + "] \n" + member);
+                System.out.println("#" + no + " " + member.toString(1));
                 no++;
             }
-            editMember(searchedMember);
         }
+        return searchedMember;
     }
 
 
-    public void editMember(ArrayList<Member> searchedMember) {
+    public void editMember() {
+        ArrayList<Member> foundMembers = searchMember();
         System.out.println("\nChoose members number to edit or press 0 to exit");
         int choice = readInteger();
         if(choice != 0) {
-            Member foundMembers = searchedMember.get(choice - 1);
+            Member member = foundMembers.get(choice - 1);
             System.out.print("Name: ");
             String newName = readString();
             if (!newName.isEmpty()) {
-                foundMembers.setName(newName);
+                member.setName(newName);
             }
 
             System.out.print("Birth date (date-month-year): ");
             LocalDate newBirthDate = editDate(readString());
             if(newBirthDate != null) {
-                foundMembers.setBirthDate(newBirthDate);
+                member.setBirthDate(newBirthDate);
             }
 
             //TODO: not robust code needs methode for exceptions
             System.out.print("Phone no: ");
             String newPhoneNumber = readString();
             if (!newPhoneNumber.isEmpty()) {
-                foundMembers.setPhoneNumber(Integer.parseInt(newPhoneNumber));
+                member.setPhoneNumber(Integer.parseInt(newPhoneNumber));
             }
 
             System.out.print("Address: ");
             String newAddress = readString();
             if (!newAddress.isEmpty()) {
-                foundMembers.setAddress(newAddress);
+                member.setAddress(newAddress);
             }
 
             System.out.println("""
@@ -222,7 +265,7 @@ public class UserInterface {
                     case 3 -> newMemberStatus = "Inactive";
                     default -> System.out.println("Invalid input.. Choose again!");
                 }
-                foundMembers.setMemberStatus(newMemberStatus);
+                member.setMemberStatus(newMemberStatus);
             }
 
         }
@@ -415,7 +458,10 @@ public class UserInterface {
     }
 
     public void viewMember() {
-        controller.getMembers().forEach(System.out::println);
+
+        for(Member member : controller.getMembers()){
+            System.out.println(member.toString(1));
+        }
     }
 public void sortTeamJunior() {
         for (Member member : controller.getListJunior()) {
@@ -434,9 +480,7 @@ public void sortTeamSenior() {
             if(controller.getListJunior().size() < 16 && member instanceof CompetitionSwimmer && member.getAge() < 18) {
                 controller.getListJunior().add(member);
                 sortTeamJunior();
-
             }
-
         }
     }
 
@@ -447,7 +491,6 @@ public void sortTeamSenior() {
                 controller.getListSenior().add(member);
                 sortTeamSenior();
             }
-
         }
     }
 

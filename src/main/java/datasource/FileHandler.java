@@ -19,7 +19,8 @@ public class FileHandler {
             for(Member member : memberList){
                 if(member instanceof CompetitionSwimmer) {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
-                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus());
+                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus()
+                                    + "," + member.isPaid());
 
                     for (SwimTime discipline : ((CompetitionSwimmer) member).getDisciplines()) {
                         if (discipline != null) {
@@ -30,7 +31,8 @@ public class FileHandler {
 
                 } else {
                     output.println(member.getName() + "," + member.getBirthDate() + "," + member.getPhoneNumber() + "," +
-                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus());
+                                    member.getAddress() + "," + member.getMembershipType() + "," + member.MemberStatus()
+                                    + "," + member.isPaid());
                 }
             }
             output.close();
@@ -59,12 +61,15 @@ public class FileHandler {
                 }else if(attributes[4].equals("Comp swimmer")){
                     CompetitionSwimmer swimmer = new CompetitionSwimmer(attributes[0], LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]), attributes[3], attributes[5]);
+                            swimmer.setIsPaid(Boolean.parseBoolean(attributes[6]));
 
                     loadedMember.add(swimmer);
 
                 } else {
                     Exerciser exerciser = new Exerciser(attributes[0], LocalDate.parse(attributes[1]),
                             Integer.parseInt(attributes[2]), attributes[3], attributes[5]);
+                            exerciser.setIsPaid(Boolean.parseBoolean(attributes[6]));
+
                     loadedMember.add(exerciser);
                 }
             }

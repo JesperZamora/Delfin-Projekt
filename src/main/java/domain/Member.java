@@ -14,6 +14,8 @@ public abstract class Member {
     private String membershipType;
     private String memberStatus;
     private LocalDate birthDate;
+    private int subscriptionPrice;
+    private boolean isPaid = false;
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
@@ -21,6 +23,7 @@ public abstract class Member {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.memberStatus = memberStatus;
+        this. subscriptionPrice = subscriptionPrice();
         membershipByAge();
         formatBirthDate();
     }
@@ -43,10 +46,17 @@ public abstract class Member {
         }
     }
 
-/*    public String toString() {
-        return String.format("%-18s %-7d %-13s %-12d %-27s %-8s %-15s %s",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
-    }*/
+    public String toString(int i) {
+        String showFormat = "";
+        if(i == 1) {
+            showFormat =String.format("%-28s %-5d %-13s %-12d %-27s %-8s %-15s %s",
+                    name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
+        } else if(i == 2) {
+            showFormat = String.format("%-24s %-14s %-10s %-10d %-10d %s",
+                    name, membershipByAge, memberStatus,subscriptionPrice, phoneNumber, address);
+        }
+        return showFormat;
+    }
 
     public String toString() {
         return String.format("""
@@ -57,8 +67,44 @@ public abstract class Member {
                         Address:         %s
                         Membership:      %s
                         Member type:     %s
-                        Member status:   %s \n""",
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
+                        Member status:   %s
+                        Member paid:     %b
+                        Member price:    %d
+                        """,
+                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, isPaid, subscriptionPrice);
+    }
+
+
+    public int subscriptionPrice() {
+        if(!isPaid && memberStatus.equalsIgnoreCase("passive")) {
+            subscriptionPrice = 500;
+
+        } else if(memberStatus.equalsIgnoreCase("inactive")) {
+            subscriptionPrice = 0;
+
+        } else if (!isPaid && age > 18 && age < 60) {
+            subscriptionPrice = 1600;
+
+        } else if (!isPaid && age < 18) {
+            subscriptionPrice = 1000;
+
+        } else if(!isPaid && age > 60) {
+            subscriptionPrice = 1200;
+
+        } else if(isPaid){
+            subscriptionPrice = 0;
+
+        }
+        return subscriptionPrice;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setIsPaid(boolean isPaid){
+        this.isPaid = isPaid;
+        subscriptionPrice();
     }
 
     public String getName() {

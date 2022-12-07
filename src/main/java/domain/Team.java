@@ -20,13 +20,6 @@ public class Team {
                 " \n ";
     }
 
-    @Override
-    public String toString() {
-        return "domain.Team name: " + teamName + " " +
-                "domain.Trainer: " + trainer +
-                " " + team;
-    }
-
     public ArrayList<Member> getTeam() {
         return team;
     }
