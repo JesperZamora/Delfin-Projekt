@@ -40,7 +40,6 @@ public class Database {
     public int sumOfSubscriptions(ArrayList<Member> member){
         int sum = 0;
         for (Member m : member) {
-            if (m.isPaid())
                 sum += m.getSubscriptionPrice();
         }
         return sum;
