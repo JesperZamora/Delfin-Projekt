@@ -51,5 +51,8 @@ public class Controller {
     public Team getTeamSenior() {
         return database.getTeamSenior();
     }
+    public int getSumOfSubscriptions(ArrayList<Member> members) {
+        return database.sumOfSubscriptions(members);
+    }
 
 }

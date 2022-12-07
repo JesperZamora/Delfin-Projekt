@@ -37,6 +37,14 @@ public class Database {
         }
         return foundMembers;
     }
+    public int sumOfSubscriptions(ArrayList<Member> member){
+        int sum = 0;
+        for (Member m : member) {
+            if (m.isPaid() == true)
+                sum += m.getSubscriptionPrice();
+        }
+        return sum;
+    }
 
     public ArrayList<Member> getMembers() {
         return members;

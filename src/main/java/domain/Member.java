@@ -16,6 +16,7 @@ public abstract class Member {
     private LocalDate birthDate;
     private int subscriptionPrice;
     private boolean isPaid = false;
+    private String notPaid;
 
     public Member(String name, LocalDate birthDate, int phoneNumber, String address, String memberStatus) {
         this.name = name;
@@ -46,14 +47,24 @@ public abstract class Member {
         }
     }
 
+
+    public void notPaid(){
+
+    }
+
     public String toString(int i) {
+        if(isPaid){
+            this.notPaid = "Paid";
+        } else{
+            this.notPaid = "Not paid";
+        }
         String showFormat = "";
         if (i == 1) {
             showFormat = String.format("%-28s %-5d %-13s %-12d %-27s %-8s %-15s %s",
                     name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
         } else if (i == 2) {
-            showFormat = String.format("%-24s %-14s %-10s %-10d %-10b %-10d %s",
-                    name, membershipByAge, memberStatus, subscriptionPrice, isPaid, phoneNumber, address);
+            showFormat = String.format("%-24s %-14s %-10s %-10d %-10s %-10d %s",
+                    name, membershipByAge, memberStatus, subscriptionPrice, notPaid, phoneNumber, address);
         }
         return showFormat;
     }
@@ -152,6 +163,9 @@ public abstract class Member {
 
     public void setMemberStatus(String memberStatus) {
         this.memberStatus = memberStatus;
+    }
+    public int getSubscriptionPrice() {
+        return subscriptionPrice;
     }
 }
 

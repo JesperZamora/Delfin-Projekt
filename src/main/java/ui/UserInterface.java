@@ -64,14 +64,14 @@ public class UserInterface {
 
     public void cashierMenu() {
         System.out.println("""
-                1. Show subscriptions
+                1. Edit payment of members
                 2. Sum of subscriptions
                 3. Show unpaid members
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
-            case 2 -> System.out.println(" *** SUMMEN AF KONTINGENT (TO BE ADDED HERE) ***");
+            case 2 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
             case 3 -> membersWithOutstanding();
             default -> System.out.println("Wrong input");
         }
@@ -107,7 +107,7 @@ public class UserInterface {
 
     public void membersWithOutstanding(){
         System.out.println("Members with outstanding balance:");
-        System.out.println("Name:                    Membership:    Status:    Status:    Phone#:    Address:    ");
+        System.out.println("Name:                    Membership:    Status: Subscription: Paid:      Phone#:    Address:    ");
         for(Member member : controller.getMembers()){
             if(!member.isPaid() && !member.MemberStatus().equalsIgnoreCase("inactive")){
                 System.out.println(member.toString(2));
@@ -115,9 +115,6 @@ public class UserInterface {
         }
     }
 
-    public void sumOfSubscriptions(){
-
-    }
 
     public void coachMenu() {
         System.out.println("""
