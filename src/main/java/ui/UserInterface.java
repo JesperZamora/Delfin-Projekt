@@ -113,7 +113,7 @@ public class UserInterface {
         System.out.println("Members with outstanding balance:");
         for(Member member : controller.getMembers()){
             if(!member.isPaid() && !member.MemberStatus().equalsIgnoreCase("inactive")){
-                System.out.println(member.toString(2));
+                System.out.println(member);
             }
         }
     }
@@ -129,11 +129,7 @@ public class UserInterface {
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
-            case 1 -> {
-                sortCompJuniorSwimmers();
-                sortCompSeniorSwimmer();
-
-            }
+            case 1 -> {sortCompJuniorSwimmers(); sortCompSeniorSwimmer();}
             case 2 -> addDiscipline();
             case 3 -> editDiscipline();
             case 4 -> showAllSwimmers();
@@ -211,7 +207,7 @@ public class UserInterface {
         } else {
             int no = 1;
             for (Member member : searchedMember) {
-                System.out.println("#" + no + " " + member.toString(1));
+                System.out.println("#" + no + " " + member);
                 no++;
             }
         }
@@ -280,7 +276,6 @@ public class UserInterface {
 
         } else{
             for(Member member : swimmerList){
-                System.out.println("--------------------------------");
                 if(member instanceof CompetitionSwimmer) {
                     System.out.println(member);
                     for(SwimTime discipline : ((CompetitionSwimmer) member).getDisciplines()){
@@ -315,7 +310,7 @@ public class UserInterface {
         System.out.print("Location name: ");
         String location = readString();
 
-        System.out.print("Date: ");
+        System.out.print("Datec(date-month-year): ");
         LocalDate date = addDate();
 
         System.out.println("""
@@ -382,7 +377,7 @@ public class UserInterface {
                 String editLocation = readString();
                 discipline.setLocation(editLocation);
 
-                System.out.print("Date: ");
+                System.out.print("Date (date-month-year): ");
                 LocalDate editDate = editDate(readString());
                 discipline.setDate(editDate);
 
@@ -438,6 +433,7 @@ public class UserInterface {
         }
         return birthDateParsed;
     }
+
     public LocalDate editDate(String check){
         LocalDate birthDateParsed = null;
         String birthDate = check;
@@ -459,26 +455,29 @@ public class UserInterface {
 
     public void viewMember() {
 
-        for(Member member : controller.getMembers()){
-            System.out.println(member.toString(1));
+        for (Member member : controller.getMembers()) {
+            System.out.println(member);
         }
     }
+
     public void viewMembersWithPrice() {
-        for(Member member : controller.getMembers()) {
+        for (Member member : controller.getMembers()) {
             System.out.println(member.toString(2));
         }
     }
-public void sortTeamJunior() {
+
+    public void sortTeamJunior() {
         for (Member member : controller.getListJunior()) {
             System.out.println(member);
 
         }
-}
-public void sortTeamSenior() {
+    }
+
+    public void sortTeamSenior() {
         for (Member member : controller.getListSenior()) {
             System.out.println(member);
         }
-}
+    }
     public void sortCompJuniorSwimmers() {
         System.out.println(controller.getTeamJunior());
         for(Member member : controller.getMembers()) {
@@ -499,7 +498,7 @@ public void sortTeamSenior() {
         }
     }
 
-    public void showCompJuniorSwimmers(){
+/*    public void showCompJuniorSwimmers(){
         sortCompJuniorSwimmers();
         Team juniorSwimmers = controller.getTeamJunior();
         System.out.println("Swimmer list:");
@@ -514,7 +513,7 @@ public void sortTeamSenior() {
                 System.out.println();
             }
         }
-    }
+    }*/
 
     public int readInteger() {
         while (!sc.hasNextInt()) {

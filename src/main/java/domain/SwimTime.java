@@ -1,17 +1,26 @@
 package domain;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class SwimTime {
     private String location;
     private LocalDate date;
     private String disciplineName;
+    private String dateFormat;
     private double time;
+
 
     public SwimTime(String location, LocalDate date, String disciplineName, double time) {
         this.location = location;
         this.date = date;
         this.disciplineName = disciplineName;
         this.time = time;
+        formatDate();
+    }
+
+    public void formatDate(){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        dateFormat = date.format(format);
     }
 
     public String getLocation() {
@@ -36,6 +45,7 @@ public class SwimTime {
 
     public void setDate(LocalDate date) {
         this.date = date;
+        formatDate();
     }
 
     public void setDisciplineName(String disciplineName) {
@@ -48,9 +58,6 @@ public class SwimTime {
 
     @Override
     public String toString() {
-        return  "Location: " + location + '\n' +
-                "Date: " + date + '\n' +
-                "Discipline: " + disciplineName + '\n' +
-                "Time: " + time + '\n';
+        return  String.format("Location: %-14s Date: %-14s Discipline: %-14s Time: %.02f ", location, dateFormat, disciplineName, time);
     }
 }

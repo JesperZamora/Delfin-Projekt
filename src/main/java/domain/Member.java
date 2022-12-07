@@ -69,7 +69,7 @@ public abstract class Member {
         return showFormat;
     }
 
-    public String toString() {
+/*    public String toString() {
         return String.format("""
                         Name:            %s
                         Age:             %d
@@ -83,6 +83,16 @@ public abstract class Member {
                         Member price:    %d
                         """,
                 name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, isPaid, subscriptionPrice);
+    }*/
+
+    public String toString() {
+        if(isPaid){
+            this.notPaid = "Paid";
+        } else{
+            this.notPaid = "Not paid";
+        }
+        return String.format("Name: %-24s Age: %-5d Birthdate: %-13s Membership: %-9s Type: %-15s Status: %-11s Subscription: %-8d Paid: %-11s Phone: %-11d Address: %s",
+                name, age, birthDateFormat, membershipByAge, membershipType, memberStatus, subscriptionPrice, notPaid, phoneNumber, address);
     }
 
 
