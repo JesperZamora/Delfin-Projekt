@@ -505,7 +505,7 @@ public class UserInterface {
                 1. Butterfly
                 2. Crawl
                 3. Backcrawl
-                4. Breast-swimming
+                4. Breast-stroke
                 """);
 
         int chosenDiscipline = readInteger();
@@ -531,8 +531,15 @@ public class UserInterface {
         if (butterflySwimmers.size() > 5){
             System.out.println(butterflySwimmers.subList(0, 5));
         }
-        for (int i = 0; i<butterflySwimmers.size(); i++){
-            System.out.println(butterflySwimmers.get(i));
+        else{
+            for (CompetitionSwimmer butterfly : butterflySwimmers) {
+                for (SwimTime swimTime : butterfly.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("butterfly")){
+                        System.out.println(butterfly);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
         }
     }
 
@@ -549,8 +556,15 @@ public class UserInterface {
         if (crawlSwimmers.size() > 5){
             System.out.println(crawlSwimmers.subList(0, 5));
         }
-        for (int i = 0; i<crawlSwimmers.size(); i++){
-            System.out.println(crawlSwimmers.get(i));
+        else{
+            for (CompetitionSwimmer crawlSwimmer : crawlSwimmers) {
+                for (SwimTime swimTime : crawlSwimmer.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("crawl")){
+                        System.out.println(crawlSwimmer);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
         }
     }
 
@@ -567,8 +581,15 @@ public class UserInterface {
         if (backCrawlSwimmers.size() > 5){
             System.out.println(backCrawlSwimmers.subList(0, 5));
         }
-        for (int i = 0; i<backCrawlSwimmers.size(); i++){
-            System.out.println(backCrawlSwimmers.get(i));
+        else{
+            for (CompetitionSwimmer backCrawl : backCrawlSwimmers) {
+                for (SwimTime swimTime : backCrawl.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("backcrawl")){
+                        System.out.println(backCrawl);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
         }
     }
 
@@ -585,8 +606,15 @@ public class UserInterface {
         if (breastStrokeSwimmers.size() > 5){
             System.out.println(breastStrokeSwimmers.subList(0, 5));
         }
-        for (int i = 0; i<breastStrokeSwimmers.size(); i++){
-            System.out.println(breastStrokeSwimmers.get(i));
+        else{
+            for (CompetitionSwimmer breastStroke : breastStrokeSwimmers) {
+                for (SwimTime swimTime : breastStroke.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("breaststroke")){
+                        System.out.println(breastStroke);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
         }
     }
 

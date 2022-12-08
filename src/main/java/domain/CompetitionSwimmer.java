@@ -55,11 +55,13 @@ public class CompetitionSwimmer extends Member {
     }
 
     public double getTime() {
-        double bestTimeButterflySwimmers = 0;
-        for (SwimTime swimTime : getDisciplines()) {
-            bestTimeButterflySwimmers = swimTime.getTime();
+        double bestTime = 0;
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime.getTime() != 0) {
+                bestTime = swimTime.getTime();
+            }
         }
-        return bestTimeButterflySwimmers;
+        return bestTime;
     }
 
 
