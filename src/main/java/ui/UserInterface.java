@@ -308,7 +308,7 @@ public class UserInterface {
         int userChoice = readInteger();
         CompetitionSwimmer swimmerChosen = competitionSwimmers.get(userChoice-1);
 
-        System.out.print("Location name: ");
+        System.out.print("\"Type Competetion name or type Training if it is a training result:\" ");
         String location = readString();
 
         System.out.print("Datec(date-month-year): ");
@@ -374,7 +374,7 @@ public class UserInterface {
             if(discipline!= null){
                 System.out.println(discipline + "\n");
 
-                System.out.print("Location name: ");
+                System.out.print("Type Competetion name or type Training if it is a training result: ");
                 String editLocation = readString();
                 discipline.setLocation(editLocation);
 
