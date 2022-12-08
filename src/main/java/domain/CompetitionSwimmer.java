@@ -18,6 +18,53 @@ public class CompetitionSwimmer extends Member {
         }
     }
 
+    public boolean isButterfly() {
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase(("butterfly"))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCrawl() {
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("crawl")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isBackCrawl() {
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("backcrawl")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isBreastStroke() {
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("breaststroke")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public double getTime() {
+        double bestTime = 0;
+        for (SwimTime swimTime : disciplines) {
+            if (swimTime.getTime() != 0) {
+                bestTime = swimTime.getTime();
+            }
+        }
+        return bestTime;
+    }
+
+
     public SwimTime[] getDisciplines() {
         return disciplines;
     }

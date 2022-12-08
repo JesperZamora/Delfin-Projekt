@@ -55,4 +55,7 @@ public class Controller {
         return database.sumOfSubscriptions(members);
     }
 
+    public ArrayList<Member> getCompetitionSwimmers() {
+        return database.getCompetitionSwimmers();
+    }
 }

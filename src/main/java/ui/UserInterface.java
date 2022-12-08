@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import domain.*;
 
@@ -72,8 +73,8 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> viewMembersWithPrice();
-            case 2 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
-            case 3 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
+            case 2 -> registerIfPaid();
+            case 3 -> printSumOfSubscriptions();
             case 4 -> membersWithOutstanding();
             default -> System.out.println("Wrong input");
         }
@@ -125,7 +126,7 @@ public class UserInterface {
                 2. Add discipline data to competitive swimmer
                 3  Edit discipline date of competitive swimmer
                 4. Show all swimmers
-                5. Show top 5 swimmers in each discipline
+                5. Show top 5 competition swimmer in each discipline
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
@@ -133,7 +134,7 @@ public class UserInterface {
             case 2 -> addDiscipline();
             case 3 -> editDiscipline();
             case 4 -> showAllSwimmers();
-            case 5 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 5 -> showTopFive();
             default -> System.out.println("Wrong input");
         }
     }
@@ -307,7 +308,7 @@ public class UserInterface {
         int userChoice = readInteger();
         CompetitionSwimmer swimmerChosen = competitionSwimmers.get(userChoice-1);
 
-        System.out.print("Location name: ");
+        System.out.print("\"Type Competetion name or type Training if it is a training result:\" ");
         String location = readString();
 
         System.out.print("Datec(date-month-year): ");
@@ -373,7 +374,7 @@ public class UserInterface {
             if(discipline!= null){
                 System.out.println(discipline + "\n");
 
-                System.out.print("Location name: ");
+                System.out.print("Type Competetion name or type Training if it is a training result: ");
                 String editLocation = readString();
                 discipline.setLocation(editLocation);
 
@@ -454,6 +455,7 @@ public class UserInterface {
     }
 
     public void viewMember() {
+
         for (Member member : controller.getMembers()) {
             System.out.println(member);
         }
@@ -461,7 +463,7 @@ public class UserInterface {
 
     public void viewMembersWithPrice() {
         for (Member member : controller.getMembers()) {
-            System.out.println(member.toString(2));
+            System.out.println(member.toString());
         }
     }
 
@@ -497,6 +499,128 @@ public class UserInterface {
         }
     }
 
+    public void showTopFive(){
+        System.out.println("You can find a top 5 in each discipline here. Choose discipline: ");
+        System.out.println("""
+                1. Butterfly
+                2. Crawl
+                3. Backcrawl
+                4. Breast-stroke
+                """);
+
+        int chosenDiscipline = readInteger();
+
+        switch (chosenDiscipline){
+            case 1 -> showTopFiveButterfly();
+            case 2 -> showTopFiveCrawl();
+            case 3 -> showTopFiveBackCrawl();
+            case 4 -> showTopFiveBreastStroke();
+        }
+    }
+
+    public void showTopFiveButterfly() {
+        ArrayList<CompetitionSwimmer> butterflySwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isButterfly = ((CompetitionSwimmer) member).isButterfly();
+            if (isButterfly){
+                butterflySwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(butterflySwimmers, new TimeComparator());
+        if (butterflySwimmers.size() > 5){
+            System.out.println(butterflySwimmers.subList(0, 5));
+        }
+        else{
+            for (CompetitionSwimmer butterfly : butterflySwimmers) {
+                for (SwimTime swimTime : butterfly.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("butterfly")){
+                        System.out.println(butterfly);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
+        }
+    }
+
+    public void showTopFiveCrawl() {
+        ArrayList<CompetitionSwimmer> crawlSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isCrawl = ((CompetitionSwimmer) member).isCrawl();
+            if (isCrawl){
+                crawlSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(crawlSwimmers, new TimeComparator());
+        if (crawlSwimmers.size() > 5){
+            System.out.println(crawlSwimmers.subList(0, 5));
+        }
+        else{
+            for (CompetitionSwimmer crawlSwimmer : crawlSwimmers) {
+                for (SwimTime swimTime : crawlSwimmer.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("crawl")){
+                        System.out.println(crawlSwimmer);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
+        }
+    }
+
+    public void showTopFiveBackCrawl() {
+        ArrayList<CompetitionSwimmer> backCrawlSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isBackCrawlSwimmer = ((CompetitionSwimmer) member).isBackCrawl();
+            if (isBackCrawlSwimmer){
+                backCrawlSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(backCrawlSwimmers, new TimeComparator());
+        if (backCrawlSwimmers.size() > 5){
+            System.out.println(backCrawlSwimmers.subList(0, 5));
+        }
+        else{
+            for (CompetitionSwimmer backCrawl : backCrawlSwimmers) {
+                for (SwimTime swimTime : backCrawl.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("backcrawl")){
+                        System.out.println(backCrawl);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
+        }
+    }
+
+    public void showTopFiveBreastStroke() {
+        ArrayList<CompetitionSwimmer> breastStrokeSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isBreastStrokeSwimmer = ((CompetitionSwimmer) member).isBreastStroke();
+            if (isBreastStrokeSwimmer){
+                breastStrokeSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(breastStrokeSwimmers, new TimeComparator());
+        if (breastStrokeSwimmers.size() > 5){
+            System.out.println(breastStrokeSwimmers.subList(0, 5));
+        }
+        else{
+            for (CompetitionSwimmer breastStroke : breastStrokeSwimmers) {
+                for (SwimTime swimTime : breastStroke.getDisciplines()){
+                    if (swimTime != null && swimTime.getDisciplineName().equalsIgnoreCase("breaststroke")){
+                        System.out.println(breastStroke);
+                        System.out.println("Time: " + swimTime.getTime() + " seconds");
+                    }
+                }
+            }
+        }
+    }
+    public void printSumOfSubscriptions() {
+        System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
+    }
+
     public int readInteger() {
         while (!sc.hasNextInt()) {
             System.out.println("This is not a number. Try again..");
@@ -524,6 +648,3 @@ public class UserInterface {
         return controller;
     }
 }
-
-
-
