@@ -73,8 +73,8 @@ public class UserInterface {
         int userChoice = readInteger();
         switch (userChoice) {
             case 1 -> viewMembersWithPrice();
-            case 2 -> registerIfPaid(); //System.out.println(" *** KONTINGENT (TO BE ADDED HERE) ***");
-            case 3 -> System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
+            case 2 -> registerIfPaid();
+            case 3 -> printSumOfSubscriptions();
             case 4 -> membersWithOutstanding();
             default -> System.out.println("Wrong input");
         }
@@ -616,6 +616,9 @@ public class UserInterface {
                 }
             }
         }
+    }
+    public void printSumOfSubscriptions() {
+        System.out.println("Sum of subscriptions: "+ controller.getSumOfSubscriptions(controller.getMembers()));
     }
 
     public int readInteger() {
