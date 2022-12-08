@@ -454,7 +454,6 @@ public class UserInterface {
     }
 
     public void viewMember() {
-
         for (Member member : controller.getMembers()) {
             System.out.println(member);
         }
@@ -497,23 +496,6 @@ public class UserInterface {
             }
         }
     }
-
-/*    public void showCompJuniorSwimmers(){
-        sortCompJuniorSwimmers();
-        Team juniorSwimmers = controller.getTeamJunior();
-        System.out.println("Swimmer list:");
-        if(controller.getListJunior().isEmpty()){
-            System.out.println("List is empty..");
-
-        } else{
-            System.out.println();
-            for(Member teamMembers : juniorSwimmers.getTeam()){
-                System.out.println("--------------------------------");
-                System.out.println(teamMembers);
-                System.out.println();
-            }
-        }
-    }*/
 
     public int readInteger() {
         while (!sc.hasNextInt()) {

@@ -24,21 +24,21 @@ class FileHandlerTest {
         db = new Database();
         ui = new UserInterface();
         ui.getController().getMembers().clear();
-        ui.getController().addExerciser("Jesper", LocalDate.of(1999, 05, 20), 20, "vange", "active");
+        ui.getController().addExerciser("Jesper", LocalDate.of(1999, 5, 20), 20, "vange", "active");
     }
 
     @Test
     void loadFile() {
-        //ArrayList<domain.Member> membersC = fileHandler.loadFileC();
-        //ArrayList<domain.Member> membersE = fileHandler.loadFileE();
-        //assertEquals(0, membersC.size(), membersE.size());
+        ArrayList<Member> membersC = fileHandler.loadFile();
+        ArrayList<Member> membersE = fileHandler.loadFile();
+        assertEquals(0, membersC.size(), membersE.size());
     }
 
     @Test
     void saveFile(){
         long t1 = file.lastModified();
         ArrayList<Member> files = new ArrayList<>();
-        //fileHandler.saveToFile(files);
+        fileHandler.saveFile(files);
         long t2 = file.lastModified();
         assertNotEquals(t1,t2);
     }
