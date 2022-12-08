@@ -47,22 +47,6 @@ public abstract class Member {
         }
     }
 
-    /*public String toString(int i) {
-        if(isPaid){
-            this.notPaid = "Paid";
-        } else{
-            this.notPaid = "Not paid";
-        }
-        String showFormat = "";
-        if (i == 1) {
-            showFormat = String.format("%-28s %-5d %-13s %-12d %-27s %-8s %-15s %s",
-                    name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus);
-        } else if (i == 2) {
-            showFormat = String.format("%-24s %-14s %-10s %-10d %-10s %-10d %s",
-                    name, membershipByAge, memberStatus, subscriptionPrice, notPaid, phoneNumber, address);
-        }
-        return showFormat;
-    }*/
 
     public String toString() {
         if(isPaid){
