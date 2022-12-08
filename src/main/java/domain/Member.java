@@ -47,12 +47,7 @@ public abstract class Member {
         }
     }
 
-
-    public void notPaid(){
-
-    }
-
-    public String toString(int i) {
+    /*public String toString(int i) {
         if(isPaid){
             this.notPaid = "Paid";
         } else{
@@ -67,22 +62,6 @@ public abstract class Member {
                     name, membershipByAge, memberStatus, subscriptionPrice, notPaid, phoneNumber, address);
         }
         return showFormat;
-    }
-
-/*    public String toString() {
-        return String.format("""
-                        Name:            %s
-                        Age:             %d
-                        Birthdate:       %s
-                        Phone no:        %d
-                        Address:         %s
-                        Membership:      %s
-                        Member type:     %s
-                        Member status:   %s
-                        Member paid:     %b
-                        Member price:    %d
-                        """,
-                name, age, birthDateFormat, phoneNumber, address, membershipByAge, membershipType, memberStatus, isPaid, subscriptionPrice);
     }*/
 
     public String toString() {

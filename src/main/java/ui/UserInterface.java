@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import domain.*;
 
@@ -125,7 +126,7 @@ public class UserInterface {
                 2. Add discipline data to competitive swimmer
                 3  Edit discipline date of competitive swimmer
                 4. Show all swimmers
-                5. Show top 5 swimmers in each discipline
+                5. Show top 5 competition swimmer in each discipline
                 """);
         int userChoice = readInteger();
         switch (userChoice) {
@@ -133,7 +134,7 @@ public class UserInterface {
             case 2 -> addDiscipline();
             case 3 -> editDiscipline();
             case 4 -> showAllSwimmers();
-            case 5 -> System.out.println(" *** TOP 5 IN EACH DISCIPLINE TO BE ADDED HERE ***");
+            case 5 -> showTopFive();
             default -> System.out.println("Wrong input");
         }
     }
@@ -462,7 +463,7 @@ public class UserInterface {
 
     public void viewMembersWithPrice() {
         for (Member member : controller.getMembers()) {
-            System.out.println(member.toString(2));
+            System.out.println(member.toString());
         }
     }
 
@@ -498,22 +499,96 @@ public class UserInterface {
         }
     }
 
-/*    public void showCompJuniorSwimmers(){
-        sortCompJuniorSwimmers();
-        Team juniorSwimmers = controller.getTeamJunior();
-        System.out.println("Swimmer list:");
-        if(controller.getListJunior().isEmpty()){
-            System.out.println("List is empty..");
+    public void showTopFive(){
+        System.out.println("You can find a top 5 in each discipline here. Choose discipline: ");
+        System.out.println("""
+                1. Butterfly
+                2. Crawl
+                3. Backcrawl
+                4. Breast-swimming
+                """);
 
-        } else{
-            System.out.println();
-            for(Member teamMembers : juniorSwimmers.getTeam()){
-                System.out.println("--------------------------------");
-                System.out.println(teamMembers);
-                System.out.println();
+        int chosenDiscipline = readInteger();
+
+        switch (chosenDiscipline){
+            case 1 -> showTopFiveButterfly();
+            case 2 -> showTopFiveCrawl();
+            case 3 -> showTopFiveBackCrawl();
+            case 4 -> showTopFiveBreastStroke();
+        }
+    }
+
+    public void showTopFiveButterfly() {
+        ArrayList<CompetitionSwimmer> butterflySwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isButterfly = ((CompetitionSwimmer) member).isButterfly();
+            if (isButterfly){
+                butterflySwimmers.add((CompetitionSwimmer) member);
             }
         }
-    }*/
+        Collections.sort(butterflySwimmers, new TimeComparator());
+        if (butterflySwimmers.size() > 5){
+            System.out.println(butterflySwimmers.subList(0, 5));
+        }
+        for (int i = 0; i<butterflySwimmers.size(); i++){
+            System.out.println(butterflySwimmers.get(i));
+        }
+    }
+
+    public void showTopFiveCrawl() {
+        ArrayList<CompetitionSwimmer> crawlSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isCrawl = ((CompetitionSwimmer) member).isCrawl();
+            if (isCrawl){
+                crawlSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(crawlSwimmers, new TimeComparator());
+        if (crawlSwimmers.size() > 5){
+            System.out.println(crawlSwimmers.subList(0, 5));
+        }
+        for (int i = 0; i<crawlSwimmers.size(); i++){
+            System.out.println(crawlSwimmers.get(i));
+        }
+    }
+
+    public void showTopFiveBackCrawl() {
+        ArrayList<CompetitionSwimmer> backCrawlSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isBackCrawlSwimmer = ((CompetitionSwimmer) member).isBackCrawl();
+            if (isBackCrawlSwimmer){
+                backCrawlSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(backCrawlSwimmers, new TimeComparator());
+        if (backCrawlSwimmers.size() > 5){
+            System.out.println(backCrawlSwimmers.subList(0, 5));
+        }
+        for (int i = 0; i<backCrawlSwimmers.size(); i++){
+            System.out.println(backCrawlSwimmers.get(i));
+        }
+    }
+
+    public void showTopFiveBreastStroke() {
+        ArrayList<CompetitionSwimmer> breastStrokeSwimmers = new ArrayList<>();
+
+        for (Member member : controller.getCompetitionSwimmers()){
+            boolean isBreastStrokeSwimmer = ((CompetitionSwimmer) member).isBreastStroke();
+            if (isBreastStrokeSwimmer){
+                breastStrokeSwimmers.add((CompetitionSwimmer) member);
+            }
+        }
+        Collections.sort(breastStrokeSwimmers, new TimeComparator());
+        if (breastStrokeSwimmers.size() > 5){
+            System.out.println(breastStrokeSwimmers.subList(0, 5));
+        }
+        for (int i = 0; i<breastStrokeSwimmers.size(); i++){
+            System.out.println(breastStrokeSwimmers.get(i));
+        }
+    }
 
     public int readInteger() {
         while (!sc.hasNextInt()) {
@@ -542,6 +617,3 @@ public class UserInterface {
         return controller;
     }
 }
-
-
-
